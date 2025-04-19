@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SisDenWeb</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-screen flex">
+    <!-- Sidebar -->
+    <aside
+      class="w-1/5 bg-gray-400 p-4 flex flex-col justify-between border-r border-black"
+    >
+      <div>
+        <h1 class="text-black text-lg mb-6 text-center">SisDenWeb</h1>
+
+        <!-- Avatar + info do usuário lado a lado -->
+        <div class="flex items-center space-x-3 bg-white rounded p-2 mb-8">
+          <div class="bg-white rounded-full p-1 border border-gray-300">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-black"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5.121 17.804A11.955 11.955 0 0112 15c2.21 0 4.272.636 5.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </div>
+          <div class="text-black">
+            <p>Daniel Oliveira</p>
+            <p class="text-sm">34890</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão Sair -->
+      <button
+        class="bg-red-600 text-white px-6 py-1 rounded hover:bg-red-700 w-full"
+      >
+        Sair
+      </button>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="flex-1 p-6 bg-white flex flex-col justify-between">
+      <div>
+        <!-- Search bar -->
+        <div class="mb-6">
+          <input
+            type="text"
+            placeholder="Pesquisar..."
+            class="w-full p-2 bg-gray-400 text-black placeholder-black rounded focus:outline-none"
+          />
+        </div>
+
+        <!-- Lista de casos -->
+        <div class="space-y-6">
+          <!-- Caso 1 -->
+          <div class="flex items-start justify-between border-b pb-2">
+            <div>
+              <p class="font-medium">Maria Clara</p>
+              <p class="text-sm text-gray-700">
+                Caso N.01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CPF: 268.138.950-01
+              </p>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <button class="bg-gray-400 text-black px-4 py-1 rounded">
+                Visualizar
+              </button>
+              <button class="bg-gray-400 text-black px-4 py-1 rounded">
+                Editar
+              </button>
+            </div>
+          </div>
+
+          <!-- Caso 2 -->
+          <div class="flex items-start justify-between border-b pb-2">
+            <div>
+              <p class="font-medium">Felipe Rocha</p>
+              <p class="text-sm text-gray-700">
+                Caso N.02 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CPF: 149.314.233-02
+              </p>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <button class="bg-gray-400 text-black px-4 py-1 rounded">
+                Visualizar
+              </button>
+              <button class="bg-gray-400 text-black px-4 py-1 rounded">
+                Editar
+              </button>
+            </div>
+          </div>
+
+          <!-- Caso 3 -->
+          <div class="flex items-start justify-between border-b pb-2">
+            <div>
+              <p class="font-medium">João Pedro</p>
+              <p class="text-sm text-gray-700">
+                Caso N.03 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CPF: 819.065.077-75
+              </p>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <button class="bg-gray-400 text-black px-4 py-1 rounded">
+                Visualizar
+              </button>
+              <button class="bg-gray-400 text-black px-4 py-1 rounded">
+                Editar
+              </button>
+            </div>
+          </div>
+
+          <!-- Caso 4 -->
+          <div class="flex items-start justify-between border-b pb-2">
+            <div>
+              <p class="font-medium">Lucas Oliveira</p>
+              <p class="text-sm text-gray-700">
+                Caso N.04 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CPF: 739.861.695-39
+              </p>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <button class="bg-gray-400 text-black px-4 py-1 rounded">
+                Visualizar
+              </button>
+              <button class="bg-gray-400 text-black px-4 py-1 rounded">
+                Editar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão Cadastrar -->
+      <div class="flex justify-end mt-6">
+        <button
+          class="bg-blue-800 text-white font-medium px-6 py-2 rounded hover:bg-blue-900"
+        >
+          Cadastrar
+        </button>
+      </div>
+    </main>
+  </body>
+</html>

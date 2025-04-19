@@ -1,19 +1,19 @@
-const credenciais = {
-    "admin": "admin123",
-    "usuario1": "senha123",
-    "joao": "123456"
-  };
+document.getElementById("login-buttom").addEventListener("click", function (e) {
+  const usuario = document.getElementById("usuario").value;
+  const senha = document.getElementById("senha").value;
 
-  document.getElementById("login-buttom").addEventListener("submit", function (e) {
-    e.preventDefault(); // Evita o envio real do formulário
+  admin_db = JSON.parse(localStorage.getItem("sisdenData_admin_db"));
+  employer_db = JSON.parse(localStorage.getItem("sisdenData_employer_db"));
+  employer = find_employer_by_id(employer_db, usuario);
 
-    const usuario = document.getElementById("usuario").value;
-    const senha = document.getElementById("senha").value;
-
-    if (credenciais[usuario] && credenciais[usuario] === senha) {
-      alert("Login bem-sucedido!");
-      // Redirecionar ou fazer algo após o login
-    } else {
-      alert("Usuário ou senha inválidos.");
-    }
-  });
+  // console.log(employer_db)
+  // console.log(employer)
+  if (admin_db[usuario] && admin_db[usuario] === senha) {
+    console.log("true");
+    window.location.href = "admin/admin-management.html";
+  }else if(employer && employer.password == senha){
+    console.log("false");
+    window.location.href = "employer/employer-cases.html"
+    console.log("opa")
+  }
+});
