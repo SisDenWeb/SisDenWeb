@@ -3,190 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Univesp demo app</title>
+    <title>SisDenWeb</title>
     <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <header>
-        <nav>
-            <div>
-                Cadastro
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-      <section class="section">
-        <h2>Dados Gerais</h2>
-        <div class="form-row">
-          <label for="tipo-notificacao">Tipo de Notificação:</label>
-          <input type="text" id="tipo-notificacao" placeholder=""/>
-        </div>
-        <div class="form-row">
-          <label for="codigo-cid10">Código (CID10):</label>
-          <input type="text" id="codigo-cid10" placeholder="A90"/>
-        </div>
-        <div class="form-row">
-          <label for="data-notificacao">Data da Notificação:</label>
+  <body class="bg-white flex items-center justify-center h-screen">
+    <div class="bg-gray-400 p-10 rounded-md shadow-md w-full max-w-md text-center border border-gray-600">
+      <h1 class="text-white text-3xl font-semibold mb-6">Entrar</h1>
+      <form class="space-y-4">
+        <div class="text-left">
+          <label class="text-black text-sm" for="usuario">Usuário</label>
           <input
             type="text"
-            id="data-notificacao"
-            placeholder="26/02/2025"
-            
+            id="usuario"
+            class="w-full mt-1 p-2 rounded-md bg-white focus:outline-none"
           />
         </div>
-        <div class="form-row">
-          <label for="uf">UF:</label>
-          <input type="text" id="uf" placeholder="SP"  />
-        </div>
-        <div class="form-row">
-          <label for="municipio-notificacao">Município de Notificação:</label>
+        <div class="text-left">
+          <label class="text-black text-sm" for="senha">Senha</label>
           <input
-            type="text"
-            id="municipio-notificacao"
-            placeholder="FERNANDÓPOLIS"
-            
+            type="password"
+            id="senha"
+            class="w-full mt-1 p-2 rounded-md bg-white focus:outline-none"
           />
         </div>
-        <div class="form-row">
-          <label for="codigo-ibge">Código (IBGE):</label>
-          <input type="text" id="codigo-ibge" placeholder="3515509"  />
-        </div>
-        <div class="form-row">
-          <label for="unidade-saude">Unidade de Saúde:</label>
-          <input
-            type="text"
-            id="unidade-saude"
-            placeholder="CENTRO DE SAUDE/UNIDADE BASICA"
-            
-          />
-        </div>
-        <div class="form-row">
-          <label for="data-primeiros-sintomas"
-            >Data dos Primeiros Sintomas:</label
-          >
-          <input type="text" id="data-primeiros-sintomas" placeholder=""  />
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>Notificação Individual</h2>
-        <div class="form-row">
-          <label for="nome-paciente">Nome do Paciente:</label>
-          <input
-            type="text"
-            id="nome-paciente"
-            placeholder="AMANDA DO CARMO FIDELLIS"
-            
-          />
-        </div>
-        <div class="form-row">
-          <label for="data-nascimento">Data de Nascimento:</label>
-          <input type="text" id="data-nascimento" placeholder="23/05/1994"  />
-        </div>
-        <div class="form-row">
-          <label for="idade">Idade:</label>
-          <input type="text" id="idade" placeholder="30"  />
-        </div>
-        <div class="form-row">
-          <label for="sexo">Sexo:</label>
-          <input type="text" id="sexo" placeholder="F"  />
-        </div>
-        <div class="form-row">
-          <label for="gestante">Gestante:</label>
-          <input type="text" id="gestante" placeholder=""  />
-        </div>
-        <div class="form-row">
-          <label for="raca-cor">Raça/Cor:</label>
-          <input type="text" id="raca-cor" placeholder=""  />
-        </div>
-        <div class="form-row">
-          <label for="escolaridade">Escolaridade:</label>
-          <input type="text" id="escolaridade" placeholder=""  />
-        </div>
-        <div class="form-row">
-          <label for="cartao-sus">Número do Cartão SUS:</label>
-          <input type="text" id="cartao-sus" placeholder=""  />
-        </div>
-        <div class="form-row">
-          <label for="nome-mae">Nome da Mãe:</label>
-          <input type="text" id="nome-mae" placeholder=""  />
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>Dados de Residência</h2>
-        <div class="form-row">
-          <label for="uf-residencia">UF:</label>
-          <input type="text" id="uf-residencia" placeholder="SP"  />
-        </div>
-        <div class="form-row">
-          <label for="municipio-residencia">Município de Residência:</label>
-          <input
-            type="text"
-            id="municipio-residencia"
-            placeholder="FERNANDÓPOLIS"
-            
-          />
-        </div>
-        <div class="form-row">
-          <label for="codigo-ibge-residencia">Código (IBGE):</label>
-          <input
-            type="text"
-            id="codigo-ibge-residencia"
-            placeholder="3515509"
-            
-          />
-        </div>
-        <div class="form-row">
-          <label for="distrito">Distrito:</label>
-          <input type="text" id="distrito" placeholder="3515509"  />
-        </div>
-        <div class="form-row">
-          <label for="bairro">Bairro:</label>
-          <input type="text" id="bairro" placeholder=""  />
-        </div>
-        <div class="form-row">
-          <label for="logradouro">Logradouro:</label>
-          <input type="text" id="logradouro" placeholder=""  />
-        </div>
-        <div class="form-row">
-          <label for="numero">Número:</label>
-          <input type="text" id="numero" placeholder=""  />
-        </div>
-        <div class="form-row">
-          <label for="complemento">Complemento:</label>
-          <input type="text" id="complemento" placeholder=""  />
-        </div>
-        <div class="form-row">
-          <label for="geo-campo-1">Geo Campo 1:</label>
-          <input type="text" id="geo-campo-1" placeholder=""  />
-        </div>
-        <div class="form-row">
-          <label for="geo-campo-2">Geo Campo 2:</label>
-          <input type="text" id="geo-campo-2" placeholder=""  />
-        </div>
-        <div class="form-row">
-          <label for="ponto-referencia">Ponto de Referência:</label>
-          <input type="text" id="ponto-referencia" placeholder=""  />
-        </div>
-        <div class="form-row">
-          <label for="cep">CEP:</label>
-          <input type="text" id="cep" placeholder=""  />
-        </div>
-        <div class="form-row">
-          <label for="ddd-telefone">Telefone:</label>
-          <input type="text" id="ddd-telefone" placeholder=""  />
-        </div>
-        <div class="form-row">
-          <label for="zona">Zona:</label>
-          <input type="text" id="zona" placeholder=""  />
-        </div>
-        <div class="form-row">
-          <label for="pais-residencia">País (se reside fora do Brasil):</label>
-          <input type="text" id="pais-residencia" placeholder=""  />
-        </div>
-      </section>
+        <button
+          type="submit"
+          class="bg-blue-800 text-white px-6 py-2 rounded-md hover:bg-blue-900 transition"
+        >
+          Entrar
+        </button>
+      </form>
+      <p class="text-xs text-black mt-6">Copyright (c) 2025 Univesp PI</p>
     </div>
   </body>
 </html>
