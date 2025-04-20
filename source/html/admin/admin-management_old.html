@@ -5,80 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SisDenWeb</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      .dropdown-transition {
-        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-      }
-    </style>
   </head>
-  <body class="h-screen flex flex-col md:flex-row bg-white">
-    <!-- Sidebar (Desktop) -->
+  <body class="h-screen flex">
+    <!-- Sidebar -->
     <aside
-      class="hidden md:flex flex-col w-1/5 bg-gray-400 p-4 border-r border-black"
+      class="w-1/5 bg-gray-400 p-4 flex flex-col justify-start items-center border-r border-black"
     >
-      <h1 class="text-black font-bold mb-10">SisDenWeb</h1>
+      <h1 class="text-black text-lg mb-10">SisDenWeb</h1>
       <button
-        class="gestao-funcionarios bg-blue-800 text-white font-medium w-full py-2 mb-4 rounded hover:bg-blue-900"
+        type="button"
+        id="gestao-funcionarios"
+        class="bg-blue-800 text-white font-medium w-full py-2 mb-4 rounded hover:bg-blue-900"
       >
         Gestão de funcionários
       </button>
       <button
-        class="casos-notificados bg-blue-800 text-white font-medium w-full py-2 rounded hover:bg-blue-900"
+        type="button"
+        id="casos-notificados"
+        class="bg-blue-800 text-white font-medium w-full py-2 rounded hover:bg-blue-900"
       >
         Casos notificados
-      </button>
-      <button
-        type="button"
-        class="logout bg-red-600 text-white font-medium w-full py-2 rounded hover:bg-red-700 mt-auto"
-      >
-        Sair
       </button>
     </aside>
-
-    <!-- Topbar (Mobile) -->
-    <header
-      class="flex md:hidden justify-between items-center p-4 bg-gray-400 border-b border-black"
-    >
-      <h1 class="text-black font-bold">SisDenWeb</h1>
-      <button id="menu-toggle" class="md:hidden">
-        <svg
-          class="w-6 h-6 text-black"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      </button>
-    </header>
-
-    <!-- Menu Dropdown (Mobile) -->
-    <nav
-      id="mobile-menu"
-      class="md:hidden overflow-hidden max-h-0 opacity-0 dropdown-transition bg-gray-300"
-    >
-      <button
-        class="gestao-funcionarios dropdown-item w-full text-left px-6 py-3 hover:bg-blue-800 hover:text-white border-b border-gray-400"
-      >
-        Gestão de funcionários
-      </button>
-      <button
-        class="casos-notificados dropdown-item w-full text-left px-6 py-3 hover:bg-blue-800 hover:text-white border-b border-gray-400"
-      >
-        Casos notificados
-      </button>
-      <button
-        type="button"
-        class="logout bg-red-600 text-white font-medium w-full py-2 rounded hover:bg-red-700 mt-auto"
-      >
-        Sair
-      </button>
-    </nav>
 
     <!-- Conteúdo principal -->
     <main class="flex-1 p-6 bg-white flex flex-col justify-between">
@@ -185,6 +133,5 @@
 </html>
 
 <script src="../../script/data_handler.js"></script>
-<script src="../../script/admin-management.js"></script>
-<script src="../../script/admin_mobile.js"></script>
 <script src="../../script/admin.js"></script>
+<script src="../../script/admin_mobile.js"></script>
