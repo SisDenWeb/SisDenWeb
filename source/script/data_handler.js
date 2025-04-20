@@ -489,7 +489,6 @@ function salvarDados(dados, type) {
       default:
         throw new Error("JSON Data " + type + " is invalid");
     }
-    console.log("Dados salvos com sucesso!");
   } catch (e) {
     console.error("Erro ao salvar dados:", e);
   }
@@ -521,19 +520,24 @@ function recuperarDados(type) {
 }
 
 function starter_database() {
+    console.log("i'm restarting database :)");
+    salvarDados(dadosIniciais.admin, "admin");
+    salvarDados(dadosIniciais.employers, "employer");
+    salvarDados(dadosIniciais.cases, "case");
+}
+
+// did this to restart database if empty andddd now i can just call starter_database() :)
+function database_empty(){
   if (
     recuperarDados("admin") == null &&
     recuperarDados("employers") == null &&
     recuperarDados("cases") == null
-  ) {
-    console.log("Database is empty so i'm restarting...");
-    salvarDados(dadosIniciais.admin, "admin");
-    salvarDados(dadosIniciais.employers, "employer");
-    salvarDados(dadosIniciais.cases, "case");
+  ){
+    starter_database();
   }
 }
 
-starter_database();
+database_empty();
 
 ///////////////////////
 // DATA MANIPULATING //
@@ -586,7 +590,6 @@ function delete_employer_by_id(id) {
 
   // Filtra o array, removendo o funcionário com o ID fornecido
   employer_db = employer_db.filter((emp) => emp.id !== parseInt(id));
-  console.log(employer_db);
 
   salvarDados(employer_db, "employer");
 }

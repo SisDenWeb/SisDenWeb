@@ -49,9 +49,6 @@ function update_employer_list(employer) {
   //   };
 
   const index = employers_db.findIndex((e) => e.id === employer.id);
-
-    console.log(index);
-    console.log(employer)
   if (index !== -1) {
     employers_db[index] = employer;
   } else {
@@ -186,7 +183,6 @@ function event_reset_password(){
 function event_delete_employer(){
     document.querySelectorAll(".deletar-funcionario").forEach((botao) => {
         botao.addEventListener("click", () => {
-          console.log("click delete")
           const id = botao.dataset.id;
           delete_employer_by_id(id);
           refresh_data();
