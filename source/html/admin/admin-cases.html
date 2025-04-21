@@ -538,6 +538,485 @@
                 checkboxes.forEach((cb) => (cb.disabled = value === "2"));
               }
             </script>
+
+            <!-- Exames -->
+            <div class="border p-4 rounded-md shadow">
+              <h3 class="text-md font-semibold mb-2">Exames Laboratoriais</h3>
+
+              <!-- Sorologia (IgM) Chikungunya -->
+              <div>
+                <label class="block font-semibold text-sm mb-1"
+                  >Sorologia (IgM) Chikungunya</label
+                >
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm font-medium"
+                      >Data da Coleta (S1)</label
+                    >
+                    <input type="date" class="w-full p-2 border rounded" />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Resultado</label>
+                    <select class="w-full p-2 border rounded">
+                      <option>1 - Positivo</option>
+                      <option>2 - Negativo</option>
+                      <option>3 - Inconclusivo</option>
+                      <option>4 - Não Realizado</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Coleta 2ª amostra -->
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="text-sm font-medium">Data da Coleta (S2)</label>
+                  <input type="date" class="w-full p-2 border rounded" />
+                </div>
+                <div>
+                  <label class="text-sm font-medium">Resultado</label>
+                  <select class="w-full p-2 border rounded">
+                    <option>1 - Positivo</option>
+                    <option>2 - Negativo</option>
+                    <option>3 - Inconclusivo</option>
+                    <option>4 - Não Realizado</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Exame PRNT -->
+              <div>
+                <label class="block font-semibold text-sm mb-1"
+                  >Exame PRNT</label
+                >
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm font-medium">Data da Coleta</label>
+                    <input type="date" class="w-full p-2 border rounded" />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Resultado</label>
+                    <select class="w-full p-2 border rounded">
+                      <option>1 - Reagente</option>
+                      <option>2 - Não Reagente</option>
+                      <option>3 - Inconclusivo</option>
+                      <option>4 - Não Realizado</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sorologia (IgM) Dengue -->
+              <div>
+                <label class="block font-semibold text-sm mb-1"
+                  >Sorologia (IgM) Dengue</label
+                >
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm font-medium">Data da Coleta</label>
+                    <input type="date" class="w-full p-2 border rounded" />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Resultado</label>
+                    <select class="w-full p-2 border rounded">
+                      <option>1 - Positivo</option>
+                      <option>2 - Negativo</option>
+                      <option>3 - Inconclusivo</option>
+                      <option>4 - Não Realizado</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Isolamento -->
+              <div>
+                <label class="block font-semibold text-sm mb-1"
+                  >Isolamento</label
+                >
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm font-medium">Data da Coleta</label>
+                    <input type="date" class="w-full p-2 border rounded" />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Resultado</label>
+                    <select class="w-full p-2 border rounded">
+                      <option>1 - Positivo</option>
+                      <option>2 - Negativo</option>
+                      <option>3 - Inconclusivo</option>
+                      <option>4 - Não Realizado</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Exame NS1 -->
+              <div>
+                <label class="block font-semibold text-sm mb-1"
+                  >Exame NS1</label
+                >
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm font-medium">Data da Coleta</label>
+                    <input type="date" class="w-full p-2 border rounded" />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Resultado</label>
+                    <select class="w-full p-2 border rounded">
+                      <option>1 - Positivo</option>
+                      <option>2 - Negativo</option>
+                      <option>3 - Inconclusivo</option>
+                      <option>4 - Não Realizado</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- RT-PCR -->
+              <div>
+                <label class="block font-semibold text-sm mb-1">RT-PCR</label>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm font-medium">Data da Coleta</label>
+                    <input type="date" class="w-full p-2 border rounded" />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Resultado</label>
+                    <select class="w-full p-2 border rounded">
+                      <option>1 - Positivo</option>
+                      <option>2 - Negativo</option>
+                      <option>3 - Inconclusivo</option>
+                      <option>4 - Não Realizado</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sorotipo -->
+              <div>
+                <label class="block font-semibold text-sm mb-1">Sorotipo</label>
+                <select class="w-full p-2 border rounded">
+                  <option>1 - DENV1</option>
+                  <option>2 - DENV2</option>
+                  <option>3 - DENV3</option>
+                  <option>4 - DENV4</option>
+                </select>
+              </div>
+
+              <!-- Histopatologia -->
+              <div>
+                <label class="block font-semibold text-sm mb-1"
+                  >Histopatologia</label
+                >
+                <select class="w-full p-2 border rounded">
+                  <option>1 - Compatível</option>
+                  <option>2 - Incompatível</option>
+                  <option>3 - Inconclusivo</option>
+                  <option>4 - Não Realizado</option>
+                </select>
+              </div>
+
+              <!-- Imunohistoquímica -->
+              <div>
+                <label class="block font-semibold text-sm mb-1"
+                  >Imunohistoquímica</label
+                >
+                <select class="w-full p-2 border rounded">
+                  <option>1 - Positivo</option>
+                  <option>2 - Negativo</option>
+                  <option>3 - Inconclusivo</option>
+                  <option>4 - Não Realizado</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- hospitalizacao -->
+            <div class="border p-4 rounded-md shadow">
+              <h3 class="text-md font-semibold mb-2">Hospitalização</h3>
+
+              <!-- Ocorrência de Hospitalização -->
+              <div class="flex items-center gap-4">
+                <label class="text-sm font-medium"
+                  >Ocorreu Hospitalização:</label
+                >
+                <div class="flex gap-4">
+                  <label class="flex items-center gap-1">
+                    <input
+                      type="radio"
+                      name="hospitalizacao"
+                      value="1"
+                      onchange="toggleHospitalizacao()"
+                    />
+                    1 - Sim
+                  </label>
+                  <label class="flex items-center gap-1">
+                    <input
+                      type="radio"
+                      name="hospitalizacao"
+                      value="2"
+                      onchange="toggleHospitalizacao()"
+                    />
+                    2 - Não
+                  </label>
+                  <label class="flex items-center gap-1">
+                    <input
+                      type="radio"
+                      name="hospitalizacao"
+                      value="9"
+                      onchange="toggleHospitalizacao()"
+                    />
+                    9 - Ignorado
+                  </label>
+                </div>
+              </div>
+
+              <!-- Campos extras (só habilita se "Sim") -->
+              <div id="dadosHospitalizacao" class="space-y-4">
+                <div>
+                  <label class="text-sm font-medium">Data da Internação:</label>
+                  <input
+                    type="date"
+                    id="dataInternacao"
+                    class="w-full p-2 border rounded"
+                    disabled
+                  />
+                </div>
+
+                <div class="grid grid-cols-3 gap-4">
+                  <div>
+                    <label class="text-sm font-medium">UF</label>
+                    <input
+                      type="text"
+                      id="ufHospital"
+                      maxlength="2"
+                      class="w-full p-2 border rounded"
+                      disabled
+                    />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium"
+                      >Município do Hospital</label
+                    >
+                    <input
+                      type="text"
+                      id="municipioHospital"
+                      class="w-full p-2 border rounded"
+                      disabled
+                    />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Código IBGE</label>
+                    <input
+                      type="text"
+                      id="codigoIBGEHospital"
+                      class="w-full p-2 border rounded"
+                      disabled
+                    />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-4">
+                  <div>
+                    <label class="text-sm font-medium">Nome do Hospital</label>
+                    <input
+                      type="text"
+                      id="nomeHospital"
+                      class="w-full p-2 border rounded"
+                      disabled
+                    />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Código</label>
+                    <input
+                      type="text"
+                      id="codigoHospital"
+                      class="w-full p-2 border rounded"
+                      disabled
+                    />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Telefone (DDD)</label>
+                    <input
+                      type="text"
+                      id="telefoneHospital"
+                      class="w-full p-2 border rounded"
+                      disabled
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <script>
+              function toggleHospitalizacao() {
+                const value = document.querySelector(
+                  'input[name="hospitalizacao"]:checked'
+                )?.value;
+                const inputs = document.querySelectorAll(
+                  "#dadosHospitalizacao input"
+                );
+
+                inputs.forEach((input) => {
+                  input.disabled = value !== "1";
+                });
+              }
+            </script>
+
+            <div class="border p-4 rounded-md shadow space-y-4">
+              <h2 class="text-lg font-bold border-b pb-1 text-center">
+                Conclusão
+              </h2>
+
+              <!-- Local provável de infecção -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-4">
+                  <label class="text-sm font-medium"
+                    >O caso é autóctone do município de residência?</label
+                  >
+                  <div class="flex gap-4">
+                    <label class="flex items-center gap-1"
+                      ><input type="radio" name="autoctone" value="1" /> 1 -
+                      Sim</label
+                    >
+                    <label class="flex items-center gap-1"
+                      ><input type="radio" name="autoctone" value="2" /> 2 -
+                      Não</label
+                    >
+                    <label class="flex items-center gap-1"
+                      ><input type="radio" name="autoctone" value="3" /> 3 -
+                      Indeterminado</label
+                    >
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-4">
+                  <div>
+                    <label class="text-sm font-medium">UF</label>
+                    <input
+                      type="text"
+                      class="w-full p-2 border rounded"
+                      maxlength="2"
+                    />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">País</label>
+                    <input type="text" class="w-full p-2 border rounded" />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Município</label>
+                    <input type="text" class="w-full p-2 border rounded" />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-4 gap-4">
+                  <div>
+                    <label class="text-sm font-medium">Código IBGE</label>
+                    <input type="text" class="w-full p-2 border rounded" />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Distrito</label>
+                    <input type="text" class="w-full p-2 border rounded" />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Bairro</label>
+                    <input type="text" class="w-full p-2 border rounded" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Informações finais -->
+              <div class="grid grid-cols-3 gap-4">
+                <div>
+                  <label class="text-sm font-medium">Classificação</label>
+                  <select
+                    class="w-full p-2 border rounded"
+                    id="classificacao"
+                    onchange="verificarApresentacao()"
+                  >
+                    <option value="">Selecione</option>
+                    <option value="5">5 - Descartado</option>
+                    <option value="10">10 - Dengue</option>
+                    <option value="11">11 - Dengue com Sinais de Alarme</option>
+                    <option value="12">12 - Dengue Grave</option>
+                    <option value="13">13 - Chikungunya</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="text-sm font-medium"
+                    >Critério de Confirmação/Descarte</label
+                  >
+                  <select class="w-full p-2 border rounded">
+                    <option value="">Selecione</option>
+                    <option value="1">1 - Laboratório</option>
+                    <option value="2">2 - Clínico Epidemiológico</option>
+                    <option value="3">3 - Em investigação</option>
+                  </select>
+                </div>
+
+                <div id="apresentacaoClinica" class="hidden">
+                  <label class="text-sm font-medium"
+                    >Apresentação Clínica</label
+                  >
+                  <select class="w-full p-2 border rounded">
+                    <option value="">Selecione</option>
+                    <option value="1">1 - Aguda</option>
+                    <option value="2">2 - Crônica</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Evolução e datas -->
+              <div class="grid grid-cols-3 gap-4">
+                <div>
+                  <label class="text-sm font-medium">Evolução do Caso</label>
+                  <select
+                    class="w-full p-2 border rounded"
+                    id="evolucao"
+                    onchange="mostrarDatas()"
+                  >
+                    <option value="">Selecione</option>
+                    <option value="1">1 - Cura</option>
+                    <option value="2">2 - Óbito pelo agravo</option>
+                    <option value="3">3 - Óbito por outras causas</option>
+                    <option value="4">4 - Óbito em investigação</option>
+                    <option value="9">9 - Ignorado</option>
+                  </select>
+                </div>
+
+                <div id="campoObito" class="hidden">
+                  <label class="text-sm font-medium">Data do Óbito</label>
+                  <input type="date" class="w-full p-2 border rounded" />
+                </div>
+
+                <div id="campoEncerramento" class="hidden">
+                  <label class="text-sm font-medium"
+                    >Data de Encerramento</label
+                  >
+                  <input type="date" class="w-full p-2 border rounded" />
+                </div>
+              </div>
+            </div>
+
+            <script>
+              function mostrarDatas() {
+                const valor = document.getElementById("evolucao").value;
+                document
+                  .getElementById("campoObito")
+                  .classList.toggle("hidden", !["2", "3", "4"].includes(valor));
+                document
+                  .getElementById("campoEncerramento")
+                  .classList.toggle("hidden", !["1", "9"].includes(valor));
+              }
+
+              function verificarApresentacao() {
+                const valor = document.getElementById("classificacao").value;
+                document
+                  .getElementById("apresentacaoClinica")
+                  .classList.toggle("hidden", valor === "5" || valor === "");
+              }
+            </script>
           </form>
         </div>
       </div>
