@@ -108,8 +108,7 @@
 
           <!-- Conteúdo da Ficha SUS -->
           <form class="space-y-6">
-            <!-- inicio dados gerais -->
-            <!-- Dados Gerais - Estilo Ficha SUS Refinado -->
+            <!-- Dados gerais -->
             <div class="border p-4 rounded-md shadow">
               <h2 class="text-lg font-bold mb-4">Dados Gerais</h2>
               <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -118,7 +117,7 @@
                   <label class="block text-sm font-medium"
                     >Tipo de Notificação:</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input type="text" id="tipo-notificacao" class="w-full p-2 border rounded" />
                 </div>
 
                 <!-- Agravo/Doença -->
@@ -197,11 +196,10 @@
                 </div>
               </div>
             </div>
-            <!-- fim dados gerais -->
 
             <!-- Notificação Individual -->
             <div class="border p-4 rounded-md shadow">
-              <h2 class="text-lg font-bold mb-2">Notificação Individual</h2>
+              <h2 class="text-lg font-bold mb-4">Notificação Individual</h2>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label class="block text-sm font-medium"
@@ -281,11 +279,10 @@
                 </div>
               </div>
             </div>
-            <!-- fim notificacao -->
 
             <!-- Dados de Residência -->
             <div class="border p-4 rounded-md shadow">
-              <h2 class="text-lg font-bold mb-2">Dados de Residência</h2>
+              <h2 class="text-lg font-bold mb-4">Dados de Residência</h2>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label class="block text-sm font-medium"
@@ -368,9 +365,8 @@
                 </div>
               </div>
             </div>
-            <!-- fim Residência -->
 
-            <!-- Separador de conteúdo -->
+            <!-- ### Dados Clínicos e Laboratoriais ### -->
             <div class="mt-8 mb-4">
               <h2
                 class="text-lg font-bold text-center border-t-2 border-b-2 border-gray-400 pb-2 pt-2"
@@ -381,7 +377,7 @@
 
             <!-- Investigação -->
             <div class="border p-4 rounded-md shadow">
-              <h3 class="text-md font-semibold mb-2">Investigação</h3>
+              <h2 class="text-lg font-bold mb-4">Investigação</h2>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label class="block text-sm font-medium"
@@ -398,7 +394,7 @@
 
             <!-- Dados Clínicos -->
             <div class="border p-4 rounded-md shadow">
-              <h3 class="text-md font-semibold mb-2">Dados clinicos</h3>
+              <h2 class="text-lg font-bold mb-4">Dados clinicos</h2>
 
               <!-- Sinais Clínicos -->
               <div class="mb-6">
@@ -521,27 +517,9 @@
               </div>
             </div>
 
-            <script>
-              function toggleSinais() {
-                const value = document.querySelector(
-                  'input[name="sinais"]:checked'
-                )?.value;
-                const checkboxes = document.querySelectorAll(".sinais");
-                checkboxes.forEach((cb) => (cb.disabled = value === "2"));
-              }
-
-              function toggleDoencas() {
-                const value = document.querySelector(
-                  'input[name="doencas"]:checked'
-                )?.value;
-                const checkboxes = document.querySelectorAll(".doencas");
-                checkboxes.forEach((cb) => (cb.disabled = value === "2"));
-              }
-            </script>
-
             <!-- Exames -->
             <div class="border p-4 rounded-md shadow">
-              <h3 class="text-md font-semibold mb-2">Exames Laboratoriais</h3>
+              <h2 class="text-lg font-bold mb-4">Exames Laboratoriais</h2>
 
               <!-- Sorologia (IgM) Chikungunya -->
               <div>
@@ -733,7 +711,7 @@
 
             <!-- hospitalizacao -->
             <div class="border p-4 rounded-md shadow">
-              <h3 class="text-md font-semibold mb-2">Hospitalização</h3>
+              <h2 class="text-lg font-bold mb-4">Hospitalização</h2>
 
               <!-- Ocorrência de Hospitalização -->
               <div class="flex items-center gap-4">
@@ -848,25 +826,9 @@
               </div>
             </div>
 
-            <script>
-              function toggleHospitalizacao() {
-                const value = document.querySelector(
-                  'input[name="hospitalizacao"]:checked'
-                )?.value;
-                const inputs = document.querySelectorAll(
-                  "#dadosHospitalizacao input"
-                );
-
-                inputs.forEach((input) => {
-                  input.disabled = value !== "1";
-                });
-              }
-            </script>
-
+            <!-- conclusao -->
             <div class="border p-4 rounded-md shadow space-y-4">
-              <h2 class="text-lg font-bold border-b pb-1 text-center">
-                Conclusão
-              </h2>
+              <h2 class="text-lg font-bold mb-4">Conclusão</h2>
 
               <!-- Local provável de infecção -->
               <div class="space-y-2">
@@ -999,38 +961,474 @@
               </div>
             </div>
 
-            <script>
-              function mostrarDatas() {
-                const valor = document.getElementById("evolucao").value;
-                document
-                  .getElementById("campoObito")
-                  .classList.toggle("hidden", !["2", "3", "4"].includes(valor));
-                document
-                  .getElementById("campoEncerramento")
-                  .classList.toggle("hidden", !["1", "9"].includes(valor));
-              }
+            <!-- ### Dados Clínicos ### -->
+            <div class="mt-8 mb-4">
+              <h2
+                class="text-lg font-bold text-center border-t-2 border-b-2 border-gray-400 pb-2 pt-2"
+              >
+                Dados Clínicos - Dengue com Sinais de Alarme e Dengue Grave
+              </h2>
+            </div>
 
-              function verificarApresentacao() {
-                const valor = document.getElementById("classificacao").value;
-                document
-                  .getElementById("apresentacaoClinica")
-                  .classList.toggle("hidden", valor === "5" || valor === "");
-              }
-            </script>
+            <!-- Dengue com Sinais de Alarme -->
+            <div class="border p-4 rounded-md shadow">
+              <h2 class="text-lg font-bold mb-4">
+                Dengue com Sinais de Alarme
+              </h2>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <!-- Radio Buttons -->
+                <div class="md:col-span-4">
+                  <label class="block text-sm font-medium mb-1"
+                    >Paciente apresentou sinais de alarme?</label
+                  >
+                  <div class="flex gap-6">
+                    <label class="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="sinaisAlarme"
+                        value="1"
+                        onchange="toggleSinaisAlarme(true)"
+                      />
+                      Sim
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="sinaisAlarme"
+                        value="2"
+                        onchange="toggleSinaisAlarme(false)"
+                      />
+                      Não
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Sintomas de Alarme -->
+                <fieldset
+                  id="sintomasAlarme"
+                  class="md:col-span-4 grid grid-cols-1 md:grid-cols-3 gap-2 mt-2"
+                  disabled
+                >
+                  <label><input type="checkbox" /> Hipotensão postural</label>
+                  <label
+                    ><input type="checkbox" /> Queda abrupta de plaquetas</label
+                  >
+                  <label><input type="checkbox" /> Vômitos persistentes</label>
+                  <label
+                    ><input type="checkbox" /> Dor abdominal intensa e
+                    contínua</label
+                  >
+                  <label
+                    ><input type="checkbox" /> Letargia ou irritabilidade</label
+                  >
+                  <label
+                    ><input type="checkbox" /> Sangramento de mucosa/outras
+                    hemorragias</label
+                  >
+                  <label
+                    ><input type="checkbox" /> Aumento progressivo do
+                    hematócrito</label
+                  >
+                  <label><input type="checkbox" /> Acúmulo de líquidos</label>
+                  <label><input type="checkbox" /> Hepatomegalia ≥ 2cm</label>
+                </fieldset>
+
+                <!-- Data de início dos sintomas -->
+                <div class="md:col-span-2 mt-4">
+                  <label class="block text-sm font-medium mb-1"
+                    >Data de início dos sinais de alarme</label
+                  >
+                  <input
+                    type="date"
+                    id="dataAlarme"
+                    class="w-full p-2 border rounded"
+                    disabled
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Dengue Grave -->
+            <div class="border p-4 rounded-md shadow">
+              <h2 class="text-lg font-bold mb-4">Dengue Grave</h2>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <!-- Radio Buttons -->
+                <div class="md:col-span-4">
+                  <label class="block text-sm font-medium mb-1"
+                    >Paciente apresentou sinais de dengue grave?</label
+                  >
+                  <div class="flex gap-6">
+                    <label class="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="dengueGrave"
+                        value="1"
+                        onchange="toggleDengueGrave(true)"
+                      />
+                      Sim
+                    </label>
+                    <label class="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="dengueGrave"
+                        value="2"
+                        onchange="toggleDengueGrave(false)"
+                      />
+                      Não
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Sintomas Dengue Grave -->
+                <fieldset
+                  id="sintomasGrave"
+                  class="md:col-span-4 space-y-4 mt-2"
+                  disabled
+                >
+                  <!-- Extravasamento grave de plasma -->
+                  <div>
+                    <p class="font-medium">Extravasamento grave de plasma:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-1">
+                      <label
+                        ><input type="checkbox" /> Pulso débil ou PA
+                        convergente</label
+                      >
+                      <label
+                        ><input type="checkbox" /> Tempo de enchimento
+                        capilar</label
+                      >
+                      <label
+                        ><input type="checkbox" /> Acúmulo de líquidos com
+                        insuficiência respiratória</label
+                      >
+                      <label
+                        ><input type="checkbox" /> Taquicardia / Extremidades
+                        frias</label
+                      >
+                      <label
+                        ><input type="checkbox" /> Hipotensão arterial</label
+                      >
+                    </div>
+                  </div>
+
+                  <!-- Sangramento grave -->
+                  <div>
+                    <p class="font-medium">Sangramento grave:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-1">
+                      <label><input type="checkbox" /> Hematêmese</label>
+                      <label><input type="checkbox" /> Melena</label>
+                      <label
+                        ><input type="checkbox" /> Metrorragia volumosa</label
+                      >
+                      <label
+                        ><input type="checkbox" /> Sangramento do SNC</label
+                      >
+                    </div>
+                  </div>
+
+                  <!-- Comprometimento grave de órgãos -->
+                  <div>
+                    <p class="font-medium">Comprometimento grave de órgãos:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-1">
+                      <label
+                        ><input type="checkbox" /> AST/ALT &gt; 1.000</label
+                      >
+                      <label><input type="checkbox" /> Miocardite</label>
+                      <label
+                        ><input type="checkbox" /> Alteração da
+                        consciência</label
+                      >
+                    </div>
+                  </div>
+
+                  <!-- Campo Outros -->
+                  <div class="md:col-span-4">
+                    <label class="block text-sm font-medium mb-1"
+                      >Outros:</label
+                    >
+                    <input type="text" class="w-full p-2 border rounded" />
+                  </div>
+                </fieldset>
+
+                <!-- Data dos sinais de gravidade -->
+                <div class="md:col-span-2 mt-4">
+                  <label class="block text-sm font-medium mb-1"
+                    >Data de início dos sinais de gravidade</label
+                  >
+                  <input
+                    type="date"
+                    id="dataGravidade"
+                    class="w-full p-2 border rounded"
+                    disabled
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Informações Complementares e Observações -->
+            <div class="border p-4 rounded-md shadow">
+              <h2 class="text-lg font-bold mb-4">
+                Informações Complementares e Observações
+              </h2>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <!-- Deslocamento -->
+                <div class="md:col-span-2">
+                  <label class="block text-sm font-medium mb-1"
+                    >Deslocou-se do município nos últimos 15 dias?</label
+                  >
+                  <div class="flex gap-4">
+                    <label class="flex items-center gap-2"
+                      ><input
+                        type="radio"
+                        name="deslocamento"
+                        value="nao"
+                      />Não</label
+                    >
+                    <label class="flex items-center gap-2"
+                      ><input
+                        type="radio"
+                        name="deslocamento"
+                        value="sim"
+                      />Sim</label
+                    >
+                  </div>
+                </div>
+
+                <!-- Data e local -->
+                <div class="md:col-span-2">
+                  <label class="block text-sm font-medium mb-1"
+                    >Data e local:</label
+                  >
+                  <input type="text" class="w-full p-2 border rounded" />
+                </div>
+
+                <!-- Vacina Febre Amarela -->
+                <div class="md:col-span-2">
+                  <label class="block text-sm font-medium mb-1"
+                    >Vacina de Febre Amarela (última dose):</label
+                  >
+                  <input type="text" class="w-full p-2 border rounded" />
+                </div>
+
+                <!-- Dengue anteriormente -->
+                <div class="md:col-span-2">
+                  <label class="block text-sm font-medium mb-1"
+                    >Dengue anteriormente (mês e ano):</label
+                  >
+                  <input type="text" class="w-full p-2 border rounded" />
+                </div>
+
+                <!-- Pressão Arterial -->
+                <div class="md:col-span-4">
+                  <label class="block text-sm font-medium mb-1"
+                    >Pressão Arterial em duas posições (em pé e deitado ou
+                    sentado):</label
+                  >
+                  <input type="text" class="w-full p-2 border rounded" />
+                </div>
+
+                <!-- Prova do laço -->
+                <div class="md:col-span-2">
+                  <label class="block text-sm font-medium mb-1"
+                    >Prova do laço:</label
+                  >
+                  <div class="flex gap-4">
+                    <label class="flex items-center gap-2"
+                      ><input
+                        type="radio"
+                        name="laco"
+                        value="positiva"
+                      />Positiva</label
+                    >
+                    <label class="flex items-center gap-2"
+                      ><input
+                        type="radio"
+                        name="laco"
+                        value="negativa"
+                      />Negativa</label
+                    >
+                  </div>
+                </div>
+
+                <!-- Icterícia -->
+                <div class="md:col-span-1">
+                  <label class="block text-sm font-medium mb-1"
+                    >Icterícia:</label
+                  >
+                  <div class="flex gap-4">
+                    <label class="flex items-center gap-2"
+                      ><input
+                        type="radio"
+                        name="ictericia"
+                        value="sim"
+                      />Sim</label
+                    >
+                    <label class="flex items-center gap-2"
+                      ><input
+                        type="radio"
+                        name="ictericia"
+                        value="nao"
+                      />Não</label
+                    >
+                  </div>
+                </div>
+
+                <!-- Hemograma -->
+                <div class="md:col-span-1">
+                  <label class="block text-sm font-medium mb-1"
+                    >Coletou hemograma?</label
+                  >
+                  <div class="flex gap-4">
+                    <label class="flex items-center gap-2"
+                      ><input
+                        type="radio"
+                        name="hemograma"
+                        value="sim"
+                      />Sim</label
+                    >
+                    <label class="flex items-center gap-2"
+                      ><input
+                        type="radio"
+                        name="hemograma"
+                        value="nao"
+                      />Não</label
+                    >
+                  </div>
+                </div>
+
+                <!-- Dados Hemograma - Linha 1 -->
+                <div class="md:col-span-4">
+                  <p class="text-sm font-medium">Hemograma 1:</p>
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <input
+                      type="date"
+                      class="w-full p-2 border rounded"
+                      placeholder="Data"
+                    />
+                    <input
+                      type="text"
+                      class="w-full p-2 border rounded"
+                      placeholder="Plaquetas"
+                    />
+                    <input
+                      type="text"
+                      class="w-full p-2 border rounded"
+                      placeholder="Leucócitos"
+                    />
+                    <input
+                      type="text"
+                      class="w-full p-2 border rounded"
+                      placeholder="Hematócrito"
+                    />
+                  </div>
+                </div>
+
+                <!-- Dados Hemograma - Linha 2 -->
+                <div class="md:col-span-4">
+                  <p class="text-sm font-medium mt-2">Hemograma 2:</p>
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <input
+                      type="date"
+                      class="w-full p-2 border rounded"
+                      placeholder="Data"
+                    />
+                    <input
+                      type="text"
+                      class="w-full p-2 border rounded"
+                      placeholder="Plaquetas"
+                    />
+                    <input
+                      type="text"
+                      class="w-full p-2 border rounded"
+                      placeholder="Leucócitos"
+                    />
+                    <input
+                      type="text"
+                      class="w-full p-2 border rounded"
+                      placeholder="Hematócrito"
+                    />
+                  </div>
+                </div>
+
+                <!-- Classificação de risco -->
+                <div class="md:col-span-4">
+                  <label class="block text-sm font-medium mb-1 mt-4"
+                    >Classificação de risco:</label
+                  >
+                  <div class="flex flex-wrap gap-4">
+                    <label class="flex items-center gap-2"
+                      ><input type="radio" name="risco" value="a" />Grupo
+                      A</label
+                    >
+                    <label class="flex items-center gap-2"
+                      ><input type="radio" name="risco" value="b" />Grupo
+                      B</label
+                    >
+                    <label class="flex items-center gap-2"
+                      ><input type="radio" name="risco" value="c" />Grupo
+                      C</label
+                    >
+                    <label class="flex items-center gap-2"
+                      ><input type="radio" name="risco" value="d" />Grupo
+                      D</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Investigador -->
+            <div class="border p-4 rounded-md shadow">
+              <h2 class="text-lg font-bold mb-4">Investigador</h2>
+              <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <!-- Municipio -->
+                <div class="md:col-span-4">
+                  <label class="block text-sm font-medium"
+                    >Municipo/Unidade de Saude:</label
+                  >
+                  <input type="text" class="w-full p-2 border rounded" />
+                </div>
+
+                <!-- Cod. Unidade -->
+                <div class="md:col-span-1">
+                  <label class="block text-sm font-medium"
+                    >Cod. Unid. Saude:</label
+                  >
+                  <input type="text" class="w-full p-2 border rounded" />
+                </div>
+
+                <!-- Nome -->
+                <div class="md:col-span-3">
+                  <label class="block text-sm font-medium"
+                    >Cod. Unid. Saude:</label
+                  >
+                  <input type="text" class="w-full p-2 border rounded" />
+                </div>
+
+                <!-- Funcao -->
+                <div class="md:col-span-2">
+                  <label class="block text-sm font-medium"
+                    >Cod. Unid. Saude:</label
+                  >
+                  <input type="text" class="w-full p-2 border rounded" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Botão Salvar -->
+            <div class="flex justify-end">
+              <button
+                type="button"
+                onclick="saveCaseModal()"
+                class="text-black font-semibold px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+              >
+                Salvar
+              </button>
+            </div>
+
           </form>
         </div>
       </div>
-
-      <!-- Exemplo de ativação do modal -->
-      <script>
-        function openCaseModal() {
-          document.getElementById("case-modal").classList.remove("hidden");
-        }
-
-        function closeCaseModal() {
-          document.getElementById("case-modal").classList.add("hidden");
-        }
-      </script>
     </main>
   </body>
 </html>
