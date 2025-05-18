@@ -18,12 +18,14 @@
     >
       <h1 class="text-black font-bold mb-10">SisDenWeb</h1>
       <button
-        class="gestao-funcionarios bg-blue-800 text-white font-medium w-full py-2 mb-4 rounded hover:bg-blue-900"
+        class="bg-blue-800 text-white font-medium w-full py-2 mb-4 rounded hover:bg-blue-900"
+        onclick='window.location.href = "admin-management.html"'
       >
         Gestão de funcionários
       </button>
       <button
-        class="casos-notificados bg-blue-800 text-white font-medium w-full py-2 rounded hover:bg-blue-900"
+        class="bg-blue-800 text-white font-medium w-full py-2 rounded hover:bg-blue-900"
+        onclick='window.location.href = "admin-cases.html"'
       >
         Casos notificados
       </button>
@@ -64,11 +66,13 @@
     >
       <button
         class="gestao-funcionarios dropdown-item w-full text-left px-6 py-3 hover:bg-blue-800 hover:text-white border-b border-gray-400"
+        onclick='window.location.href = "admin-management.html"'
       >
         Gestão de funcionários
       </button>
       <button
         class="casos-notificados dropdown-item w-full text-left px-6 py-3 hover:bg-blue-800 hover:text-white border-b border-gray-400"
+        onclick='window.location.href = "admin-cases.html"'
       >
         Casos notificados
       </button>
@@ -82,15 +86,17 @@
 
     <!-- Conteúdo Principal -->
     <main class="flex-1 p-6 overflow-y-auto">
-      <!-- Lista de Casos Notificados -->
-      <div class="space-y-6" id="casos-list">
-        <!-- Casos serão carregados dinamicamente aqui -->
+      <div class="overflow-y-auto h-[calc(100vh-7rem)] pr-4">
+      <!-- Lista dinâmica de casos -->
+      <div id="casos-list" class="space-y-4">
+        <!-- Itens adicionados via JS -->
       </div>
+    </div>
 
       <!-- Botão para abrir o modal -->
       <button
         onclick="openCaseModal()"
-        class="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-900"
+        class="fixed bottom-6 right-6 bg-blue-700 text-white px-4 py-2 rounded shadow-lg hover:bg-blue-800 transition-all z-50"
       >
         Novo Caso
       </button>
@@ -113,7 +119,7 @@
 
           <!-- Conteúdo da Ficha SUS -->
           <form class="space-y-6">
-            <input type="text" id="id" class="hidden">
+            <input type="text" id="id" class="hidden" />
             <!-- Dados gerais -->
             <div class="border p-4 rounded-md shadow">
               <h2 class="text-lg font-bold mb-4">Dados Gerais</h2>
@@ -1860,5 +1866,4 @@
 
 <script src="../../script/data_handler.js"></script>
 <script src="../../script/admin-cases.js"></script>
-<script src="../../script/admin.js"></script>
 <script src="../../script/admin_mobile.js"></script>

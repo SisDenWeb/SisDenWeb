@@ -19,11 +19,13 @@
       <h1 class="text-black font-bold mb-10">SisDenWeb</h1>
       <button
         class="gestao-funcionarios bg-blue-800 text-white font-medium w-full py-2 mb-4 rounded hover:bg-blue-900"
+        onclick='window.location.href = "admin-management.html"'
       >
         Gestão de funcionários
       </button>
       <button
         class="casos-notificados bg-blue-800 text-white font-medium w-full py-2 rounded hover:bg-blue-900"
+        onclick='window.location.href = "admin-cases.html"'
       >
         Casos notificados
       </button>
@@ -63,12 +65,14 @@
       class="md:hidden overflow-hidden max-h-0 opacity-0 dropdown-transition bg-gray-300"
     >
       <button
-        class="gestao-funcionarios dropdown-item w-full text-left px-6 py-3 hover:bg-blue-800 hover:text-white border-b border-gray-400"
+        class="dropdown-item w-full text-left px-6 py-3 hover:bg-blue-800 hover:text-white border-b border-gray-400"
+        onclick='window.location.href = "admin-management.html"'
       >
         Gestão de funcionários
       </button>
       <button
-        class="casos-notificados dropdown-item w-full text-left px-6 py-3 hover:bg-blue-800 hover:text-white border-b border-gray-400"
+        class="dropdown-item w-full text-left px-6 py-3 hover:bg-blue-800 hover:text-white border-b border-gray-400"
+        onclick='window.location.href = "admin-cases.html"'
       >
         Casos notificados
       </button>
@@ -187,4 +191,3 @@
 <script src="../../script/data_handler.js"></script>
 <script src="../../script/admin-management.js"></script>
 <script src="../../script/admin_mobile.js"></script>
-<script src="../../script/admin.js"></script>
