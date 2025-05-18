@@ -11,27 +11,26 @@
       }
     </style>
   </head>
-  <body class="h-screen flex flex-col md:flex-row bg-white">
+  <body class="h-screen flex flex-col md:flex-row bg-slate-100 text-slate-900">
     <!-- Sidebar (Desktop) -->
-    <aside
-      class="hidden md:flex flex-col w-1/5 bg-gray-400 p-4 border-r border-black"
-    >
-      <h1 class="text-black font-bold mb-10">SisDenWeb</h1>
+    <aside class="hidden md:flex flex-col w-1/5 bg-slate-700 p-6 text-white">
+      <h1 class="text-xl font-bold mb-10">SisDenWeb</h1>
       <button
-        class="gestao-funcionarios bg-blue-800 text-white font-medium w-full py-2 mb-4 rounded hover:bg-blue-900"
+        class="bg-blue-600 hover:bg-blue-700 w-full py-2 mb-3 rounded-lg font-medium transition"
         onclick='window.location.href = "admin-management.html"'
       >
         Gestão de funcionários
       </button>
       <button
-        class="casos-notificados bg-blue-800 text-white font-medium w-full py-2 rounded hover:bg-blue-900"
+        class="bg-blue-600 hover:bg-blue-700 w-full py-2 mb-3 rounded-lg font-medium transition"
         onclick='window.location.href = "admin-cases.html"'
       >
         Casos notificados
       </button>
       <button
         type="button"
-        class="logout bg-red-600 text-white font-medium w-full py-2 rounded hover:bg-red-700 mt-auto"
+        class="mt-auto bg-red-500 hover:bg-red-600 w-full py-2 rounded-lg font-medium transition"
+        onclick='window.location.href = "../index.html"'
       >
         Sair
       </button>
@@ -39,12 +38,12 @@
 
     <!-- Topbar (Mobile) -->
     <header
-      class="flex md:hidden justify-between items-center p-4 bg-gray-400 border-b border-black"
+      class="md:hidden flex justify-between items-center px-4 py-3 bg-slate-700 text-white"
     >
-      <h1 class="text-black font-bold">SisDenWeb</h1>
-      <button id="menu-toggle" class="md:hidden">
+      <h1 class="text-lg font-semibold">SisDenWeb</h1>
+      <button id="menu-toggle">
         <svg
-          class="w-6 h-6 text-black"
+          class="w-6 h-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -62,30 +61,30 @@
     <!-- Menu Dropdown (Mobile) -->
     <nav
       id="mobile-menu"
-      class="md:hidden overflow-hidden max-h-0 opacity-0 dropdown-transition bg-gray-300"
+      class="md:hidden overflow-hidden max-h-0 opacity-0 dropdown-transition bg-slate-600 text-white"
     >
       <button
-        class="dropdown-item w-full text-left px-6 py-3 hover:bg-blue-800 hover:text-white border-b border-gray-400"
+        class="w-full text-left px-6 py-3 hover:bg-blue-700 transition"
         onclick='window.location.href = "admin-management.html"'
       >
         Gestão de funcionários
       </button>
       <button
-        class="dropdown-item w-full text-left px-6 py-3 hover:bg-blue-800 hover:text-white border-b border-gray-400"
+        class="w-full text-left px-6 py-3 hover:bg-blue-700 transition"
         onclick='window.location.href = "admin-cases.html"'
       >
         Casos notificados
       </button>
       <button
-        type="button"
-        class="logout bg-red-600 text-white font-medium w-full py-2 rounded hover:bg-red-700 mt-auto"
+        class="w-full text-left px-6 py-3 bg-red-500 hover:bg-red-600 transition"
+        onclick='window.location.href = "../index.html"'
       >
         Sair
       </button>
     </nav>
 
     <!-- Conteúdo principal -->
-    <main class="flex-1 p-6 bg-white flex flex-col justify-between">
+    <main class="flex-1 p-6 flex flex-col justify-between">
       <div>
         <!-- Modal -->
         <div
@@ -158,15 +157,6 @@
               Fechar
             </button>
           </div>
-        </div>
-
-        <!-- Search bar -->
-        <div class="mb-6">
-          <input
-            type="text"
-            placeholder="Pesquisar..."
-            class="w-full p-2 bg-gray-400 text-black placeholder-black rounded focus:outline-none"
-          />
         </div>
 
         <!-- Lista de funcionários -->

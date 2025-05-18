@@ -41,7 +41,7 @@ const dadosIniciais = {
         gestante: "2º Trimestre",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: "123456789012345",
+        cartao_sus: String("898001160138957"),
         nome_mae: "Ana Souza",
       },
       residencia: {
@@ -202,7 +202,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Branca",
         escolaridade: "8 - Superior completo",
-        cartao_sus: "987654321098765",
+        cartao_sus: String("898001160140275"),
         nome_mae: "Lucia Oliveira",
       },
       residencia: {
@@ -360,7 +360,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: "999999999999993",
+        cartao_sus: String( "898001160142499"),
         nome_mae: "Mãe 3",
       },
       residencia: {
@@ -524,7 +524,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: "999999999999994",
+        cartao_sus: String( "898001160144782"),
         nome_mae: "Mãe 4",
       },
       residencia: {
@@ -682,7 +682,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: "999999999999995",
+        cartao_sus: String( "898001160147036"),
         nome_mae: "Mãe 5",
       },
       residencia: {
@@ -840,7 +840,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: "999999999999996",
+        cartao_sus: String( "898001160149558"),
         nome_mae: "Mãe 6",
       },
       residencia: {
@@ -998,7 +998,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: "999999999999997",
+        cartao_sus: String( "898001160151802"),
         nome_mae: "Mãe 7",
       },
       residencia: {
@@ -1156,7 +1156,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: "999999999999998",
+        cartao_sus: String( "898001160153407"),
         nome_mae: "Mãe 8",
       },
       residencia: {
@@ -1314,7 +1314,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: "999999999999999",
+        cartao_sus: String( "898001160156996"),
         nome_mae: "Mãe 9",
       },
       residencia: {
@@ -1472,7 +1472,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: "9999999999999910",
+        cartao_sus: String( "898001160159843"),
         nome_mae: "Mãe 10",
       },
       residencia: {

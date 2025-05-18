@@ -1,5 +1,13 @@
 // Funcoes para estilos
 
+(function () {
+  fetch("../caso-component/caso.html")
+    .then((res) => res.text())
+    .then((html) => {
+      document.getElementById("caso-container").innerHTML += html;
+    });
+})();
+
 function openCaseModal() {
   resetarFichaCompleta();
   document.getElementById("case-modal").classList.remove("hidden");
@@ -71,7 +79,7 @@ function refreshCasos() {
       <div class="flex items-start justify-between border-b pb-2">
         <div>
           <p class="font-medium">${caso.notificacao_individual.nome_paciente}</p>
-          <p class="text-sm text-gray-700">Número do caso: ${caso.id}</p>
+          <p class="text-sm text-gray-700">Caso N.${caso.id}   Cartão SUS ${caso.notificacao_individual.cartao_sus}</p>
         </div>
         <div class="flex flex-col space-y-2">
           <button data-id="${caso.id}" onclick="deleteCase(${caso.id})" class="deletar-caso bg-gray-400 text-black px-4 py-1 rounded">
@@ -95,13 +103,13 @@ function openModalEditarCaso(id) {
 
 function saveCase() {
   const caso = getFichaCompleta();
-  caso.id = parseInt(caso.id)
+  caso.id = parseInt(caso.id);
   saveCaseInMemory(caso);
   refreshCasos();
   closeCaseModal();
 }
 
-function deleteCase(id){
+function deleteCase(id) {
   deleteCaseInMemory(id);
   refreshCasos();
 }

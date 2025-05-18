@@ -3,36 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SisDenWeb</title>
+    <title>SisDenWeb - Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      /* Evita zoom automático em campos de input no iOS */
       input, select, textarea {
         font-size: 16px;
       }
     </style>
   </head>
-  <body class="bg-white flex items-center justify-center min-h-screen px-4">
-    <div
-      class="bg-gray-400 p-6 sm:p-8 md:p-10 rounded-md shadow-md w-full max-w-md text-center border border-gray-600"
-    >
-      <h1 class="text-white text-2xl sm:text-3xl font-semibold mb-6">Entrar</h1>
-      <form class="space-y-4">
-        <div class="text-left">
-          <label class="text-black text-sm" for="usuario">Usuário</label>
+  <body class="bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen flex items-center justify-center px-4">
+    <main class="w-full max-w-md bg-white p-8 rounded-lg shadow-xl border border-blue-200">
+      <div class="flex flex-col items-center mb-6">
+        <h1 class="text-2xl font-bold text-blue-800">SisDenWeb</h1>
+        <p class="text-sm text-gray-500">Sistema de Notificação de Casos</p>
+      </div>
+
+      <form class="space-y-5" aria-label="Formulário de login">
+        <div>
+          <label for="usuario" class="block text-sm font-medium text-slate-700">Usuário</label>
           <input
             type="text"
             id="usuario"
-            class="w-full mt-1 p-2 rounded-md bg-white focus:outline-none"
+            class="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             autocomplete="username"
           />
         </div>
-        <div class="text-left">
-          <label class="text-black text-sm" for="senha">Senha</label>
+
+        <div>
+          <label for="senha" class="block text-sm font-medium text-slate-700">Senha</label>
           <input
             type="password"
             id="senha"
-            class="w-full mt-1 p-2 rounded-md bg-white focus:outline-none"
+            class="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             autocomplete="current-password"
           />
         </div>
@@ -40,15 +42,19 @@
         <button
           type="button"
           id="login-buttom"
-          class="bg-blue-800 text-white px-6 py-2 rounded-md hover:bg-blue-900 transition w-full"
+          class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           Entrar
         </button>
       </form>
-      <p class="text-xs text-black mt-6">Copyright (c) 2025 Univesp PI</p>
-    </div>
+
+      <footer class="mt-6 text-xs text-center text-gray-500">
+        Copyright &copy; 2025 <strong>Univesp PI</strong><br />
+        Todos os direitos reservados.
+      </footer>
+    </main>
+
+    <script src="../script/data_handler.js"></script>
+    <script src="../script/login.js"></script>
   </body>
 </html>
-
-<script src="../script/data_handler.js"></script>
-<script src="../script/login.js"></script>
