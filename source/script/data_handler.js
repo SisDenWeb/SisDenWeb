@@ -1609,6 +1609,9 @@ const dadosIniciais = {
       },
     },
   ],
+  infos: {
+    last_case_id: 0,
+  },
 };
 
 // Função para salvar os dados no localStorage
@@ -1624,8 +1627,11 @@ function salvarDados(dados, type) {
         break;
 
       case "case":
-        console.log(dados);
         localStorage.setItem("sisdenData_case_db", JSON.stringify(dados));
+        break;
+
+      case "info":
+        localStorage.setItem("sisdenData_info_db", JSON.stringify(dados));
         break;
 
       default:
@@ -1652,6 +1658,10 @@ function recuperarDados(type) {
         dados = localStorage.getItem("sisdenData_case_db");
         return dados ? JSON.parse(dados) : null;
 
+      case "info":
+        dados = localStorage.getItem("sisdenData_info_db");
+        return dados ? JSON.parse(dados) : null;
+
       default:
         throw new Error("Data Type " + type + " is invalid");
     }
@@ -1662,10 +1672,13 @@ function recuperarDados(type) {
 }
 
 function starter_database() {
+  dadosIniciais.infos.last_case_id = dadosIniciais.cases.length
+
   console.log("i'm restarting database :)");
   salvarDados(dadosIniciais.admin, "admin");
   salvarDados(dadosIniciais.employers, "employer");
   salvarDados(dadosIniciais.cases, "case");
+  salvarDados(dadosIniciais.infos, "info");
 }
 
 // did this to restart database if empty andddd now i can just call starter_database() :)
@@ -1746,6 +1759,27 @@ function find_caso_by_id(id) {
   return case_db.find((case_db) => case_db.id === id) || null;
 }
 
-function saveCaseModal() {
-  salvarDados(getFichaCompleta(), "case");
+function saveCaseInMemory(caso) {
+  const casos_db = recuperarDados("case");
+  const index = casos_db.findIndex((e) => e.id === caso.id);
+
+  if (index !== -1) {
+    casos_db[index] = caso;
+  } else {
+    new_case_id = recuperarDados("info").last_case_id + 1;
+    caso.id = new_case_id;
+    casos_db.push(caso);
+    salvarDados({last_case_id: new_case_id}, "info")
+  }
+
+  salvarDados(casos_db, "case");
+}
+
+function deleteCaseInMemory(id){
+  case_db = recuperarDados("case");
+
+  // Filtra o array, removendo o funcionário com o ID fornecido
+  case_db = case_db.filter((caso) => caso.id !== parseInt(id));
+
+  salvarDados(case_db, "case"); 
 }

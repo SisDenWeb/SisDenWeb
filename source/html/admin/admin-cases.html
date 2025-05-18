@@ -113,6 +113,7 @@
 
           <!-- Conteúdo da Ficha SUS -->
           <form class="space-y-6">
+            <input type="text" id="id" class="hidden">
             <!-- Dados gerais -->
             <div class="border p-4 rounded-md shadow">
               <h2 class="text-lg font-bold mb-4">Dados Gerais</h2>
@@ -1844,7 +1845,7 @@
             <div class="flex justify-end">
               <button
                 type="button"
-                onclick="saveCaseModal()"
+                onclick="saveCase()"
                 class="text-black font-semibold px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
               >
                 Salvar

@@ -1,6 +1,7 @@
 // Funcoes para estilos
 
 function openCaseModal() {
+  resetarFichaCompleta();
   document.getElementById("case-modal").classList.remove("hidden");
 }
 
@@ -58,7 +59,6 @@ function toggleDengueGrave(ativo) {
   document.getElementById("dataGravidade").disabled = !ativo;
 }
 
-
 // cases data handler
 
 function refreshCasos() {
@@ -74,7 +74,7 @@ function refreshCasos() {
           <p class="text-sm text-gray-700">Número do caso: ${caso.id}</p>
         </div>
         <div class="flex flex-col space-y-2">
-          <button data-id="${caso.id}" onclick="deletarCaso(${caso.id})" class="deletar-caso bg-gray-400 text-black px-4 py-1 rounded">
+          <button data-id="${caso.id}" onclick="deleteCase(${caso.id})" class="deletar-caso bg-gray-400 text-black px-4 py-1 rounded">
             Deletar
           </button>
           <button data-id="${caso.id}" onclick="openModalEditarCaso(${caso.id})" class="editar-caso bg-gray-400 text-black px-4 py-1 rounded">
@@ -87,14 +87,196 @@ function refreshCasos() {
   });
 }
 
-function openModalEditarCaso(id){
+function openModalEditarCaso(id) {
   let caso = find_caso_by_id(id);
   preencherFichaCompleta(caso);
-  openCaseModal();
+  document.getElementById("case-modal").classList.remove("hidden");
 }
 
-refreshCasos()
+function saveCase() {
+  const caso = getFichaCompleta();
+  caso.id = parseInt(caso.id)
+  saveCaseInMemory(caso);
+  refreshCasos();
+  closeCaseModal();
+}
 
+function deleteCase(id){
+  deleteCaseInMemory(id);
+  refreshCasos();
+}
+
+refreshCasos();
+
+function resetarFichaCompleta() {
+  // Helper para desmarcar radio
+  function clearRadio(name) {
+    const radios = document.querySelectorAll(`input[name="${name}"]`);
+    radios.forEach((radio) => {
+      radio.checked = false;
+    });
+  }
+
+  // Helper para desmarcar checkboxes
+  function clearCheckboxes(className) {
+    document.querySelectorAll(`input.${className}`).forEach((cb) => {
+      cb.checked = false;
+    });
+  }
+
+  // Helper para limpar um campo se existir
+  function clearInput(id) {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  }
+
+  // IDs simples para limpar diretamente
+  const camposSimples = [
+    "id",
+    "tipo-notificacao",
+    "agravo-doenca",
+    "cid10",
+    "data-notificacao",
+    "uf-notificacao",
+    "municipio-notificacao",
+    "unidade-saude",
+    "codigo-unidade",
+    "codigo-ibge",
+    "data-primeiros-sintomas",
+    "nome-paciente",
+    "data-nascimento",
+    "idade",
+    "sexo",
+    "gestante",
+    "raca-cor",
+    "escolaridade",
+    "cartao-sus",
+    "nome-mae",
+    "res-telefone",
+    "res-uf",
+    "res-municipio",
+    "res-codigo-ibge",
+    "res-distrito",
+    "res-bairro",
+    "res-logradouro",
+    "res-codigo-logradouro",
+    "res-numero",
+    "res-complemento",
+    "res-geo1",
+    "res-geo2",
+    "res-referencia",
+    "res-cep",
+    "res-zona",
+    "res-pais",
+    "data-investigacao",
+    "ocupacao",
+    "chikungunya-s1-data",
+    "chikungunya-s1-resultado",
+    "chikungunya-s2-data",
+    "chikungunya-s2-resultado",
+    "prnt-data",
+    "prnt-resultado",
+    "dengue-igm-data",
+    "dengue-igm-resultado",
+    "isolamento-data",
+    "isolamento-resultado",
+    "ns1-data",
+    "ns1-resultado",
+    "rtpcr-data",
+    "rtpcr-resultado",
+    "sorotipo",
+    "histopatologia",
+    "imunoquimica",
+    "dataInternacao",
+    "ufHospital",
+    "municipioHospital",
+    "codigoIBGEHospital",
+    "nomeHospital",
+    "codigoHospital",
+    "telefoneHospital",
+    "conclusao-uf",
+    "conclusao-pais",
+    "conclusao-municipio",
+    "conclusao-ibge",
+    "conclusao-distrito",
+    "conclusao-bairro",
+    "classificacao",
+    "criterio-confirmacao",
+    "apresentacao-clinica",
+    "evolucao",
+    "data-obito",
+    "data-encerramento",
+    "data-alarme-inicio",
+    "dg-outros",
+    "dataGravidade",
+    "data-local",
+    "vacina-febre",
+    "dengue-anterior",
+    "pressao",
+    "hemo1-data",
+    "hemo1-plaquetas",
+    "hemo1-leucocitos",
+    "hemo1-hematocrito",
+    "hemo2-data",
+    "hemo2-plaquetas",
+    "hemo2-leucocitos",
+    "hemo2-hematocrito",
+    "investigador-municipio",
+    "investigador-cod-unidade",
+    "investigador-nome",
+    "investigador-funcao",
+  ];
+
+  camposSimples.forEach(clearInput);
+
+  // Radios
+  [
+    "sinais",
+    "doencas",
+    "hospitalizacao",
+    "autoctone",
+    "sinaisAlarme",
+    "dengueGrave",
+    "deslocamento",
+    "laco",
+    "ictericia",
+    "hemograma",
+    "risco",
+  ].forEach(clearRadio);
+
+  // Checkboxes por classe
+  [
+    "sinais",
+    "doencas",
+    "sintoma-alarme",
+    "dg-extravasamento",
+    "dg-sangramento",
+    "dg-orgao",
+  ].forEach(clearCheckboxes);
+
+  // Campos ocultos visíveis
+  const ocultos = ["apresentacaoClinica", "campoObito", "campoEncerramento"];
+  ocultos.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add("hidden");
+  });
+
+  // Campos desativados
+  [
+    "dataInternacao",
+    "ufHospital",
+    "municipioHospital",
+    "codigoIBGEHospital",
+    "nomeHospital",
+    "codigoHospital",
+    "telefoneHospital",
+    "data-alarme-inicio",
+    "dataGravidade",
+  ].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.disabled = true;
+  });
+}
 
 function preencherFichaCompleta(json) {
   // Helper para marcar radio
@@ -112,51 +294,74 @@ function preencherFichaCompleta(json) {
     });
   }
 
+  // id
+  document.getElementById("id").value = json.id || "";
   // Dados Gerais
   document.getElementById("tipo-notificacao").value =
     json.dados_gerais.tipo_notificacao || "";
-  document.getElementById("agravo-doenca").value = json.dados_gerais.agravo_doenca || "";
+  document.getElementById("agravo-doenca").value =
+    json.dados_gerais.agravo_doenca || "";
   document.getElementById("cid10").value = json.dados_gerais.cid10 || "";
   document.getElementById("data-notificacao").value =
     json.dados_gerais.data_notificacao || "";
   document.getElementById("uf-notificacao").value = json.dados_gerais.uf || "";
   document.getElementById("municipio-notificacao").value =
     json.dados_gerais.municipio_notificacao || "";
-  document.getElementById("unidade-saude").value = json.dados_gerais.unidade_saude || "";
-  document.getElementById("codigo-unidade").value = json.dados_gerais.codigo_unidade || "";
-  document.getElementById("codigo-ibge").value = json.dados_gerais.codigo_ibge || "";
+  document.getElementById("unidade-saude").value =
+    json.dados_gerais.unidade_saude || "";
+  document.getElementById("codigo-unidade").value =
+    json.dados_gerais.codigo_unidade || "";
+  document.getElementById("codigo-ibge").value =
+    json.dados_gerais.codigo_ibge || "";
   document.getElementById("data-primeiros-sintomas").value =
     json.dados_gerais.data_primeiros_sintomas || "";
 
   // Notificação Individual
-  document.getElementById("nome-paciente").value = json.notificacao_individual.nome_paciente || "";
-  document.getElementById("data-nascimento").value = json.notificacao_individual.data_nascimento || "";
-  document.getElementById("idade").value = json.notificacao_individual.idade || "";
-  document.getElementById("sexo").value = json.notificacao_individual.sexo || "";
-  document.getElementById("gestante").value = json.notificacao_individual.gestante || "";
-  document.getElementById("raca-cor").value = json.notificacao_individual.raca_cor || "";
-  document.getElementById("escolaridade").value = json.notificacao_individual.escolaridade || "";
-  document.getElementById("cartao-sus").value = json.notificacao_individual.cartao_sus || "";
-  document.getElementById("nome-mae").value = json.notificacao_individual.nome_mae || "";
+  document.getElementById("nome-paciente").value =
+    json.notificacao_individual.nome_paciente || "";
+  document.getElementById("data-nascimento").value =
+    json.notificacao_individual.data_nascimento || "";
+  document.getElementById("idade").value =
+    json.notificacao_individual.idade || "";
+  document.getElementById("sexo").value =
+    json.notificacao_individual.sexo || "";
+  document.getElementById("gestante").value =
+    json.notificacao_individual.gestante || "";
+  document.getElementById("raca-cor").value =
+    json.notificacao_individual.raca_cor || "";
+  document.getElementById("escolaridade").value =
+    json.notificacao_individual.escolaridade || "";
+  document.getElementById("cartao-sus").value =
+    json.notificacao_individual.cartao_sus || "";
+  document.getElementById("nome-mae").value =
+    json.notificacao_individual.nome_mae || "";
 
   // Residência
-  document.getElementById("res-telefone").value = json.residencia.telefone || "";
+  document.getElementById("res-telefone").value =
+    json.residencia.telefone || "";
   document.getElementById("res-uf").value = json.residencia.uf || "";
-  document.getElementById("res-municipio").value = json.residencia.municipio || "";
-  document.getElementById("res-codigo-ibge").value = json.residencia.codigo_ibge || "";
-  document.getElementById("res-distrito").value = json.residencia.distrito || "";
+  document.getElementById("res-municipio").value =
+    json.residencia.municipio || "";
+  document.getElementById("res-codigo-ibge").value =
+    json.residencia.codigo_ibge || "";
+  document.getElementById("res-distrito").value =
+    json.residencia.distrito || "";
   document.getElementById("res-bairro").value = json.residencia.bairro || "";
-  document.getElementById("res-logradouro").value = json.residencia.logradouro || "";
+  document.getElementById("res-logradouro").value =
+    json.residencia.logradouro || "";
   document.getElementById("res-codigo-logradouro").value =
     json.residencia.codigo_logradouro || "";
   document.getElementById("res-numero").value = json.residencia.numero || "";
-  document.getElementById("res-complemento").value = json.residencia.complemento || "";
+  document.getElementById("res-complemento").value =
+    json.residencia.complemento || "";
   document.getElementById("res-geo1").value = json.residencia.geo1 || "";
   document.getElementById("res-geo2").value = json.residencia.geo2 || "";
-  document.getElementById("res-referencia").value = json.residencia.referencia || "";
+  document.getElementById("res-referencia").value =
+    json.residencia.referencia || "";
   document.getElementById("res-cep").value = json.residencia.cep || "";
   document.getElementById("res-zona").value = json.residencia.zona || "";
-  document.getElementById("res-pais").value = json.residencia.pais_estrangeiro || "";
+  document.getElementById("res-pais").value =
+    json.residencia.pais_estrangeiro || "";
 
   // Investigação
   document.getElementById("data-investigacao").value =
@@ -166,8 +371,14 @@ function preencherFichaCompleta(json) {
   // Dados Clínicos
   setRadio("sinais", json.dados_clinicos.sinais_clinicos?.possui ? "1" : "2");
   setCheckboxes("sinais", json.dados_clinicos.sinais_clinicos?.lista || []);
-  setRadio("doencas", json.dados_clinicos.doencas_pre_existentes?.possui ? "1" : "2");
-  setCheckboxes("doencas", json.dados_clinicos.doencas_pre_existentes?.lista || []);
+  setRadio(
+    "doencas",
+    json.dados_clinicos.doencas_pre_existentes?.possui ? "1" : "2"
+  );
+  setCheckboxes(
+    "doencas",
+    json.dados_clinicos.doencas_pre_existentes?.lista || []
+  );
 
   // Exames Laboratoriais
   document.getElementById("chikungunya-s1-data").value =
@@ -178,8 +389,10 @@ function preencherFichaCompleta(json) {
     json.exames_laboratoriais.sorologia_chikungunya?.coleta_s2 || "";
   document.getElementById("chikungunya-s2-resultado").value =
     json.exames_laboratoriais.sorologia_chikungunya?.resultado_s2 || "";
-  document.getElementById("prnt-data").value = json.exames_laboratoriais.prnt?.coleta || "";
-  document.getElementById("prnt-resultado").value = json.exames_laboratoriais.prnt?.resultado || "";
+  document.getElementById("prnt-data").value =
+    json.exames_laboratoriais.prnt?.coleta || "";
+  document.getElementById("prnt-resultado").value =
+    json.exames_laboratoriais.prnt?.resultado || "";
   document.getElementById("dengue-igm-data").value =
     json.exames_laboratoriais.sorologia_dengue?.coleta || "";
   document.getElementById("dengue-igm-resultado").value =
@@ -188,28 +401,41 @@ function preencherFichaCompleta(json) {
     json.exames_laboratoriais.isolamento?.coleta || "";
   document.getElementById("isolamento-resultado").value =
     json.exames_laboratoriais.isolamento?.resultado || "";
-  document.getElementById("ns1-data").value = json.exames_laboratoriais.ns1?.coleta || "";
-  document.getElementById("ns1-resultado").value = json.exames_laboratoriais.ns1?.resultado || "";
-  document.getElementById("rtpcr-data").value = json.exames_laboratoriais.rt_pcr?.coleta || "";
+  document.getElementById("ns1-data").value =
+    json.exames_laboratoriais.ns1?.coleta || "";
+  document.getElementById("ns1-resultado").value =
+    json.exames_laboratoriais.ns1?.resultado || "";
+  document.getElementById("rtpcr-data").value =
+    json.exames_laboratoriais.rt_pcr?.coleta || "";
   document.getElementById("rtpcr-resultado").value =
     json.exames_laboratoriais.rt_pcr?.resultado || "";
-  document.getElementById("sorotipo").value = json.exames_laboratoriais.sorotipo || "";
-  document.getElementById("histopatologia").value = json.exames_laboratoriais.histopatologia || "";
-  document.getElementById("imunoquimica").value = json.exames_laboratoriais.imunohistoquimica || "";
+  document.getElementById("sorotipo").value =
+    json.exames_laboratoriais.sorotipo || "";
+  document.getElementById("histopatologia").value =
+    json.exames_laboratoriais.histopatologia || "";
+  document.getElementById("imunoquimica").value =
+    json.exames_laboratoriais.imunohistoquimica || "";
 
   // Hospitalização
   setRadio("hospitalizacao", json.hospitalizacao.ocorreu || "");
-  document.getElementById("dataInternacao").value = json.hospitalizacao.data_internacao || "";
+  document.getElementById("dataInternacao").value =
+    json.hospitalizacao.data_internacao || "";
   document.getElementById("ufHospital").value = json.hospitalizacao.uf || "";
-  document.getElementById("municipioHospital").value = json.hospitalizacao.municipio || "";
-  document.getElementById("codigoIBGEHospital").value = json.hospitalizacao.codigo_ibge || "";
-  document.getElementById("nomeHospital").value = json.hospitalizacao.nome_hospital || "";
-  document.getElementById("codigoHospital").value = json.hospitalizacao.codigo_hospital || "";
-  document.getElementById("telefoneHospital").value = json.hospitalizacao.telefone || "";
+  document.getElementById("municipioHospital").value =
+    json.hospitalizacao.municipio || "";
+  document.getElementById("codigoIBGEHospital").value =
+    json.hospitalizacao.codigo_ibge || "";
+  document.getElementById("nomeHospital").value =
+    json.hospitalizacao.nome_hospital || "";
+  document.getElementById("codigoHospital").value =
+    json.hospitalizacao.codigo_hospital || "";
+  document.getElementById("telefoneHospital").value =
+    json.hospitalizacao.telefone || "";
 
   // Conclusão
   setRadio("autoctone", json.conclusao.autoctone || "");
-  document.getElementById("conclusao-uf").value = json.conclusao.localProvavel?.uf || "";
+  document.getElementById("conclusao-uf").value =
+    json.conclusao.localProvavel?.uf || "";
   document.getElementById("conclusao-pais").value =
     json.conclusao.localProvavel?.pais || "";
   document.getElementById("conclusao-municipio").value =
@@ -220,7 +446,8 @@ function preencherFichaCompleta(json) {
     json.conclusao.localProvavel?.distrito || "";
   document.getElementById("conclusao-bairro").value =
     json.conclusao.localProvavel?.bairro || "";
-  document.getElementById("classificacao").value = json.conclusao.classificacao || "";
+  document.getElementById("classificacao").value =
+    json.conclusao.classificacao || "";
   document.getElementById("criterio-confirmacao").value =
     json.conclusao.criterio_confirmacao || "";
   if (json.conclusao.apresentacao_clinica) {
@@ -235,35 +462,48 @@ function preencherFichaCompleta(json) {
 
   // Sinais de Alarme
   setRadio("sinaisAlarme", json.dengue_com_sinais_de_alarme.apresentou || "");
-  setCheckboxes("sintoma-alarme", json.dengue_com_sinais_de_alarme.sintomas || []);
-  document.getElementById("data-alarme-inicio").value = json.dengue_com_sinais_de_alarme.data_inicio || "";
+  setCheckboxes(
+    "sintoma-alarme",
+    json.dengue_com_sinais_de_alarme.sintomas || []
+  );
+  document.getElementById("data-alarme-inicio").value =
+    json.dengue_com_sinais_de_alarme.data_inicio || "";
 
   // Dengue Grave
   setRadio("dengueGrave", json.dengue_grave.apresentou || "");
-  setCheckboxes("dg-extravasamento", json.dengue_grave.extravasamento_grave_de_plasma || []);
+  setCheckboxes(
+    "dg-extravasamento",
+    json.dengue_grave.extravasamento_grave_de_plasma || []
+  );
   setCheckboxes("dg-sangramento", json.dengue_grave.sangramento_grave || []);
   setCheckboxes("dg-orgao", json.dengue_grave.comprometimento_orgao || []);
   document.getElementById("dg-outros").value = json.dengue_grave.outros || "";
-  document.getElementById("dataGravidade").value = json.dengue_grave.data_inicio || "";
+  document.getElementById("dataGravidade").value =
+    json.dengue_grave.data_inicio || "";
 
   // Informações Complementares
   setRadio("deslocamento", json.informacoes_complementares.deslocamento || "");
-  document.getElementById("data-local").value = json.informacoes_complementares.data_local || "";
+  document.getElementById("data-local").value =
+    json.informacoes_complementares.data_local || "";
   document.getElementById("vacina-febre").value =
     json.informacoes_complementares.vacina_febre_amarela || "";
-  document.getElementById("dengue-anterior").value = json.informacoes_complementares.dengue_anterior || "";
-  document.getElementById("pressao").value = json.informacoes_complementares.pressao_arterial || "";
+  document.getElementById("dengue-anterior").value =
+    json.informacoes_complementares.dengue_anterior || "";
+  document.getElementById("pressao").value =
+    json.informacoes_complementares.pressao_arterial || "";
   setRadio("laco", json.informacoes_complementares.prova_laco || "");
   setRadio("ictericia", json.informacoes_complementares.ictericia || "");
   setRadio("hemograma", json.informacoes_complementares.hemograma || "");
-  document.getElementById("hemo1-data").value = json.informacoes_complementares.hemograma_1?.data || "";
+  document.getElementById("hemo1-data").value =
+    json.informacoes_complementares.hemograma_1?.data || "";
   document.getElementById("hemo1-plaquetas").value =
     json.informacoes_complementares.hemograma_1?.plaquetas || "";
   document.getElementById("hemo1-leucocitos").value =
     json.informacoes_complementares.hemograma_1?.leucocitos || "";
   document.getElementById("hemo1-hematocrito").value =
     json.informacoes_complementares.hemograma_1?.hematocrito || "";
-  document.getElementById("hemo2-data").value = json.informacoes_complementares.hemograma_2?.data || "";
+  document.getElementById("hemo2-data").value =
+    json.informacoes_complementares.hemograma_2?.data || "";
   document.getElementById("hemo2-plaquetas").value =
     json.informacoes_complementares.hemograma_2?.plaquetas || "";
   document.getElementById("hemo2-leucocitos").value =
@@ -277,83 +517,127 @@ function preencherFichaCompleta(json) {
     json.investigador.municipio_unidade || "";
   document.getElementById("investigador-cod-unidade").value =
     json.investigador.cod_unidade || "";
-  document.getElementById("investigador-nome").value = json.investigador.nome || "";
-  document.getElementById("investigador-funcao").value = json.investigador.funcao || "";
+  document.getElementById("investigador-nome").value =
+    json.investigador.nome || "";
+  document.getElementById("investigador-funcao").value =
+    json.investigador.funcao || "";
 }
 
 function getFichaCompleta() {
   return {
-    dados_gerais: getDadosGerais(),
-    notificacao_individual: getNotificacaoIndividual(),
-    residencia: getDadosResidencia(),
-    investigacao: getDadosInvestigacao(),
+    id: document.getElementById("id").value,
+    dados_gerais: {
+      tipo_notificacao: document.getElementById("tipo-notificacao").value,
+      agravo_doenca: document.getElementById("agravo-doenca").value,
+      cid10: document.getElementById("cid10").value,
+      data_notificacao: document.getElementById("data-notificacao").value,
+      uf: document.getElementById("uf-notificacao").value,
+      municipio_notificacao: document.getElementById("municipio-notificacao")
+        .value,
+      unidade_saude: document.getElementById("unidade-saude").value,
+      codigo_unidade: document.getElementById("codigo-unidade").value,
+      codigo_ibge: document.getElementById("codigo-ibge").value,
+      data_primeiros_sintomas: document.getElementById(
+        "data-primeiros-sintomas"
+      ).value,
+    },
+    notificacao_individual: {
+      nome_paciente: document.getElementById("nome-paciente").value,
+      data_nascimento: document.getElementById("data-nascimento").value,
+      idade: parseInt(document.getElementById("idade").value),
+      sexo: document.getElementById("sexo").value,
+      gestante: document.getElementById("gestante").value,
+      raca_cor: document.getElementById("raca-cor").value,
+      escolaridade: document.getElementById("escolaridade").value,
+      cartao_sus: document.getElementById("cartao-sus").value,
+      nome_mae: document.getElementById("nome-mae").value,
+    },
+    residencia: {
+      telefone: document.getElementById("res-telefone").value,
+      uf: document.getElementById("res-uf").value,
+      municipio: document.getElementById("res-municipio").value,
+      codigo_ibge: document.getElementById("res-codigo-ibge").value,
+      distrito: document.getElementById("res-distrito").value,
+      bairro: document.getElementById("res-bairro").value,
+      logradouro: document.getElementById("res-logradouro").value,
+      codigo_logradouro: document.getElementById("res-codigo-logradouro").value,
+      numero: document.getElementById("res-numero").value,
+      complemento: document.getElementById("res-complemento").value,
+      geo1: document.getElementById("res-geo1").value,
+      geo2: document.getElementById("res-geo2").value,
+      referencia: document.getElementById("res-referencia").value,
+      cep: document.getElementById("res-cep").value,
+      zona: document.getElementById("res-zona").value,
+      pais_estrangeiro: document.getElementById("res-pais").value,
+    },
+    investigacao: {
+      data_investigacao: document.getElementById("data-investigacao").value,
+      ocupacao: document.getElementById("ocupacao").value,
+    },
     dados_clinicos: getDadosClinicos(),
-    exames_laboratoriais: getExamesLaboratoriais(),
+    exames_laboratoriais: {
+      sorologia_chikungunya: {
+        coleta_s1: document.getElementById("chikungunya-s1-data").value,
+        resultado_s1: document.getElementById("chikungunya-s1-resultado").value,
+        coleta_s2: document.getElementById("chikungunya-s2-data").value,
+        resultado_s2: document.getElementById("chikungunya-s2-resultado").value,
+      },
+      prnt: {
+        coleta: document.getElementById("prnt-data").value,
+        resultado: document.getElementById("prnt-resultado").value,
+      },
+      sorologia_dengue: {
+        coleta: document.getElementById("dengue-igm-data").value,
+        resultado: document.getElementById("dengue-igm-resultado").value,
+      },
+      isolamento: {
+        coleta: document.getElementById("isolamento-data").value,
+        resultado: document.getElementById("isolamento-resultado").value,
+      },
+      ns1: {
+        coleta: document.getElementById("ns1-data").value,
+        resultado: document.getElementById("ns1-resultado").value,
+      },
+      rt_pcr: {
+        coleta: document.getElementById("rtpcr-data").value,
+        resultado: document.getElementById("rtpcr-resultado").value,
+      },
+      sorotipo: document.getElementById("sorotipo").value,
+      histopatologia: document.getElementById("histopatologia").value,
+      imunohistoquimica: document.getElementById("imunoquimica").value,
+    },
     hospitalizacao: getDadosHospitalizacao(),
-    conclusao: getConclusao(),
+    conclusao: {
+      autoctone: document.querySelector('input[name="autoctone"]:checked')
+        .value,
+      localProvavel: {
+        uf: document.getElementById("conclusao-uf").value,
+        pais: document.getElementById("conclusao-pais").value,
+        municipio: document.getElementById("conclusao-municipio").value,
+        codigo_ibge: document.getElementById("conclusao-ibge").value,
+        distrito: document.getElementById("conclusao-distrito").value,
+        bairro: document.getElementById("conclusao-bairro").value,
+      },
+      classificacao: document.getElementById("classificacao").value,
+      criterio_confirmacao: document.getElementById("criterio-confirmacao")
+        .value,
+      apresentacao_clinica:
+        document.getElementById("apresentacao-clinica")?.value || null,
+      evolucao: document.getElementById("evolucao").value,
+      data_obito: document.getElementById("data-obito")?.value || null,
+      data_encerramento:
+        document.getElementById("data-encerramento")?.value || null,
+    },
     dengue_com_sinais_de_alarme: getSinaisAlarme(),
     dengue_grave: getDengueGrave(),
     informacoes_complementares: getInformacoesComplementares(),
-    investigador: getInvestigador(),
-  };
-}
-
-function getDadosGerais() {
-  return {
-    tipo_notificacao: document.getElementById("tipo-notificacao").value,
-    agravo_doenca: document.getElementById("agravo-doenca").value,
-    cid10: document.getElementById("cid10").value,
-    data_notificacao: document.getElementById("data-notificacao").value,
-    uf: document.getElementById("uf-notificacao").value,
-    municipio_notificacao: document.getElementById("municipio-notificacao")
-      .value,
-    unidade_saude: document.getElementById("unidade-saude").value,
-    codigo_unidade: document.getElementById("codigo-unidade").value,
-    codigo_ibge: document.getElementById("codigo-ibge").value,
-    data_primeiros_sintomas: document.getElementById("data-primeiros-sintomas")
-      .value,
-  };
-}
-
-function getNotificacaoIndividual() {
-  return {
-    nome_paciente: document.getElementById("nome-paciente").value,
-    data_nascimento: document.getElementById("data-nascimento").value,
-    idade: parseInt(document.getElementById("idade").value),
-    sexo: document.getElementById("sexo").value,
-    gestante: document.getElementById("gestante").value,
-    raca_cor: document.getElementById("raca-cor").value,
-    escolaridade: document.getElementById("escolaridade").value,
-    cartao_sus: document.getElementById("cartao-sus").value,
-    nome_mae: document.getElementById("nome-mae").value,
-  };
-}
-
-function getDadosResidencia() {
-  return {
-    telefone: document.getElementById("res-telefone").value,
-    uf: document.getElementById("res-uf").value,
-    municipio: document.getElementById("res-municipio").value,
-    codigo_ibge: document.getElementById("res-codigo-ibge").value,
-    distrito: document.getElementById("res-distrito").value,
-    bairro: document.getElementById("res-bairro").value,
-    logradouro: document.getElementById("res-logradouro").value,
-    codigo_logradouro: document.getElementById("res-codigo-logradouro").value,
-    numero: document.getElementById("res-numero").value,
-    complemento: document.getElementById("res-complemento").value,
-    geo1: document.getElementById("res-geo1").value,
-    geo2: document.getElementById("res-geo2").value,
-    referencia: document.getElementById("res-referencia").value,
-    cep: document.getElementById("res-cep").value,
-    zona: document.getElementById("res-zona").value,
-    pais_estrangeiro: document.getElementById("res-pais").value,
-  };
-}
-
-function getDadosInvestigacao() {
-  return {
-    data_investigacao: document.getElementById("data-investigacao").value,
-    ocupacao: document.getElementById("ocupacao").value,
+    investigador: {
+      municipio_unidade: document.getElementById("investigador-municipio")
+        .value,
+      cod_unidade: document.getElementById("investigador-cod-unidade").value,
+      nome: document.getElementById("investigador-nome").value,
+      funcao: document.getElementById("investigador-funcao").value,
+    },
   };
 }
 
@@ -384,40 +668,6 @@ function getDadosClinicos() {
       possui: doencasSelecionado ? doencasSelecionado.value === "1" : null,
       lista: doencasSelecionado ? doencasPreExistentes : null,
     },
-  };
-}
-
-function getExamesLaboratoriais() {
-  return {
-    sorologia_chikungunya: {
-      coleta_s1: document.getElementById("chikungunya-s1-data").value,
-      resultado_s1: document.getElementById("chikungunya-s1-resultado").value,
-      coleta_s2: document.getElementById("chikungunya-s2-data").value,
-      resultado_s2: document.getElementById("chikungunya-s2-resultado").value,
-    },
-    prnt: {
-      coleta: document.getElementById("prnt-data").value,
-      resultado: document.getElementById("prnt-resultado").value,
-    },
-    sorologia_dengue: {
-      coleta: document.getElementById("dengue-igm-data").value,
-      resultado: document.getElementById("dengue-igm-resultado").value,
-    },
-    isolamento: {
-      coleta: document.getElementById("isolamento-data").value,
-      resultado: document.getElementById("isolamento-resultado").value,
-    },
-    ns1: {
-      coleta: document.getElementById("ns1-data").value,
-      resultado: document.getElementById("ns1-resultado").value,
-    },
-    rt_pcr: {
-      coleta: document.getElementById("rtpcr-data").value,
-      resultado: document.getElementById("rtpcr-resultado").value,
-    },
-    sorotipo: document.getElementById("sorotipo").value,
-    histopatologia: document.getElementById("histopatologia").value,
-    imunohistoquimica: document.getElementById("imunoquimica").value,
   };
 }
 
@@ -453,28 +703,6 @@ function getDadosHospitalizacao() {
   }
 
   return dadosHospital;
-}
-
-function getConclusao() {
-  return {
-    autoctone: document.querySelector('input[name="autoctone"]:checked').value,
-    localProvavel: {
-      uf: document.getElementById("conclusao-uf").value,
-      pais: document.getElementById("conclusao-pais").value,
-      municipio: document.getElementById("conclusao-municipio").value,
-      codigo_ibge: document.getElementById("conclusao-ibge").value,
-      distrito: document.getElementById("conclusao-distrito").value,
-      bairro: document.getElementById("conclusao-bairro").value,
-    },
-    classificacao: document.getElementById("classificacao").value,
-    criterio_confirmacao: document.getElementById("criterio-confirmacao").value,
-    apresentacao_clinica:
-      document.getElementById("apresentacao-clinica")?.value || null,
-    evolucao: document.getElementById("evolucao").value,
-    data_obito: document.getElementById("data-obito")?.value || null,
-    data_encerramento:
-      document.getElementById("data-encerramento")?.value || null,
-  };
 }
 
 function getSinaisAlarme() {
@@ -554,14 +782,5 @@ function getInformacoesComplementares() {
       hematocrito: document.getElementById("hemo2-hematocrito").value,
     },
     classificacao_risco: getRadioValue("risco"),
-  };
-}
-
-function getInvestigador() {
-  return {
-    municipio_unidade: document.getElementById("investigador-municipio").value,
-    cod_unidade: document.getElementById("investigador-cod-unidade").value,
-    nome: document.getElementById("investigador-nome").value,
-    funcao: document.getElementById("investigador-funcao").value,
   };
 }
