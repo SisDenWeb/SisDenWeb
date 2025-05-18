@@ -13,6 +13,7 @@ document.getElementById("login-buttom").addEventListener("click", function () {
   if (admin_db[usuario] && admin_db[usuario] === senha) {
     window.location.href = "admin/admin-management.html";
   } else if (employer && employer.password === senha) {
+    save_login_info({username: employer.name, id: usuario})
     window.location.href = "employer/employer-cases.html";
   } else {
     erroMsg.classList.remove("hidden");

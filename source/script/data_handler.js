@@ -360,7 +360,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: String( "898001160142499"),
+        cartao_sus: String("898001160142499"),
         nome_mae: "Mãe 3",
       },
       residencia: {
@@ -524,7 +524,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: String( "898001160144782"),
+        cartao_sus: String("898001160144782"),
         nome_mae: "Mãe 4",
       },
       residencia: {
@@ -682,7 +682,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: String( "898001160147036"),
+        cartao_sus: String("898001160147036"),
         nome_mae: "Mãe 5",
       },
       residencia: {
@@ -840,7 +840,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: String( "898001160149558"),
+        cartao_sus: String("898001160149558"),
         nome_mae: "Mãe 6",
       },
       residencia: {
@@ -998,7 +998,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: String( "898001160151802"),
+        cartao_sus: String("898001160151802"),
         nome_mae: "Mãe 7",
       },
       residencia: {
@@ -1156,7 +1156,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: String( "898001160153407"),
+        cartao_sus: String("898001160153407"),
         nome_mae: "Mãe 8",
       },
       residencia: {
@@ -1314,7 +1314,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: String( "898001160156996"),
+        cartao_sus: String("898001160156996"),
         nome_mae: "Mãe 9",
       },
       residencia: {
@@ -1472,7 +1472,7 @@ const dadosIniciais = {
         gestante: "Não se aplica",
         raca_cor: "Parda",
         escolaridade: "6 - Ensino médio completo",
-        cartao_sus: String( "898001160159843"),
+        cartao_sus: String("898001160159843"),
         nome_mae: "Mãe 10",
       },
       residencia: {
@@ -1611,6 +1611,10 @@ const dadosIniciais = {
   ],
   infos: {
     last_case_id: 0,
+    login_info: {
+      username: "",
+      id: 0,
+    },
   },
 };
 
@@ -1672,7 +1676,7 @@ function recuperarDados(type) {
 }
 
 function starter_database() {
-  dadosIniciais.infos.last_case_id = dadosIniciais.cases.length
+  dadosIniciais.infos.last_case_id = dadosIniciais.cases.length;
 
   console.log("i'm restarting database :)");
   salvarDados(dadosIniciais.admin, "admin");
@@ -1769,17 +1773,29 @@ function saveCaseInMemory(caso) {
     new_case_id = recuperarDados("info").last_case_id + 1;
     caso.id = new_case_id;
     casos_db.push(caso);
-    salvarDados({last_case_id: new_case_id}, "info")
+    salvarDados({ last_case_id: new_case_id }, "info");
   }
 
   salvarDados(casos_db, "case");
 }
 
-function deleteCaseInMemory(id){
+function deleteCaseInMemory(id) {
   case_db = recuperarDados("case");
 
   // Filtra o array, removendo o funcionário com o ID fornecido
   case_db = case_db.filter((caso) => caso.id !== parseInt(id));
 
-  salvarDados(case_db, "case"); 
+  salvarDados(case_db, "case");
+}
+
+function save_login_info(login) {
+  const info_db = recuperarDados("info");
+  info_db.login_info.username = login.username
+  info_db.login_info.id = login.id
+
+  salvarDados(info_db, "info")
+}
+
+function get_login_info(){
+  return recuperarDados("info").login_info
 }
