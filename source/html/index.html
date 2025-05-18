@@ -6,13 +6,19 @@
     <title>SisDenWeb - Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      input, select, textarea {
+      input,
+      select,
+      textarea {
         font-size: 16px;
       }
     </style>
   </head>
-  <body class="bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen flex items-center justify-center px-4">
-    <main class="w-full max-w-md bg-white p-8 rounded-lg shadow-xl border border-blue-200">
+  <body
+    class="bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen flex items-center justify-center px-4"
+  >
+    <main
+      class="w-full max-w-md bg-white p-8 rounded-lg shadow-xl border border-blue-200"
+    >
       <div class="flex flex-col items-center mb-6">
         <h1 class="text-2xl font-bold text-blue-800">SisDenWeb</h1>
         <p class="text-sm text-gray-500">Sistema de Notificação de Casos</p>
@@ -20,7 +26,9 @@
 
       <form class="space-y-5" aria-label="Formulário de login">
         <div>
-          <label for="usuario" class="block text-sm font-medium text-slate-700">Usuário</label>
+          <label for="usuario" class="block text-sm font-medium text-slate-700"
+            >Usuário</label
+          >
           <input
             type="text"
             id="usuario"
@@ -30,14 +38,66 @@
         </div>
 
         <div>
-          <label for="senha" class="block text-sm font-medium text-slate-700">Senha</label>
-          <input
-            type="password"
-            id="senha"
-            class="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            autocomplete="current-password"
-          />
+          <label for="senha" class="block text-sm font-medium text-slate-700"
+            >Senha</label
+          >
+          <div class="relative">
+            <input
+              type="password"
+              id="senha"
+              class="mt-1 w-full px-4 py-2 pr-10 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              autocomplete="current-password"
+            />
+            <button
+              type="button"
+              id="toggle-password"
+              class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500"
+              aria-label="Mostrar ou ocultar senha"
+            >
+              <svg
+                id="eye-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <!-- Ícone de olho -->
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5
+                  c4.477 0 8.268 2.943 9.542 7
+                  -1.274 4.057-5.065 7-9.542 7
+                  -4.477 0-8.268-2.943-9.542-7z"
+                />
+                <!-- Linha diagonal para cortar o olho -->
+                <line
+                  id="eye-slash"
+                  x1="4"
+                  y1="4"
+                  x2="20"
+                  y2="20"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  class="hidden"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+
+        <!-- Mensagem de erro -->
+        <p id="erro-login" class="text-red-600 text-sm mt-2 hidden">
+          Usuário ou senha incorretos.
+        </p>
 
         <button
           type="button"
