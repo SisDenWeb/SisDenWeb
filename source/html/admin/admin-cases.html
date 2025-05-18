@@ -82,6 +82,11 @@
 
     <!-- Conteúdo Principal -->
     <main class="flex-1 p-6 overflow-y-auto">
+      <!-- Lista de Casos Notificados -->
+      <div class="space-y-6" id="casos-list">
+        <!-- Casos serão carregados dinamicamente aqui -->
+      </div>
+
       <!-- Botão para abrir o modal -->
       <button
         onclick="openCaseModal()"
@@ -117,7 +122,11 @@
                   <label class="block text-sm font-medium"
                     >Tipo de Notificação:</label
                   >
-                  <input type="text" id="tipo-notificacao" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="tipo-notificacao"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
                 <!-- Agravo/Doença -->
@@ -125,7 +134,7 @@
                   <label class="block text-sm font-medium"
                     >Agravo/Doença:</label
                   >
-                  <select class="w-full p-2 border rounded">
+                  <select id="agravo-doenca" class="w-full p-2 border rounded">
                     <option>1 - Dengue</option>
                     <option>2 - Chikungunya</option>
                   </select>
@@ -138,6 +147,7 @@
                   >
                   <input
                     type="text"
+                    id="cid10"
                     class="w-full p-2 border rounded"
                     placeholder="Ex: A90"
                   />
@@ -148,13 +158,21 @@
                   <label class="block text-sm font-medium"
                     >Data da Notificação:</label
                   >
-                  <input type="date" class="w-full p-2 border rounded" />
+                  <input
+                    type="date"
+                    id="data-notificacao"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
                 <!-- UF -->
                 <div class="md:col-span-1">
                   <label class="block text-sm font-medium">UF:</label>
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="uf-notificacao"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
                 <!-- Município -->
@@ -162,7 +180,11 @@
                   <label class="block text-sm font-medium"
                     >Município de Notificação:</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="municipio-notificacao"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
                 <!-- Unidade de Saúde -->
@@ -170,13 +192,21 @@
                   <label class="block text-sm font-medium"
                     >Unidade de Saúde (ou outra fonte notificadora):</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="unidade-saude"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
                 <!-- Código da Unidade -->
                 <div class="md:col-span-1">
                   <label class="block text-sm font-medium">Código:</label>
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="codigo-unidade"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
                 <!-- Código IBGE -->
@@ -184,7 +214,11 @@
                   <label class="block text-sm font-medium"
                     >Código (IBGE):</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="codigo-ibge"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
                 <!-- Data dos Primeiros Sintomas -->
@@ -192,7 +226,11 @@
                   <label class="block text-sm font-medium"
                     >Data dos Primeiros Sintomas:</label
                   >
-                  <input type="date" class="w-full p-2 border rounded" />
+                  <input
+                    type="date"
+                    id="data-primeiros-sintomas"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
               </div>
             </div>
@@ -205,25 +243,34 @@
                   <label class="block text-sm font-medium"
                     >Nome do Paciente:</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="nome-paciente"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium"
                     >Data de Nascimento:</label
                   >
-                  <input type="date" class="w-full p-2 border rounded" />
+                  <input
+                    type="date"
+                    id="data-nascimento"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Idade:</label>
                   <input
                     type="number"
+                    id="idade"
                     class="w-full p-2 border rounded"
                     placeholder="Ex: 30"
                   />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Sexo:</label>
-                  <select class="w-full p-2 border rounded">
+                  <select id="sexo" class="w-full p-2 border rounded">
                     <option value="M">Masculino</option>
                     <option value="F">Feminino</option>
                     <option value="I">Ignorado</option>
@@ -231,7 +278,7 @@
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Gestante:</label>
-                  <select class="w-full p-2 border rounded">
+                  <select id="gestante" class="w-full p-2 border rounded">
                     <option>1º Trimestre</option>
                     <option>2º Trimestre</option>
                     <option>3º Trimestre</option>
@@ -243,7 +290,7 @@
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Raça/Cor:</label>
-                  <select class="w-full p-2 border rounded">
+                  <select id="raca-cor" class="w-full p-2 border rounded">
                     <option>Branca</option>
                     <option>Preta</option>
                     <option>Amarela</option>
@@ -254,7 +301,7 @@
                 </div>
                 <div class="md:col-span-2">
                   <label class="block text-sm font-medium">Escolaridade:</label>
-                  <select class="w-full p-2 border rounded">
+                  <select id="escolaridade" class="w-full p-2 border rounded">
                     <option>0 - Analfabeto</option>
                     <option>1 - 1ª a 4ª série incompleta do EF</option>
                     <option>2 - 4ª série completa do EF</option>
@@ -271,11 +318,19 @@
                   <label class="block text-sm font-medium"
                     >Número do Cartão SUS:</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="cartao-sus"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Nome da Mãe:</label>
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="nome-mae"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
               </div>
             </div>
@@ -288,69 +343,125 @@
                   <label class="block text-sm font-medium"
                     >(DDD) Telefone:</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-telefone"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">UF:</label>
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-uf"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium"
                     >Município de Residência:</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-municipio"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Código IBGE:</label>
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-codigo-ibge"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Distrito:</label>
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-distrito"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Bairro:</label>
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-bairro"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div class="col-span-2 md:col-span-2">
                   <label class="block text-sm font-medium"
                     >Logradouro (rua, avenida...):</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-logradouro"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Código:</label>
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-codigo-logradouro"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Número:</label>
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-numero"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Complemento:</label>
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-complemento"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Geo Campo 1:</label>
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-geo1"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Geo Campo 2:</label>
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-geo2"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium"
                     >Ponto de Referência:</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-referencia"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">CEP:</label>
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-cep"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Zona:</label>
-                  <select class="w-full p-2 border rounded">
+                  <select id="res-zona" class="w-full p-2 border rounded">
                     <option>1 - Urbana</option>
                     <option>2 - Rural</option>
                     <option>3 - Periurbana</option>
@@ -361,7 +472,11 @@
                   <label class="block text-sm font-medium"
                     >País (se reside fora do Brasil):</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="res-pais"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
               </div>
             </div>
@@ -383,75 +498,113 @@
                   <label class="block text-sm font-medium"
                     >Data da Investigação:</label
                   >
-                  <input type="date" class="w-full p-2 border rounded" />
+                  <input
+                    type="date"
+                    id="data-investigacao"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium">Ocupação:</label>
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="ocupacao"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
               </div>
             </div>
 
             <!-- Dados Clínicos -->
             <div class="border p-4 rounded-md shadow">
-              <h2 class="text-lg font-bold mb-4">Dados clinicos</h2>
+              <h2 class="text-lg font-bold mb-4">Dados Clínicos</h2>
 
               <!-- Sinais Clínicos -->
               <div class="mb-6">
                 <div class="flex items-center mb-1 gap-4">
                   <label class="text-sm font-medium">Sinais Clínicos:</label>
                   <div class="flex gap-4">
-                    <label class="flex items-center gap-1"
-                      >Sim<input
+                    <label class="flex items-center gap-1">
+                      Sim
+                      <input
                         type="radio"
                         name="sinais"
                         value="1"
                         onchange="toggleSinais()"
-                    /></label>
-                    <label class="flex items-center gap-1"
-                      >Não<input
+                        id="sinais-sim"
+                      />
+                    </label>
+                    <label class="flex items-center gap-1">
+                      Não
+                      <input
                         type="radio"
                         name="sinais"
                         value="2"
                         onchange="toggleSinais()"
-                    /></label>
+                        id="sinais-nao"
+                      />
+                    </label>
                   </div>
                 </div>
                 <div
                   id="sinaisCheckboxes"
                   class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2"
                 >
-                  <label><input type="checkbox" class="sinais" /> Febre</label>
                   <label
-                    ><input type="checkbox" class="sinais" /> Cefaleia</label
+                    ><input type="checkbox" class="sinais" value="Febre" />
+                    Febre</label
                   >
                   <label
-                    ><input type="checkbox" class="sinais" /> Mialgia</label
+                    ><input type="checkbox" class="sinais" value="Cefaleia" />
+                    Cefaleia</label
                   >
                   <label
-                    ><input type="checkbox" class="sinais" /> Exantema</label
+                    ><input type="checkbox" class="sinais" value="Mialgia" />
+                    Mialgia</label
                   >
                   <label
-                    ><input type="checkbox" class="sinais" /> Náuseas</label
-                  >
-                  <label><input type="checkbox" class="sinais" /> Vômito</label>
-                  <label
-                    ><input type="checkbox" class="sinais" /> Dor nas
-                    costas</label
+                    ><input type="checkbox" class="sinais" value="Exantema" />
+                    Exantema</label
                   >
                   <label
-                    ><input type="checkbox" class="sinais" /> Artrite</label
+                    ><input type="checkbox" class="sinais" value="Náuseas" />
+                    Náuseas</label
                   >
                   <label
-                    ><input type="checkbox" class="sinais" /> Petéquias</label
+                    ><input type="checkbox" class="sinais" value="Vômito" />
+                    Vômito</label
                   >
                   <label
-                    ><input type="checkbox" class="sinais" /> Prova do laço
-                    positiva</label
+                    ><input
+                      type="checkbox"
+                      class="sinais"
+                      value="Dor nas costas"
+                    />
+                    Dor nas costas</label
                   >
                   <label
-                    ><input type="checkbox" class="sinais" /> Dor
-                    retroorbital</label
+                    ><input type="checkbox" class="sinais" value="Artrite" />
+                    Artrite</label
+                  >
+                  <label
+                    ><input type="checkbox" class="sinais" value="Petéquias" />
+                    Petéquias</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="sinais"
+                      value="Prova do laço positiva"
+                    />
+                    Prova do laço positiva</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="sinais"
+                      value="Dor retroorbital"
+                    />
+                    Dor retroorbital</label
                   >
                 </div>
               </div>
@@ -460,23 +613,29 @@
               <div>
                 <div class="flex items-center mb-1 gap-4">
                   <label class="text-sm font-medium"
-                    >Doenças Pré-existentes:
-                  </label>
+                    >Doenças Pré-existentes:</label
+                  >
                   <div class="flex gap-4">
-                    <label class="flex items-center gap-1"
-                      >Sim<input
+                    <label class="flex items-center gap-1">
+                      Sim
+                      <input
                         type="radio"
                         name="doencas"
                         value="1"
                         onchange="toggleDoencas()"
-                    /></label>
-                    <label class="flex items-center gap-1"
-                      >Não<input
+                        id="doencas-sim"
+                      />
+                    </label>
+                    <label class="flex items-center gap-1">
+                      Não
+                      <input
                         type="radio"
                         name="doencas"
                         value="2"
                         onchange="toggleDoencas()"
-                    /></label>
+                        id="doencas-nao"
+                      />
+                    </label>
                   </div>
                 </div>
                 <div
@@ -484,40 +643,70 @@
                   class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2"
                 >
                   <label
-                    ><input type="checkbox" class="doencas" /> Diabetes</label
+                    ><input type="checkbox" class="doencas" value="Diabetes" />
+                    Diabetes</label
                   >
                   <label
-                    ><input type="checkbox" class="doencas" /> Neoplasias</label
+                    ><input
+                      type="checkbox"
+                      class="doencas"
+                      value="Neoplasias"
+                    />
+                    Neoplasias</label
                   >
                   <label
-                    ><input type="checkbox" class="doencas" /> Hipertensão
-                    arterial</label
+                    ><input
+                      type="checkbox"
+                      class="doencas"
+                      value="Hipertensão arterial"
+                    />
+                    Hipertensão arterial</label
                   >
                   <label
-                    ><input type="checkbox" class="doencas" /> Doenças
-                    autoimunes</label
+                    ><input
+                      type="checkbox"
+                      class="doencas"
+                      value="Doenças autoimunes"
+                    />
+                    Doenças autoimunes</label
                   >
                   <label
-                    ><input type="checkbox" class="doencas" /> Doenças
-                    hematológicas</label
+                    ><input
+                      type="checkbox"
+                      class="doencas"
+                      value="Doenças hematológicas"
+                    />
+                    Doenças hematológicas</label
                   >
                   <label
-                    ><input type="checkbox" class="doencas" />
+                    ><input
+                      type="checkbox"
+                      class="doencas"
+                      value="Hepatopatias"
+                    />
                     Hepatopatias</label
                   >
                   <label
-                    ><input type="checkbox" class="doencas" /> Doença renal
-                    crônica</label
+                    ><input
+                      type="checkbox"
+                      class="doencas"
+                      value="Doença renal crônica"
+                    />
+                    Doença renal crônica</label
                   >
                   <label
-                    ><input type="checkbox" class="doencas" /> Doença
-                    acidopéptica</label
+                    ><input
+                      type="checkbox"
+                      class="doencas"
+                      value="Doença acidopéptica"
+                    />
+                    Doença acidopéptica</label
                   >
                 </div>
               </div>
             </div>
 
-            <!-- Exames -->
+            <!-- Exames Laboratoriais -->
             <div class="border p-4 rounded-md shadow">
               <h2 class="text-lg font-bold mb-4">Exames Laboratoriais</h2>
 
@@ -531,11 +720,18 @@
                     <label class="text-sm font-medium"
                       >Data da Coleta (S1)</label
                     >
-                    <input type="date" class="w-full p-2 border rounded" />
+                    <input
+                      type="date"
+                      id="chikungunya-s1-data"
+                      class="w-full p-2 border rounded"
+                    />
                   </div>
                   <div>
                     <label class="text-sm font-medium">Resultado</label>
-                    <select class="w-full p-2 border rounded">
+                    <select
+                      id="chikungunya-s1-resultado"
+                      class="w-full p-2 border rounded"
+                    >
                       <option>1 - Positivo</option>
                       <option>2 - Negativo</option>
                       <option>3 - Inconclusivo</option>
@@ -546,15 +742,21 @@
               </div>
 
               <!-- Coleta 2ª amostra -->
-
               <div class="grid grid-cols-2 gap-4">
                 <div>
                   <label class="text-sm font-medium">Data da Coleta (S2)</label>
-                  <input type="date" class="w-full p-2 border rounded" />
+                  <input
+                    type="date"
+                    id="chikungunya-s2-data"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
                 <div>
                   <label class="text-sm font-medium">Resultado</label>
-                  <select class="w-full p-2 border rounded">
+                  <select
+                    id="chikungunya-s2-resultado"
+                    class="w-full p-2 border rounded"
+                  >
                     <option>1 - Positivo</option>
                     <option>2 - Negativo</option>
                     <option>3 - Inconclusivo</option>
@@ -571,11 +773,18 @@
                 <div class="grid grid-cols-2 gap-4">
                   <div>
                     <label class="text-sm font-medium">Data da Coleta</label>
-                    <input type="date" class="w-full p-2 border rounded" />
+                    <input
+                      type="date"
+                      id="prnt-data"
+                      class="w-full p-2 border rounded"
+                    />
                   </div>
                   <div>
                     <label class="text-sm font-medium">Resultado</label>
-                    <select class="w-full p-2 border rounded">
+                    <select
+                      id="prnt-resultado"
+                      class="w-full p-2 border rounded"
+                    >
                       <option>1 - Reagente</option>
                       <option>2 - Não Reagente</option>
                       <option>3 - Inconclusivo</option>
@@ -593,11 +802,18 @@
                 <div class="grid grid-cols-2 gap-4">
                   <div>
                     <label class="text-sm font-medium">Data da Coleta</label>
-                    <input type="date" class="w-full p-2 border rounded" />
+                    <input
+                      type="date"
+                      id="dengue-igm-data"
+                      class="w-full p-2 border rounded"
+                    />
                   </div>
                   <div>
                     <label class="text-sm font-medium">Resultado</label>
-                    <select class="w-full p-2 border rounded">
+                    <select
+                      id="dengue-igm-resultado"
+                      class="w-full p-2 border rounded"
+                    >
                       <option>1 - Positivo</option>
                       <option>2 - Negativo</option>
                       <option>3 - Inconclusivo</option>
@@ -615,11 +831,18 @@
                 <div class="grid grid-cols-2 gap-4">
                   <div>
                     <label class="text-sm font-medium">Data da Coleta</label>
-                    <input type="date" class="w-full p-2 border rounded" />
+                    <input
+                      type="date"
+                      id="isolamento-data"
+                      class="w-full p-2 border rounded"
+                    />
                   </div>
                   <div>
                     <label class="text-sm font-medium">Resultado</label>
-                    <select class="w-full p-2 border rounded">
+                    <select
+                      id="isolamento-resultado"
+                      class="w-full p-2 border rounded"
+                    >
                       <option>1 - Positivo</option>
                       <option>2 - Negativo</option>
                       <option>3 - Inconclusivo</option>
@@ -637,11 +860,18 @@
                 <div class="grid grid-cols-2 gap-4">
                   <div>
                     <label class="text-sm font-medium">Data da Coleta</label>
-                    <input type="date" class="w-full p-2 border rounded" />
+                    <input
+                      type="date"
+                      id="ns1-data"
+                      class="w-full p-2 border rounded"
+                    />
                   </div>
                   <div>
                     <label class="text-sm font-medium">Resultado</label>
-                    <select class="w-full p-2 border rounded">
+                    <select
+                      id="ns1-resultado"
+                      class="w-full p-2 border rounded"
+                    >
                       <option>1 - Positivo</option>
                       <option>2 - Negativo</option>
                       <option>3 - Inconclusivo</option>
@@ -657,11 +887,18 @@
                 <div class="grid grid-cols-2 gap-4">
                   <div>
                     <label class="text-sm font-medium">Data da Coleta</label>
-                    <input type="date" class="w-full p-2 border rounded" />
+                    <input
+                      type="date"
+                      id="rtpcr-data"
+                      class="w-full p-2 border rounded"
+                    />
                   </div>
                   <div>
                     <label class="text-sm font-medium">Resultado</label>
-                    <select class="w-full p-2 border rounded">
+                    <select
+                      id="rtpcr-resultado"
+                      class="w-full p-2 border rounded"
+                    >
                       <option>1 - Positivo</option>
                       <option>2 - Negativo</option>
                       <option>3 - Inconclusivo</option>
@@ -674,7 +911,7 @@
               <!-- Sorotipo -->
               <div>
                 <label class="block font-semibold text-sm mb-1">Sorotipo</label>
-                <select class="w-full p-2 border rounded">
+                <select id="sorotipo" class="w-full p-2 border rounded">
                   <option>1 - DENV1</option>
                   <option>2 - DENV2</option>
                   <option>3 - DENV3</option>
@@ -687,7 +924,7 @@
                 <label class="block font-semibold text-sm mb-1"
                   >Histopatologia</label
                 >
-                <select class="w-full p-2 border rounded">
+                <select id="histopatologia" class="w-full p-2 border rounded">
                   <option>1 - Compatível</option>
                   <option>2 - Incompatível</option>
                   <option>3 - Inconclusivo</option>
@@ -700,7 +937,7 @@
                 <label class="block font-semibold text-sm mb-1"
                   >Imunohistoquímica</label
                 >
-                <select class="w-full p-2 border rounded">
+                <select id="imunoquimica" class="w-full p-2 border rounded">
                   <option>1 - Positivo</option>
                   <option>2 - Negativo</option>
                   <option>3 - Inconclusivo</option>
@@ -826,7 +1063,7 @@
               </div>
             </div>
 
-            <!-- conclusao -->
+            <!-- Conclusão -->
             <div class="border p-4 rounded-md shadow space-y-4">
               <h2 class="text-lg font-bold mb-4">Conclusão</h2>
 
@@ -837,18 +1074,16 @@
                     >O caso é autóctone do município de residência?</label
                   >
                   <div class="flex gap-4">
-                    <label class="flex items-center gap-1"
-                      ><input type="radio" name="autoctone" value="1" /> 1 -
-                      Sim</label
-                    >
-                    <label class="flex items-center gap-1"
-                      ><input type="radio" name="autoctone" value="2" /> 2 -
-                      Não</label
-                    >
-                    <label class="flex items-center gap-1"
-                      ><input type="radio" name="autoctone" value="3" /> 3 -
-                      Indeterminado</label
-                    >
+                    <label class="flex items-center gap-1">
+                      <input type="radio" name="autoctone" value="1" /> 1 - Sim
+                    </label>
+                    <label class="flex items-center gap-1">
+                      <input type="radio" name="autoctone" value="2" /> 2 - Não
+                    </label>
+                    <label class="flex items-center gap-1">
+                      <input type="radio" name="autoctone" value="3" /> 3 -
+                      Indeterminado
+                    </label>
                   </div>
                 </div>
 
@@ -857,32 +1092,53 @@
                     <label class="text-sm font-medium">UF</label>
                     <input
                       type="text"
+                      id="conclusao-uf"
                       class="w-full p-2 border rounded"
                       maxlength="2"
                     />
                   </div>
                   <div>
                     <label class="text-sm font-medium">País</label>
-                    <input type="text" class="w-full p-2 border rounded" />
+                    <input
+                      type="text"
+                      id="conclusao-pais"
+                      class="w-full p-2 border rounded"
+                    />
                   </div>
                   <div>
                     <label class="text-sm font-medium">Município</label>
-                    <input type="text" class="w-full p-2 border rounded" />
+                    <input
+                      type="text"
+                      id="conclusao-municipio"
+                      class="w-full p-2 border rounded"
+                    />
                   </div>
                 </div>
 
                 <div class="grid grid-cols-4 gap-4">
                   <div>
                     <label class="text-sm font-medium">Código IBGE</label>
-                    <input type="text" class="w-full p-2 border rounded" />
+                    <input
+                      type="text"
+                      id="conclusao-ibge"
+                      class="w-full p-2 border rounded"
+                    />
                   </div>
                   <div>
                     <label class="text-sm font-medium">Distrito</label>
-                    <input type="text" class="w-full p-2 border rounded" />
+                    <input
+                      type="text"
+                      id="conclusao-distrito"
+                      class="w-full p-2 border rounded"
+                    />
                   </div>
                   <div>
                     <label class="text-sm font-medium">Bairro</label>
-                    <input type="text" class="w-full p-2 border rounded" />
+                    <input
+                      type="text"
+                      id="conclusao-bairro"
+                      class="w-full p-2 border rounded"
+                    />
                   </div>
                 </div>
               </div>
@@ -892,8 +1148,8 @@
                 <div>
                   <label class="text-sm font-medium">Classificação</label>
                   <select
-                    class="w-full p-2 border rounded"
                     id="classificacao"
+                    class="w-full p-2 border rounded"
                     onchange="verificarApresentacao()"
                   >
                     <option value="">Selecione</option>
@@ -909,7 +1165,10 @@
                   <label class="text-sm font-medium"
                     >Critério de Confirmação/Descarte</label
                   >
-                  <select class="w-full p-2 border rounded">
+                  <select
+                    id="criterio-confirmacao"
+                    class="w-full p-2 border rounded"
+                  >
                     <option value="">Selecione</option>
                     <option value="1">1 - Laboratório</option>
                     <option value="2">2 - Clínico Epidemiológico</option>
@@ -921,7 +1180,10 @@
                   <label class="text-sm font-medium"
                     >Apresentação Clínica</label
                   >
-                  <select class="w-full p-2 border rounded">
+                  <select
+                    id="apresentacao-clinica"
+                    class="w-full p-2 border rounded"
+                  >
                     <option value="">Selecione</option>
                     <option value="1">1 - Aguda</option>
                     <option value="2">2 - Crônica</option>
@@ -934,8 +1196,8 @@
                 <div>
                   <label class="text-sm font-medium">Evolução do Caso</label>
                   <select
-                    class="w-full p-2 border rounded"
                     id="evolucao"
+                    class="w-full p-2 border rounded"
                     onchange="mostrarDatas()"
                   >
                     <option value="">Selecione</option>
@@ -949,14 +1211,22 @@
 
                 <div id="campoObito" class="hidden">
                   <label class="text-sm font-medium">Data do Óbito</label>
-                  <input type="date" class="w-full p-2 border rounded" />
+                  <input
+                    type="date"
+                    id="data-obito"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
                 <div id="campoEncerramento" class="hidden">
                   <label class="text-sm font-medium"
                     >Data de Encerramento</label
                   >
-                  <input type="date" class="w-full p-2 border rounded" />
+                  <input
+                    type="date"
+                    id="data-encerramento"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
               </div>
             </div>
@@ -978,15 +1248,16 @@
               <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <!-- Radio Buttons -->
                 <div class="md:col-span-4">
-                  <label class="block text-sm font-medium mb-1"
-                    >Paciente apresentou sinais de alarme?</label
-                  >
+                  <label class="block text-sm font-medium mb-1">
+                    Paciente apresentou sinais de alarme?
+                  </label>
                   <div class="flex gap-6">
                     <label class="flex items-center gap-2">
                       <input
                         type="radio"
                         name="sinaisAlarme"
                         value="1"
+                        id="sinais-alarme-sim"
                         onchange="toggleSinaisAlarme(true)"
                       />
                       Sim
@@ -996,6 +1267,7 @@
                         type="radio"
                         name="sinaisAlarme"
                         value="2"
+                        id="sinais-alarme-nao"
                         onchange="toggleSinaisAlarme(false)"
                       />
                       Não
@@ -1009,28 +1281,78 @@
                   class="md:col-span-4 grid grid-cols-1 md:grid-cols-3 gap-2 mt-2"
                   disabled
                 >
-                  <label><input type="checkbox" /> Hipotensão postural</label>
                   <label
-                    ><input type="checkbox" /> Queda abrupta de plaquetas</label
-                  >
-                  <label><input type="checkbox" /> Vômitos persistentes</label>
-                  <label
-                    ><input type="checkbox" /> Dor abdominal intensa e
-                    contínua</label
-                  >
-                  <label
-                    ><input type="checkbox" /> Letargia ou irritabilidade</label
+                    ><input
+                      type="checkbox"
+                      class="sintoma-alarme"
+                      value="Hipotensão postural"
+                    />
+                    Hipotensão postural</label
                   >
                   <label
-                    ><input type="checkbox" /> Sangramento de mucosa/outras
-                    hemorragias</label
+                    ><input
+                      type="checkbox"
+                      class="sintoma-alarme"
+                      value="Queda abrupta de plaquetas"
+                    />
+                    Queda abrupta de plaquetas</label
                   >
                   <label
-                    ><input type="checkbox" /> Aumento progressivo do
-                    hematócrito</label
+                    ><input
+                      type="checkbox"
+                      class="sintoma-alarme"
+                      value="Vômitos persistentes"
+                    />
+                    Vômitos persistentes</label
                   >
-                  <label><input type="checkbox" /> Acúmulo de líquidos</label>
-                  <label><input type="checkbox" /> Hepatomegalia ≥ 2cm</label>
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="sintoma-alarme"
+                      value="Dor abdominal intensa e contínua"
+                    />
+                    Dor abdominal intensa e contínua</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="sintoma-alarme"
+                      value="Letargia ou irritabilidade"
+                    />
+                    Letargia ou irritabilidade</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="sintoma-alarme"
+                      value="Sangramento de mucosa/outras hemorragias"
+                    />
+                    Sangramento de mucosa/outras hemorragias</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="sintoma-alarme"
+                      value="Aumento progressivo do hematócrito"
+                    />
+                    Aumento progressivo do hematócrito</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="sintoma-alarme"
+                      value="Acúmulo de líquidos"
+                    />
+                    Acúmulo de líquidos</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="sintoma-alarme"
+                      value="Hepatomegalia ≥ 2cm"
+                    />
+                    Hepatomegalia ≥ 2cm</label
+                  >
                 </fieldset>
 
                 <!-- Data de início dos sintomas -->
@@ -1040,7 +1362,7 @@
                   >
                   <input
                     type="date"
-                    id="dataAlarme"
+                    id="data-alarme-inicio"
                     class="w-full p-2 border rounded"
                     disabled
                   />
@@ -1054,14 +1376,15 @@
               <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <!-- Radio Buttons -->
                 <div class="md:col-span-4">
-                  <label class="block text-sm font-medium mb-1"
-                    >Paciente apresentou sinais de dengue grave?</label
-                  >
+                  <label class="block text-sm font-medium mb-1">
+                    Paciente apresentou sinais de dengue grave?
+                  </label>
                   <div class="flex gap-6">
                     <label class="flex items-center gap-2">
                       <input
                         type="radio"
                         name="dengueGrave"
+                        id="dengue-grave-sim"
                         value="1"
                         onchange="toggleDengueGrave(true)"
                       />
@@ -1071,6 +1394,7 @@
                       <input
                         type="radio"
                         name="dengueGrave"
+                        id="dengue-grave-nao"
                         value="2"
                         onchange="toggleDengueGrave(false)"
                       />
@@ -1090,23 +1414,45 @@
                     <p class="font-medium">Extravasamento grave de plasma:</p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-1">
                       <label
-                        ><input type="checkbox" /> Pulso débil ou PA
-                        convergente</label
+                        ><input
+                          type="checkbox"
+                          class="dg-extravasamento"
+                          value="Pulso débil ou PA convergente"
+                        />
+                        Pulso débil ou PA convergente</label
                       >
                       <label
-                        ><input type="checkbox" /> Tempo de enchimento
-                        capilar</label
+                        ><input
+                          type="checkbox"
+                          class="dg-extravasamento"
+                          value="Tempo de enchimento capilar"
+                        />
+                        Tempo de enchimento capilar</label
                       >
                       <label
-                        ><input type="checkbox" /> Acúmulo de líquidos com
-                        insuficiência respiratória</label
+                        ><input
+                          type="checkbox"
+                          class="dg-extravasamento"
+                          value="Acúmulo de líquidos com insuficiência respiratória"
+                        />
+                        Acúmulo de líquidos com insuficiência
+                        respiratória</label
                       >
                       <label
-                        ><input type="checkbox" /> Taquicardia / Extremidades
-                        frias</label
+                        ><input
+                          type="checkbox"
+                          class="dg-extravasamento"
+                          value="Taquicardia / Extremidades frias"
+                        />
+                        Taquicardia / Extremidades frias</label
                       >
                       <label
-                        ><input type="checkbox" /> Hipotensão arterial</label
+                        ><input
+                          type="checkbox"
+                          class="dg-extravasamento"
+                          value="Hipotensão arterial"
+                        />
+                        Hipotensão arterial</label
                       >
                     </div>
                   </div>
@@ -1115,13 +1461,37 @@
                   <div>
                     <p class="font-medium">Sangramento grave:</p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-1">
-                      <label><input type="checkbox" /> Hematêmese</label>
-                      <label><input type="checkbox" /> Melena</label>
                       <label
-                        ><input type="checkbox" /> Metrorragia volumosa</label
+                        ><input
+                          type="checkbox"
+                          class="dg-sangramento"
+                          value="Hematêmese"
+                        />
+                        Hematêmese</label
                       >
                       <label
-                        ><input type="checkbox" /> Sangramento do SNC</label
+                        ><input
+                          type="checkbox"
+                          class="dg-sangramento"
+                          value="Melena"
+                        />
+                        Melena</label
+                      >
+                      <label
+                        ><input
+                          type="checkbox"
+                          class="dg-sangramento"
+                          value="Metrorragia volumosa"
+                        />
+                        Metrorragia volumosa</label
+                      >
+                      <label
+                        ><input
+                          type="checkbox"
+                          class="dg-sangramento"
+                          value="Sangramento do SNC"
+                        />
+                        Sangramento do SNC</label
                       >
                     </div>
                   </div>
@@ -1131,12 +1501,28 @@
                     <p class="font-medium">Comprometimento grave de órgãos:</p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-1">
                       <label
-                        ><input type="checkbox" /> AST/ALT &gt; 1.000</label
+                        ><input
+                          type="checkbox"
+                          class="dg-orgao"
+                          value="AST/ALT > 1.000"
+                        />
+                        AST/ALT &gt; 1.000</label
                       >
-                      <label><input type="checkbox" /> Miocardite</label>
                       <label
-                        ><input type="checkbox" /> Alteração da
-                        consciência</label
+                        ><input
+                          type="checkbox"
+                          class="dg-orgao"
+                          value="Miocardite"
+                        />
+                        Miocardite</label
+                      >
+                      <label
+                        ><input
+                          type="checkbox"
+                          class="dg-orgao"
+                          value="Alteração da consciência"
+                        />
+                        Alteração da consciência</label
                       >
                     </div>
                   </div>
@@ -1146,15 +1532,19 @@
                     <label class="block text-sm font-medium mb-1"
                       >Outros:</label
                     >
-                    <input type="text" class="w-full p-2 border rounded" />
+                    <input
+                      type="text"
+                      id="dg-outros"
+                      class="w-full p-2 border rounded"
+                    />
                   </div>
                 </fieldset>
 
                 <!-- Data dos sinais de gravidade -->
                 <div class="md:col-span-2 mt-4">
-                  <label class="block text-sm font-medium mb-1"
-                    >Data de início dos sinais de gravidade</label
-                  >
+                  <label class="block text-sm font-medium mb-1">
+                    Data de início dos sinais de gravidade
+                  </label>
                   <input
                     type="date"
                     id="dataGravidade"
@@ -1199,7 +1589,11 @@
                   <label class="block text-sm font-medium mb-1"
                     >Data e local:</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="data-local"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
                 <!-- Vacina Febre Amarela -->
@@ -1207,7 +1601,11 @@
                   <label class="block text-sm font-medium mb-1"
                     >Vacina de Febre Amarela (última dose):</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="vacina-febre"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
                 <!-- Dengue anteriormente -->
@@ -1215,16 +1613,23 @@
                   <label class="block text-sm font-medium mb-1"
                     >Dengue anteriormente (mês e ano):</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="dengue-anterior"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
                 <!-- Pressão Arterial -->
                 <div class="md:col-span-4">
                   <label class="block text-sm font-medium mb-1"
-                    >Pressão Arterial em duas posições (em pé e deitado ou
-                    sentado):</label
+                    >Pressão Arterial em duas posições:</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="pressao"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
                 <!-- Prova do laço -->
@@ -1296,54 +1701,60 @@
                   </div>
                 </div>
 
-                <!-- Dados Hemograma - Linha 1 -->
+                <!-- Hemograma 1 -->
                 <div class="md:col-span-4">
                   <p class="text-sm font-medium">Hemograma 1:</p>
                   <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <input
                       type="date"
+                      id="hemo1-data"
                       class="w-full p-2 border rounded"
-                      placeholder="Data"
                     />
                     <input
                       type="text"
+                      id="hemo1-plaquetas"
                       class="w-full p-2 border rounded"
                       placeholder="Plaquetas"
                     />
                     <input
                       type="text"
+                      id="hemo1-leucocitos"
                       class="w-full p-2 border rounded"
                       placeholder="Leucócitos"
                     />
                     <input
                       type="text"
+                      id="hemo1-hematocrito"
                       class="w-full p-2 border rounded"
                       placeholder="Hematócrito"
                     />
                   </div>
                 </div>
 
-                <!-- Dados Hemograma - Linha 2 -->
+                <!-- Hemograma 2 -->
                 <div class="md:col-span-4">
                   <p class="text-sm font-medium mt-2">Hemograma 2:</p>
                   <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <input
                       type="date"
+                      id="hemo2-data"
                       class="w-full p-2 border rounded"
-                      placeholder="Data"
                     />
                     <input
                       type="text"
+                      id="hemo2-plaquetas"
                       class="w-full p-2 border rounded"
                       placeholder="Plaquetas"
                     />
                     <input
                       type="text"
+                      id="hemo2-leucocitos"
                       class="w-full p-2 border rounded"
                       placeholder="Leucócitos"
                     />
                     <input
                       type="text"
+                      id="hemo2-hematocrito"
                       class="w-full p-2 border rounded"
                       placeholder="Hematócrito"
                     />
@@ -1381,36 +1792,50 @@
             <div class="border p-4 rounded-md shadow">
               <h2 class="text-lg font-bold mb-4">Investigador</h2>
               <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-                <!-- Municipio -->
+                <!-- Município/Unidade de Saúde -->
                 <div class="md:col-span-4">
                   <label class="block text-sm font-medium"
-                    >Municipo/Unidade de Saude:</label
+                    >Município/Unidade de Saúde:</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="investigador-municipio"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
-                <!-- Cod. Unidade -->
+                <!-- Código da Unidade -->
                 <div class="md:col-span-1">
                   <label class="block text-sm font-medium"
-                    >Cod. Unid. Saude:</label
+                    >Cod. Unidade Saúde:</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="investigador-cod-unidade"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
-                <!-- Nome -->
+                <!-- Nome do Investigador -->
                 <div class="md:col-span-3">
                   <label class="block text-sm font-medium"
-                    >Cod. Unid. Saude:</label
+                    >Nome do Investigador:</label
                   >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <input
+                    type="text"
+                    id="investigador-nome"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
 
-                <!-- Funcao -->
+                <!-- Função do Investigador -->
                 <div class="md:col-span-2">
-                  <label class="block text-sm font-medium"
-                    >Cod. Unid. Saude:</label
-                  >
-                  <input type="text" class="w-full p-2 border rounded" />
+                  <label class="block text-sm font-medium">Função:</label>
+                  <input
+                    type="text"
+                    id="investigador-funcao"
+                    class="w-full p-2 border rounded"
+                  />
                 </div>
               </div>
             </div>
@@ -1425,7 +1850,6 @@
                 Salvar
               </button>
             </div>
-
           </form>
         </div>
       </div>
