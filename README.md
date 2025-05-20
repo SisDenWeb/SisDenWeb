@@ -4,7 +4,7 @@
 
 ## Funcionalidades
 
-- 👥 **Cadastro de funcionários** com geração de credenciais automáticas.
+- **Cadastro de funcionários** com geração de credenciais automáticas.
 - **Notificação de casos** com formulário completo (baseado na ficha oficial do SUS).
 - **Preenchimento dinâmico de fichas** com suporte a:
   - Dados clínicos
