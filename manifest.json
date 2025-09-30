@@ -1,0 +1,21 @@
+{
+    "name": "SysDenWeb",
+    "short_name": "SysDenWeb",
+    "start_url": "/source/html/index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2196f3",
+    "icons": [
+      {
+        "src": "/source/icon/icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/source/icon/icon-256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+      }
+    ]
+  }
+  

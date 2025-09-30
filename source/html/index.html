@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#2196f3" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SisDenWeb - Login</title>
@@ -106,6 +108,14 @@
         >
           Entrar
         </button>
+
+        <button
+          type="button"
+          id="btnInstall"
+          class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Instalar App
+        </button>
       </form>
 
       <footer class="mt-6 text-xs text-center text-gray-500">
@@ -118,3 +128,40 @@
     <script src="../script/login.js"></script>
   </body>
 </html>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then(() => console.log("Service Worker registrado!"))
+      .catch((err) => console.log("Erro ao registrar Service Worker:", err));
+  }
+
+  let deferredPrompt;
+  const btnInstall = document.getElementById("btnInstall");
+
+  // Escuta o evento disparado pelo navegador
+  window.addEventListener("beforeinstallprompt", (e) => {
+    console.log("event: beforeinstallprompt")
+    e.preventDefault(); // Impede o prompt automático
+    deferredPrompt = e; // Guarda o evento
+  });
+
+  // Quando o usuário clicar no botão
+  btnInstall.addEventListener("click", async () => {
+    console.log("event: click on install button")
+    if (deferredPrompt) {
+      console.log("deferredPrompt = true")
+      console.log("deferredPrompt = " + deferredPrompt)
+      deferredPrompt.prompt(); // Mostra o prompt de instalação
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`Usuário escolheu: ${outcome}`);
+      deferredPrompt = null;
+      btnInstall.style.display = "none"; // Esconde o botão
+    }else if(deferredPrompt == undefined){
+      console.log("deferredPrompt não definido!")
+    }else{
+      console.log(deferredPrompt)
+    }
+  });
+</script>
