@@ -164,4 +164,12 @@
       console.log(deferredPrompt)
     }
   });
+
+  function isPWAInstalled() {
+  return (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true);
+}
+
+if (isPWAInstalled){
+  btnInstall.style.display = "none";
+} 
 </script>
