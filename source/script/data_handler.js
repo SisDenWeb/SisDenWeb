@@ -1790,12 +1790,90 @@ function deleteCaseInMemory(id) {
 
 function save_login_info(login) {
   const info_db = recuperarDados("info");
-  info_db.login_info.username = login.username
-  info_db.login_info.id = login.id
+  info_db.login_info.username = login.username;
+  info_db.login_info.id = login.id;
 
-  salvarDados(info_db, "info")
+  salvarDados(info_db, "info");
 }
 
-function get_login_info(){
-  return recuperarDados("info").login_info
+function change_password(new_password, old_password){
+  const info_db = recuperarDados("info");
+  var employers_db = recuperarDados("employer")
+  var employer = find_employer_by_id(employers_db, info_db.login_info.id)
+
+  if (employer.password != old_password) {
+    return false;
+  }
+  
+  employer.password = new_password;
+
+  const index = employers_db.findIndex((e) => e.id === employer.id);
+  if (index !== -1) {
+    employers_db[index] = employer;
+  }
+
+  salvarDados(employers_db, "employer");  
+  return true;
+}
+
+function get_login_info() {
+  let login_info = recuperarDados("info").login_info;
+  if (login_info.username == "" && login_info.id == 0) {
+    window.location.href = "../index.html";
+  }
+  return login_info;
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  window.rst = starter_database;
+});
+
+// alterar senha
+
+const btnChangePassword = document.querySelectorAll(".btn-change-password");
+const cancelBtn = document.getElementById("cancel-change-password");
+const modal = document.getElementById("change-password-modal");
+const form = document.getElementById("change-password-form");
+const saveBtn = document.getElementById("save-change-password");
+
+if (btnChangePassword) {
+  btnChangePassword.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    });
+  });
+}
+
+if (cancelBtn) {
+  cancelBtn.addEventListener("click", () => {
+      console.log("btn cancelar");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      form.reset();
+    });
+}
+
+if (saveBtn) {
+  saveBtn.addEventListener("click", (e) => {
+
+    const currentPassword = document.getElementById("current-password").value;
+    const newPassword = document.getElementById("new-password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
+
+    if (newPassword !== confirmPassword) {
+      alert("As senhas novas não coincidem!");
+      return;
+    }
+
+    var result = change_password(newPassword, currentPassword);
+    if(result){
+      alert("Senha alterada com sucesso!");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      form.reset();
+    }else{
+      alert("Senha atual incorreta!");
+    }
+  });
 }

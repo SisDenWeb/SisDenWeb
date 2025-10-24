@@ -11,9 +11,10 @@ document.getElementById("login-buttom").addEventListener("click", function () {
   const employer = find_employer_by_id(employer_db, usuario);
 
   if (admin_db[usuario] && admin_db[usuario] === senha) {
+    save_login_info({ username: "admin", id: "777" });
     window.location.href = "admin/admin-management.html";
   } else if (employer && employer.password === senha) {
-    save_login_info({username: employer.name, id: usuario})
+    save_login_info({ username: employer.name, id: usuario });
     window.location.href = "employer/employer-cases.html";
   } else {
     erroMsg.classList.remove("hidden");

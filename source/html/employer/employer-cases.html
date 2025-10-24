@@ -16,28 +16,46 @@
     <aside class="hidden md:flex flex-col w-1/5 bg-slate-700 p-6 text-white">
       <h1 class="text-xl font-bold mb-10">SisDenWeb</h1>
 
-      <!-- Avatar + info -->
-      <div class="flex items-center space-x-3 bg-slate-600 rounded p-3 mb-10">
-        <div class="bg-white rounded-full p-1 border border-gray-300">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 text-black"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+      <div
+        class="px-4 py-4 border-b border-slate-500 flex flex-col items-center space-y-4 bg-slate-600 rounded-lg w-48"
+      >
+        <!-- Linha com ícone, nome e ID -->
+        <div class="flex items-center space-x-3">
+          <!-- Ícone do usuário -->
+          <div
+            class="w-10 h-10 bg-white rounded-full flex items-center justify-center"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M5.121 17.804A11.955 11.955 0 0112 15c2.21 0 4.272.636 5.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-slate-700"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5.121 17.804A10.971 10.971 0 0112 15c2.21 0 4.25.72 5.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </div>
+
+          <!-- Nome e ID -->
+          <div class="flex flex-col items-start">
+            <p class="logged_as_username font-semibold text-white">
+              Carlos Silva
+            </p>
+            <p class="logged_as_id text-sm text-slate-300">123</p>
+          </div>
         </div>
-        <div>
-          <p class="logged_as_username"></p>
-          <p class="logged_as_id" class="text-sm"></p>
-        </div>
+
+        <!-- Botão Alterar Senha -->
+        <button
+          class="btn-change-password bg-blue-600 text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700 transition w-full"
+        >
+          Alterar Senha
+        </button>
       </div>
 
       <!-- Botão sair -->
@@ -76,9 +94,20 @@
       id="mobile-menu"
       class="md:hidden overflow-hidden max-h-0 opacity-0 dropdown-transition bg-slate-600 text-white"
     >
-      <div class="px-4 py-2 border-b border-slate-500">
-        <p class="logged_as_username"></p>
-        <p class="logged_as_id" class="text-sm"></p>
+      <div
+        class="px-4 py-2 border-b border-slate-500 flex items-center justify-between"
+      >
+        <div>
+          <p class="logged_as_username font-medium"></p>
+          <p class="logged_as_id text-sm text-slate-400"></p>
+        </div>
+
+        <!-- Botão para alterar senha -->
+        <button
+          class="btn-change-password bg-blue-600 text-white text-sm px-3 py-1 rounded-md hover:bg-blue-700 transition"
+        >
+          Alterar Senha
+        </button>
       </div>
       <button
         class="w-full text-left px-6 py-3 bg-red-500 hover:bg-red-600 transition"
@@ -105,31 +134,94 @@
         Novo Caso
       </button>
 
+      <!-- Modal para alterar senha -->
+      <div
+        id="change-password-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+      >
+        <div class="bg-white rounded-2xl shadow-lg w-96 p-6">
+          <h2 class="text-lg font-semibold mb-4 text-center">Alterar Senha</h2>
+
+          <form id="change-password-form" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-700"
+                >Senha Atual</label
+              >
+              <input
+                type="password"
+                id="current-password"
+                class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700"
+                >Nova Senha</label
+              >
+              <input
+                type="password"
+                id="new-password"
+                class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700"
+                >Confirmar Nova Senha</label
+              >
+              <input
+                type="password"
+                id="confirm-password"
+                class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+
+            <div class="flex justify-end space-x-2 mt-6">
+              <button
+                type="button"
+                id="cancel-change-password"
+                class="px-3 py-1 rounded-md border border-slate-400 hover:bg-slate-100"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                id="save-change-password"
+                class="px-3 py-1 rounded-md bg-blue-600 text-white hover:bg-blue-700"
+              >
+                Salvar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
       <div id="caso-container"></div>
     </main>
 
     <script src="../../script/data_handler.js"></script>
     <script src="../../script/casos.js"></script>
-    
-    <script>
-        // Mobile Menu toggle
-        const menuToggle = document.getElementById("menu-toggle");
-        const mobileMenu = document.getElementById("mobile-menu");
-        menuToggle.addEventListener("click", () => {
-          const isOpen = mobileMenu.classList.contains("max-h-60");
-          mobileMenu.classList.toggle("max-h-60");
-          mobileMenu.classList.toggle("opacity-100");
-          mobileMenu.classList.toggle("max-h-0");
-          mobileMenu.classList.toggle("opacity-0");
-        });
 
-        const login_info = get_login_info();
-        document.querySelectorAll(".logged_as_username").forEach((text) => {
-          text.innerHTML = login_info.username
-        });
-        document.querySelectorAll(".logged_as_id").forEach((text) => {
-          text.innerHTML = login_info.id
-        });
+    <script>
+      // Mobile Menu toggle
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      menuToggle.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.contains("max-h-60");
+        mobileMenu.classList.toggle("max-h-60");
+        mobileMenu.classList.toggle("opacity-100");
+        mobileMenu.classList.toggle("max-h-0");
+        mobileMenu.classList.toggle("opacity-0");
+      });
+
+      const login_info = get_login_info();
+      document.querySelectorAll(".logged_as_username").forEach((text) => {
+        text.innerHTML = login_info.username;
+      });
+      document.querySelectorAll(".logged_as_id").forEach((text) => {
+        text.innerHTML = login_info.id;
+      });
     </script>
   </body>
 </html>
