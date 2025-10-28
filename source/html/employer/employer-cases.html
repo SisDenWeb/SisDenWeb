@@ -84,26 +84,5 @@
     <script src="../../script/data_handler.js"></script>
     <script src="../../script/casos.js"></script>
     <script src="../../script/menu.js"></script>
-
-    <script>
-      // Mobile Menu toggle
-      const menuToggle = document.getElementById("menu-toggle");
-      const mobileMenu = document.getElementById("mobile-menu");
-      menuToggle.addEventListener("click", () => {
-        const isOpen = mobileMenu.classList.contains("max-h-60");
-        mobileMenu.classList.toggle("max-h-60");
-        mobileMenu.classList.toggle("opacity-100");
-        mobileMenu.classList.toggle("max-h-0");
-        mobileMenu.classList.toggle("opacity-0");
-      });
-
-      const login_info = get_login_info();
-      document.querySelectorAll(".logged_as_username").forEach((text) => {
-        text.innerHTML = login_info.username;
-      });
-      document.querySelectorAll(".logged_as_id").forEach((text) => {
-        text.innerHTML = login_info.id;
-      });
-    </script>
   </body>
 </html>

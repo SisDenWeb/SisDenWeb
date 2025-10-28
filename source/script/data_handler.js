@@ -1690,9 +1690,10 @@ function starter_database() {
 // did this to restart database if empty andddd now i can just call starter_database() :)
 function database_empty() {
   if (
-    recuperarDados("admin") == null &&
-    recuperarDados("employers") == null &&
-    recuperarDados("cases") == null
+    recuperarDados("admin") == null ||
+    recuperarDados("employer") == null ||
+    recuperarDados("case") == null ||
+    recuperarDados("info") == null
   ) {
     starter_database();
   }
