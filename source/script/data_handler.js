@@ -55,13 +55,14 @@ const dadosIniciais = {
         codigo_logradouro: "67890",
         numero: "150",
         complemento: "Apto 203",
-        geo1: "-23.5505",
-        geo2: "-46.6333",
+        geo1: "-20.282142062604038",
+        geo2: "-50.255811843159705",
         referencia: "Próximo à praça central",
         cep: "01001-000",
         zona: "1 - Urbana",
         pais_estrangeiro: "",
       },
+
       investigacao: {
         data_investigacao: "2025-04-19",
         ocupacao: "Professora",
@@ -216,8 +217,8 @@ const dadosIniciais = {
         codigo_logradouro: "112233",
         numero: "3000",
         complemento: "Cobertura 1",
-        geo1: "-22.9711",
-        geo2: "-43.1822",
+        geo1: "-20.282103928622348",
+        geo2: "-50.25460845052754",
         referencia: "Próximo ao Forte",
         cep: "22070-000",
         zona: "1 - Urbana",
@@ -374,8 +375,8 @@ const dadosIniciais = {
         codigo_logradouro: "20003",
         numero: "103",
         complemento: "Apto 3",
-        geo1: "-23.5",
-        geo2: "-46.6",
+        geo1: "-20.281592932361036",
+        geo2: "-50.25684448413375",
         referencia: "Ponto de referência",
         cep: "01003-000",
         zona: "1 - Urbana",
@@ -538,8 +539,8 @@ const dadosIniciais = {
         codigo_logradouro: "20004",
         numero: "104",
         complemento: "Apto 4",
-        geo1: "-23.5",
-        geo2: "-46.6",
+        geo1: "-20.280344681118308",
+        geo2: "-50.25616385028181",
         referencia: "Ponto de referência",
         cep: "01004-000",
         zona: "1 - Urbana",
@@ -696,8 +697,9 @@ const dadosIniciais = {
         codigo_logradouro: "20005",
         numero: "105",
         complemento: "Apto 5",
-        geo1: "-23.5",
-        geo2: "-46.6",
+        geo1: "-20.289768031721238",
+        geo2: "-50.25278614150304",
+
         referencia: "Ponto de referência",
         cep: "01005-000",
         zona: "1 - Urbana",
@@ -854,8 +856,8 @@ const dadosIniciais = {
         codigo_logradouro: "20006",
         numero: "106",
         complemento: "Apto 6",
-        geo1: "-23.5",
-        geo2: "-46.6",
+        geo1: "-20.288817125915884",
+        geo2: "-50.24910437231719",
         referencia: "Ponto de referência",
         cep: "01006-000",
         zona: "1 - Urbana",
@@ -1012,8 +1014,8 @@ const dadosIniciais = {
         codigo_logradouro: "20007",
         numero: "107",
         complemento: "Apto 7",
-        geo1: "-23.5",
-        geo2: "-46.6",
+        geo1: "-20.288483473372153",
+        geo2: "-50.256396765390974",
         referencia: "Ponto de referência",
         cep: "01007-000",
         zona: "1 - Urbana",
@@ -1170,8 +1172,8 @@ const dadosIniciais = {
         codigo_logradouro: "20008",
         numero: "108",
         complemento: "Apto 8",
-        geo1: "-23.5",
-        geo2: "-46.6",
+        geo1: "-20.2918983608333",
+        geo2: "-50.256196636235615",
         referencia: "Ponto de referência",
         cep: "01008-000",
         zona: "1 - Urbana",
@@ -1328,8 +1330,8 @@ const dadosIniciais = {
         codigo_logradouro: "20009",
         numero: "109",
         complemento: "Apto 9",
-        geo1: "-23.5",
-        geo2: "-46.6",
+        geo1: "-20.285508916856898",
+        geo2: "-50.26204833701004",
         referencia: "Ponto de referência",
         cep: "01009-000",
         zona: "1 - Urbana",
@@ -1486,8 +1488,8 @@ const dadosIniciais = {
         codigo_logradouro: "20010",
         numero: "110",
         complemento: "Apto 10",
-        geo1: "-23.5",
-        geo2: "-46.6",
+        geo1: "-20.28238917098294",
+        geo2: "-50.25954046523273",
         referencia: "Ponto de referência",
         cep: "010010-000",
         zona: "1 - Urbana",
@@ -1796,26 +1798,6 @@ function save_login_info(login) {
   salvarDados(info_db, "info");
 }
 
-function change_password(new_password, old_password){
-  const info_db = recuperarDados("info");
-  var employers_db = recuperarDados("employer")
-  var employer = find_employer_by_id(employers_db, info_db.login_info.id)
-
-  if (employer.password != old_password) {
-    return false;
-  }
-  
-  employer.password = new_password;
-
-  const index = employers_db.findIndex((e) => e.id === employer.id);
-  if (index !== -1) {
-    employers_db[index] = employer;
-  }
-
-  salvarDados(employers_db, "employer");  
-  return true;
-}
-
 function get_login_info() {
   let login_info = recuperarDados("info").login_info;
   if (login_info.username == "" && login_info.id == 0) {
@@ -1827,53 +1809,3 @@ function get_login_info() {
 document.addEventListener("DOMContentLoaded", async () => {
   window.rst = starter_database;
 });
-
-// alterar senha
-
-const btnChangePassword = document.querySelectorAll(".btn-change-password");
-const cancelBtn = document.getElementById("cancel-change-password");
-const modal = document.getElementById("change-password-modal");
-const form = document.getElementById("change-password-form");
-const saveBtn = document.getElementById("save-change-password");
-
-if (btnChangePassword) {
-  btnChangePassword.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      modal.classList.remove("hidden");
-      modal.classList.add("flex");
-    });
-  });
-}
-
-if (cancelBtn) {
-  cancelBtn.addEventListener("click", () => {
-      console.log("btn cancelar");
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-      form.reset();
-    });
-}
-
-if (saveBtn) {
-  saveBtn.addEventListener("click", (e) => {
-
-    const currentPassword = document.getElementById("current-password").value;
-    const newPassword = document.getElementById("new-password").value;
-    const confirmPassword = document.getElementById("confirm-password").value;
-
-    if (newPassword !== confirmPassword) {
-      alert("As senhas novas não coincidem!");
-      return;
-    }
-
-    var result = change_password(newPassword, currentPassword);
-    if(result){
-      alert("Senha alterada com sucesso!");
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-      form.reset();
-    }else{
-      alert("Senha atual incorreta!");
-    }
-  });
-}

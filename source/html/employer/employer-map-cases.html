@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SisDenWeb</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .dropdown-transition {
+        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      }
+    </style>
+
+    <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
+    <link
+      href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <!-- menu dinamicamente inserido na tag body-->
+  <body class="h-screen flex flex-col md:flex-row bg-slate-100 text-slate-900">
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-1 overflow-y-auto relative">
+      <div id="map" style="width: 100%; height: 100%"></div>
+    </main>
+
+    <script src="../../script/data_handler.js"></script>
+    <script src="../../script/map_casos.js"></script>
+    <script src="../../script/menu.js"></script>
+  </body>
+</html>

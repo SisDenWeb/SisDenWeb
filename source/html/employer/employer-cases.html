@@ -12,22 +12,20 @@
     </style>
   </head>
   <body class="h-screen flex flex-col md:flex-row bg-slate-100 text-slate-900">
-    <!-- Sidebar (Desktop) -->
-    <aside class="hidden md:flex flex-col w-1/5 bg-slate-700 p-6 text-white">
-      <h1 class="text-xl font-bold mb-10">SisDenWeb</h1>
-
-      <div
-        class="px-4 py-4 border-b border-slate-500 flex flex-col items-center space-y-4 bg-slate-600 rounded-lg w-48"
-      >
-        <!-- Linha com ícone, nome e ID -->
-        <div class="flex items-center space-x-3">
-          <!-- Ícone do usuário -->
-          <div
-            class="w-10 h-10 bg-white rounded-full flex items-center justify-center"
-          >
+    <!-- Conteúdo Principal -->
+    <main class="flex-1 p-6 overflow-y-auto relative">
+      <div class="overflow-y-auto h-[calc(100vh-8rem)] pr-2">
+        <div class="w-full mb-4">
+          <div class="relative box-border w-full">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Buscar caso por nome, ID ou outro termo..."
+              class="w-full box-border border border-slate-300 rounded-lg pl-10 pr-10 py-2 focus:ring focus:ring-blue-200 focus:border-blue-500"
+            />
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6 text-slate-700"
+              class="h-5 w-5 text-slate-400 absolute left-3 top-2.5 pointer-events-none"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -36,91 +34,22 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="M5.121 17.804A10.971 10.971 0 0112 15c2.21 0 4.25.72 5.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
-          </div>
 
-          <!-- Nome e ID -->
-          <div class="flex flex-col items-start">
-            <p class="logged_as_username font-semibold text-white">
-              Carlos Silva
-            </p>
-            <p class="logged_as_id text-sm text-slate-300">123</p>
+            <!-- botão limpar (opcional) alinhado à direita dentro do input -->
+            <button
+              id="clear-search"
+              type="button"
+              class="absolute right-2 top-2.5 h-5 w-5 flex items-center justify-center text-slate-400 hover:text-slate-600 hidden"
+            >
+              ✕
+            </button>
           </div>
         </div>
 
-        <!-- Botão Alterar Senha -->
-        <button
-          class="btn-change-password bg-blue-600 text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700 transition w-full"
-        >
-          Alterar Senha
-        </button>
-      </div>
-
-      <!-- Botão sair -->
-      <button
-        class="mt-auto bg-red-500 hover:bg-red-600 w-full py-2 rounded-lg font-medium transition"
-        onclick='window.location.href = "../index.html"'
-      >
-        Sair
-      </button>
-    </aside>
-
-    <!-- Topbar (Mobile) -->
-    <header
-      class="md:hidden flex justify-between items-center px-4 py-3 bg-slate-700 text-white"
-    >
-      <h1 class="text-lg font-semibold">SisDenWeb</h1>
-      <button id="menu-toggle">
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      </button>
-    </header>
-
-    <!-- Menu Dropdown (Mobile) -->
-    <nav
-      id="mobile-menu"
-      class="md:hidden overflow-hidden max-h-0 opacity-0 dropdown-transition bg-slate-600 text-white"
-    >
-      <div
-        class="px-4 py-2 border-b border-slate-500 flex items-center justify-between"
-      >
-        <div>
-          <p class="logged_as_username font-medium"></p>
-          <p class="logged_as_id text-sm text-slate-400"></p>
-        </div>
-
-        <!-- Botão para alterar senha -->
-        <button
-          class="btn-change-password bg-blue-600 text-white text-sm px-3 py-1 rounded-md hover:bg-blue-700 transition"
-        >
-          Alterar Senha
-        </button>
-      </div>
-      <button
-        class="w-full text-left px-6 py-3 bg-red-500 hover:bg-red-600 transition"
-        onclick='window.location.href = "../index.html"'
-      >
-        Sair
-      </button>
-    </nav>
-
-    <!-- Conteúdo Principal -->
-    <main class="flex-1 p-6 overflow-y-auto relative">
-      <!-- Lista de casos -->
-      <div class="overflow-y-auto h-[calc(100vh-6rem)] pr-2">
+        <!-- Lista de casos -->
         <div id="casos-list" class="space-y-4">
           <!-- Itens adicionados via JS -->
         </div>
@@ -134,74 +63,27 @@
         Novo Caso
       </button>
 
-      <!-- Modal para alterar senha -->
-      <div
-        id="change-password-modal"
-        class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
-      >
-        <div class="bg-white rounded-2xl shadow-lg w-96 p-6">
-          <h2 class="text-lg font-semibold mb-4 text-center">Alterar Senha</h2>
-
-          <form id="change-password-form" class="space-y-4">
-            <div>
-              <label class="block text-sm font-medium text-slate-700"
-                >Senha Atual</label
-              >
-              <input
-                type="password"
-                id="current-password"
-                class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring focus:ring-blue-200"
-                required
-              />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-slate-700"
-                >Nova Senha</label
-              >
-              <input
-                type="password"
-                id="new-password"
-                class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring focus:ring-blue-200"
-                required
-              />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-slate-700"
-                >Confirmar Nova Senha</label
-              >
-              <input
-                type="password"
-                id="confirm-password"
-                class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring focus:ring-blue-200"
-                required
-              />
-            </div>
-
-            <div class="flex justify-end space-x-2 mt-6">
-              <button
-                type="button"
-                id="cancel-change-password"
-                class="px-3 py-1 rounded-md border border-slate-400 hover:bg-slate-100"
-              >
-                Cancelar
-              </button>
-              <button
-                type="button"
-                id="save-change-password"
-                class="px-3 py-1 rounded-md bg-blue-600 text-white hover:bg-blue-700"
-              >
-                Salvar
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-
       <div id="caso-container"></div>
     </main>
 
+    <script>
+      // Filtro simples da lista de casos
+      document
+        .getElementById("search-input")
+        .addEventListener("input", function (e) {
+          const termo = e.target.value.toLowerCase();
+          const itens = document.querySelectorAll("#casos-list > div");
+
+          itens.forEach((item) => {
+            const texto = item.textContent.toLowerCase();
+            item.style.display = texto.includes(termo) ? "" : "none";
+          });
+        });
+    </script>
+
     <script src="../../script/data_handler.js"></script>
     <script src="../../script/casos.js"></script>
+    <script src="../../script/menu.js"></script>
 
     <script>
       // Mobile Menu toggle

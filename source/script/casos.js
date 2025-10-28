@@ -1,7 +1,5 @@
-// Funcoes para estilos
-
 (function () {
-  fetch("../caso-component/caso.html")
+  fetch("../component/caso.html")
     .then((res) => res.text())
     .then((html) => {
       document.getElementById("caso-container").innerHTML += html;
