@@ -36,33 +36,240 @@ function return_all_geo_cases() {
     lat: parseFloat(item.residencia.geo1),
     lon: parseFloat(item.residencia.geo2),
     display_name: item.notificacao_individual.nome_paciente,
+    agravo: item.dados_gerais.agravo_doenca,
   }));
 }
 
-let markers = [];
+function reset_layers(layer_names) {
+  const heat_source_name = "heatmap-source";
+  const markers_source_name = "markers-source";
 
-function markers_on_map(data) {
-  // Remove todos os markers antigos
-  markers.forEach((m) => m.remove());
-  markers = [];
+  if (map.getLayer(layer_names.markers)) {
+    console.debug("removendo layer markers");
+    map.removeLayer(layer_names.markers);
+  }
 
-  // Adiciona novos markers
-  data.forEach((item) => {
-    const marker = new maplibregl.Marker()
-      .setLngLat([item.lon, item.lat])
-      .setPopup(new maplibregl.Popup().setHTML(`<b>${item.display_name}</b>`))
-      .addTo(map);
+  if (map.getLayer(layer_names.heat)) {
+    console.debug("removendo layer heat");
+    map.removeLayer(layer_names.heat);
+  }
 
-    markers.push(marker);
-  });
+  if (map.getSource(markers_source_name)) {
+    console.debug("removendo source markers");
+    map.removeSource(markers_source_name);
+  }
 
-  // Centraliza mapa no primeiro marker
-  if (data.length > 0) {
-    map.flyTo({ center: [data[0].lon, data[0].lat], zoom: 17 });
+  if (map.getSource(heat_source_name)) {
+    console.debug("removendo source heat");
+    map.removeSource(heat_source_name);
   }
 }
 
+function addMarkersLayer(layer_name, data) {
+  console.debug("Running: addMarkersLayer()")
+  const source_name = "markers-source";
+
+  // Cria o GeoJSON
+  const geojson = {
+    type: "FeatureCollection",
+    features: data.map((item) => ({
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [item.lon, item.lat],
+      },
+      properties: {
+        agravo: item.agravo,
+        display_name: item.display_name,
+      },
+    })),
+  };
+
+  map.addSource(source_name, {
+    type: "geojson",
+    data: geojson,
+  });
+
+  map.addLayer({
+    id: layer_name,
+    type: "circle",
+    source: source_name,
+    paint: {
+      "circle-radius": 8, // tamanho da bolinha
+      "circle-color": [
+        "match",
+        ["get", "agravo"],
+        "1 - Dengue",
+        "#e11d48", // vermelho
+        "2 - Chikungunya",
+        "#f97316", // laranja
+        "#3b82f6", // azul padrão
+      ],
+      "circle-stroke-width": 2,
+      "circle-stroke-color": "#ffffff", // borda branca como o marker padrão
+      "circle-opacity": 0.9,
+    },
+  });
+
+  map.on("click", layer_name, (e) => {
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const { display_name } = e.features[0].properties;
+
+    new maplibregl.Popup()
+      .setLngLat(coordinates)
+      .setHTML(`<b>${display_name}</b>`)
+      .addTo(map);
+  });
+
+  map.on("mouseenter", layer_name, () => {
+    map.getCanvas().style.cursor = "pointer";
+  });
+  map.on("mouseleave", layer_name, () => {
+    map.getCanvas().style.cursor = "";
+  });
+}
+
+function addHeatMapLayer(layer_name, heatmapData) {
+  console.debug("Running: addHeatMapLayer()")
+  const geojson = {
+    type: "FeatureCollection",
+    features: heatmapData.map((point) => ({
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [point.lon, point.lat],
+      },
+      properties: {
+        // você pode adicionar intensidade se quiser
+        weight: 1,
+      },
+    })),
+  };
+
+  map.addSource("heatmap_source", {
+    type: "geojson",
+    data: geojson,
+  });
+
+  map.addLayer({
+    id: layer_name,
+    type: "heatmap",
+    source: "heatmap_source",
+    maxzoom: 16.5,
+    paint: {
+      "heatmap-weight": ["get", "weight"],
+      "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 0, 1, 15, 3],
+      "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 2, 15, 20],
+      "heatmap-color": [
+        "interpolate",
+        ["linear"],
+        ["heatmap-density"],
+        0,
+        "rgba(0,0,255,0)",
+        0.2,
+        "blue",
+        0.4,
+        "cyan",
+        0.6,
+        "lime",
+        0.8,
+        "yellow",
+        1,
+        "red",
+      ],
+      "heatmap-opacity": 0.6,
+    },
+  });
+}
+
+class ToggleLayerControl {
+  constructor(map, layers, icons) {
+    this.map = map;
+    this.layers = layers; // { heat: "heatmap-layer-id", markers: "point-layer-id" }
+    this.icons = icons; // { heat: "icons/heatmap.png", markers: "icons/markers.png" }
+    this.current = "markers"; // camada inicial
+  }
+
+  onAdd(map) {
+    this.map = map;
+    this.container = document.createElement("div");
+    this.container.className = "maplibregl-ctrl maplibregl-ctrl-group";
+
+    // Cria o botão principal
+    this.button = document.createElement("button");
+    this.icon = document.createElement("img");
+    this.icon.src = this.icons.markers;
+    this.icon.alt = "Trocar camada";
+    this.icon.style.width = "24px";
+    this.icon.style.height = "24px";
+    this.button.title = "Trocar visualização";
+
+    this.button.appendChild(this.icon);
+    this.container.appendChild(this.button);
+
+    map.setLayoutProperty(this.layers.markers, "visibility", "visible");
+    map.setLayoutProperty(this.layers.heat, "visibility", "none");
+
+    // Ação do botão
+    this.button.onclick = () => {
+      if (this.current === "markers") {
+        // Desativa pontos, ativa heatmap
+        map.setLayoutProperty(this.layers.markers, "visibility", "none");
+        map.setLayoutProperty(this.layers.heat, "visibility", "visible");
+
+        this.icon.src = this.icons.heat;
+        this.current = "heat";
+      } else {
+        // Desativa heatmap, ativa pontos
+        map.setLayoutProperty(this.layers.heat, "visibility", "none");
+        map.setLayoutProperty(this.layers.markers, "visibility", "visible");
+
+        this.icon.src = this.icons.markers;
+        this.current = "markers";
+      }
+    };
+
+    return this.container;
+  }
+
+  onRemove() {
+    this.container.remove();
+    this.map = undefined;
+  }
+}
+
+function debug_map(){
+  console.debug("Sources:", map.getStyle().sources);
+  console.debug("Layers:", map.getStyle().layers.map(l => l.id));
+}
 
 // INIT
-const data_geo_case = return_all_geo_cases();
-markers_on_map(data_geo_case);
+const layer_names = {
+  heat: "heatmap-layer",
+  markers: "markers-layer",
+};
+
+map.on("load", () => {
+  reset_layers(layer_names);
+  const data_geo_case = return_all_geo_cases();
+  addMarkersLayer(layer_names.markers, data_geo_case);
+  addHeatMapLayer(layer_names.heat, data_geo_case);
+  
+  map.addControl(
+    new ToggleLayerControl(
+      map,
+      {
+        heat: layer_names.heat,
+        markers: layer_names.markers,
+      },
+      {
+        heat: "../../icon/heat-map.png",
+        markers: "../../icon/map-marker.png",
+      }
+    ),
+    "top-right"
+  );
+
+  debug_map()
+  console.debug("data_geo_case: ", data_geo_case);
+});

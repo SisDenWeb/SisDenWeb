@@ -10,6 +10,12 @@
         transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
       }
     </style>
+
+    <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
+    <link
+      href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css"
+      rel="stylesheet"
+    />
   </head>
   <body class="h-screen flex flex-col md:flex-row bg-slate-100 text-slate-900">
     <!-- Conteúdo Principal -->
@@ -84,5 +90,102 @@
     <script src="../../script/data_handler.js"></script>
     <script src="../../script/casos.js"></script>
     <script src="../../script/menu.js"></script>
+
+    <script>
+      let mapModal;
+      let markerModal;
+
+      const interval = setInterval(() => {
+        const el = document.getElementById("btn-localizacao");
+        if (el) {
+          init_localizar_model();
+          clearInterval(interval);
+        }
+      }, 100);
+
+      function init_localizar_model() {
+        const btnLocalizacao = document.getElementById("btn-localizacao");
+        const modalLocalizacao = document.getElementById("modal-localizacao");
+        const btnCancelar = document.getElementById("cancel-localizacao");
+        const btnSalvar = document.getElementById("save-localizacao");
+
+        btnLocalizacao.addEventListener("click", () => {
+          modalLocalizacao.classList.remove("hidden");
+
+          // Inicializa o mapa apenas uma vez
+          if (!mapModal) {
+            mapModal = new maplibregl.Map({
+              container: "map-modal",
+              style: {
+                version: 8,
+                sources: {
+                  "esri-satellite": {
+                    type: "raster",
+                    tiles: [
+                      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                    ],
+                    tileSize: 256,
+                  },
+                },
+                layers: [
+                  {
+                    id: "esri-satellite",
+                    type: "raster",
+                    source: "esri-satellite",
+                  },
+                ],
+              },
+              center: [-50.25, -20.2833],
+              zoom: 13,
+              maxZoom: 16.4,
+            });
+
+            mapModal.addControl(
+              new maplibregl.NavigationControl(),
+              "top-right"
+            );
+
+            lat = document.getElementById("res-geo1").value;
+            lng = document.getElementById("res-geo2").value;
+
+            if (lat != null && lng != null) {
+              markerModal = new maplibregl.Marker({ color: "red" })
+                .setLngLat([lng, lat])
+                .addTo(mapModal);
+            }
+
+            mapModal.on("click", (e) => {
+              const coords = e.lngLat;
+
+              if (!markerModal) {
+                markerModal = new maplibregl.Marker({ color: "red" })
+                  .setLngLat([coords.lng, coords.lat])
+                  .addTo(mapModal);
+              } else {
+                markerModal.setLngLat([coords.lng, coords.lat]);
+              }
+            });
+          } else {
+            // Se já existir o mapa, force recalcular tamanho
+            mapModal.resize();
+          }
+        });
+
+        // Cancelar
+        btnCancelar.addEventListener("click", () => {
+          modalLocalizacao.classList.add("hidden");
+        });
+
+        // Salvar
+        btnSalvar.addEventListener("click", () => {
+          if (markerModal) {
+            const { lat, lng } = markerModal.getLngLat();
+            document.getElementById("res-geo1").value = lat;
+            document.getElementById("res-geo2").value = lng;
+          }
+          modalLocalizacao.classList.add("hidden");
+        });
+      }
+    </script>
   </body>
 </html>

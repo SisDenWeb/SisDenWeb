@@ -171,7 +171,7 @@
 
             li.onclick = async () => {
               const enderecoCompleto = numero
-                ? `${nomeRua} ${numero}, ${cidade}, ${
+                ? `${numero}, ${nomeRua}, ${cidade}, ${
                     f.properties.state || "SP"
                   }, Brasil`
                 : `${nomeRua}, ${cidade}, ${
@@ -215,16 +215,25 @@
         markers = [];
 
         // Adiciona novos markers
-        data.forEach((item) => {
-          const marker = new maplibregl.Marker()
-            .setLngLat([item.lon, item.lat])
-            .setPopup(
-              new maplibregl.Popup().setHTML(`<b>${item.display_name}</b>`)
-            )
-            .addTo(map);
+        // data.forEach((item) => {
+        //   const marker = new maplibregl.Marker()
+        //     .setLngLat([item.lon, item.lat])
+        //     .setPopup(
+        //       new maplibregl.Popup().setHTML(`<b>${item.display_name}</b>`)
+        //     )
+        //     .addTo(map);
 
-          markers.push(marker);
-        });
+        //   markers.push(marker);
+        // });
+
+        const marker = new maplibregl.Marker()
+          .setLngLat([data[0].lon, data[0].lat])
+          .setPopup(
+            new maplibregl.Popup().setHTML(`<b>${data[0].display_name}</b>`)
+          )
+          .addTo(map);
+
+        markers.push(marker);
 
         // Centraliza mapa no primeiro marker
         if (data.length > 0) {
@@ -237,6 +246,7 @@
         const url = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=5&viewbox=${viewbox}&bounded=1&q=${encodeURIComponent(
           enderecoCompleto
         )}`;
+        console.log(url);
 
         const res = await fetch(url, {
           headers: { "Accept-Language": "pt-BR" },
@@ -255,6 +265,39 @@
         }
       }
 
+      function ativarClickMapa() {
+        window.geoClicks = [];
+        let marcador = null;
+
+        // Remove event listeners anteriores (caso a função seja chamada mais de uma vez)
+        map.off("click");
+
+        // Adiciona listener de clique
+        map.on("click", (e) => {
+          const lat = e.lngLat.lat.toFixed(8);
+          const lon = e.lngLat.lng.toFixed(8);
+
+          // Atualiza campos do formulário
+          const campoLat = document.getElementById("geo1");
+          const campoLon = document.getElementById("geo2");
+
+          if (campoLat) campoLat.value = lat;
+          if (campoLon) campoLon.value = lon;
+
+          console.log("Coordenadas:", { geo1: lat, geo2: lon });
+          window.geoClicks.push({ geo1: lat, geo2: lon });
+
+          // Adiciona ou move o marcador
+          if (!marcador) {
+            marcador = new maplibregl.Marker({ color: "red" })
+              .setLngLat([lon, lat])
+              .addTo(map);
+          } else {
+            marcador.setLngLat([lon, lat]);
+          }
+        });
+      }
+
       //   Oculta sugestões se clicar fora
       document.addEventListener("click", (e) => {
         if (!e.target.closest("#searchBox")) suggestions.style.display = "none";
@@ -263,6 +306,8 @@
       window.click_list = () => {
         console.log(JSON.stringify(click_list));
       };
+
+      ativarClickMapa()
     </script>
   </body>
 </html>
