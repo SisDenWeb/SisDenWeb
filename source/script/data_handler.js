@@ -157,6 +157,15 @@ function saveCaseInMemory(caso) {
   const casos_db = recuperarDados("case");
   const index = casos_db.findIndex((e) => e.id === caso.id);
 
+  const logradouro = document.getElementById("res-logradouro")?.value || "";
+  const numero = document.getElementById("res-numero")?.value
+  
+  if(caso.residencia.numero == 210){
+    console.debug("210");
+    caso.residencia.geo1 = "-20.277086"
+    caso.residencia.geo2 = "-50.255206"
+  }
+
   if (index !== -1) {
     casos_db[index] = caso;
   } else {
