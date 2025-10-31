@@ -206,3 +206,52 @@ function get_login_info() {
 document.addEventListener("DOMContentLoaded", async () => {
   window.rst = starter_database;
 });
+
+
+
+const SESSION_TIMEOUT = 10 * 60 * 1000; // 10 minutos em milissegundos
+const SESSION_KEY = "sessionTimestamp";
+
+function resetLocalStorage() {
+  console.warn("🧹 Limpando localStorage (sessão expirada)");
+  localStorage.clear();
+  localStorage.setItem(SESSION_KEY, Date.now().toString());
+  starter_database()
+}
+
+// Verifica sessão ao carregar
+function checkSessionTimeout() {
+  const lastSession = localStorage.getItem(SESSION_KEY);
+
+  if (!lastSession) {
+    // Primeira execução → cria timestamp
+    localStorage.setItem(SESSION_KEY, Date.now().toString());
+  } else {
+    const elapsed = Date.now() - parseInt(lastSession, 10);
+
+    if (elapsed > SESSION_TIMEOUT) {
+      resetLocalStorage();
+    } else {
+      // Atualiza timestamp (mantém sessão ativa)
+      localStorage.setItem(SESSION_KEY, Date.now().toString());
+    }
+  }
+}
+
+// Atualiza timestamp quando há atividade
+function refreshSessionOnActivity() {
+  const updateTimestamp = () => {
+    localStorage.setItem(SESSION_KEY, Date.now().toString());
+  };
+
+  ["click", "keypress", "mousemove", "scroll", "touchstart"].forEach(event =>
+    window.addEventListener(event, updateTimestamp)
+  );
+}
+
+// Inicialização
+document.addEventListener("DOMContentLoaded", () => {
+  checkSessionTimeout();
+  refreshSessionOnActivity();
+
+});
