@@ -790,3 +790,93 @@ function getInformacoesComplementares() {
     classificacao_risco: getRadioValue("risco"),
   };
 }
+
+// Função debounce genérica
+function debounce(func, delay) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), delay);
+  };
+}
+
+// Função que monta o endereço a partir dos campos
+function montarEndereco() {
+  const logradouro = document.getElementById("res-logradouro")?.value || "";
+  const numero = document.getElementById("res-numero")?.value || "";
+  const bairro = document.getElementById("res-bairro")?.value || "";
+  const municipio = document.getElementById("res-municipio")?.value || "";
+  const uf = document.getElementById("res-uf")?.value || "SP";
+  const pais = document.getElementById("res-pais")?.value || "Brasil";
+
+  return `${logradouro} ${numero ? numero + "," : ""} ${bairro}, ${municipio}, ${uf}, ${pais}`.trim();
+}
+
+// Consulta ao Nominatim
+async function buscarCoordenadasNominatim(endereco) {
+  if (!endereco || endereco.trim().length < 5) {
+    console.warn("⚠️ Endereço inválido:", endereco);
+    return null;
+  }
+
+  const url = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=1&q=${encodeURIComponent(endereco)}`;
+
+  try {
+    console.debug("🌐 Consultando Nominatim:", url);
+
+    const response = await fetch(url, {
+      headers: {
+        "Accept-Language": "pt-BR",
+        "User-Agent": "SisDenWeb/1.0 (contato: email@seudominio.gov.br)"
+      }
+    });
+
+    if (!response.ok) throw new Error(`Erro HTTP ${response.status}`);
+
+    const data = await response.json();
+    if (data.length === 0) {
+      console.warn("⚠️ Nenhum resultado encontrado para:", endereco);
+      return null;
+    }
+
+    const { lat, lon, display_name } = data[0];
+    console.debug("📍 Coordenadas:", { lat, lon, display_name });
+    return { lat: parseFloat(lat), lon: parseFloat(lon), display_name };
+
+  } catch (err) {
+    console.error("❌ Erro ao consultar Nominatim:", err);
+    return null;
+  }
+}
+
+// Inicializa o listener com debounce
+function initEnderecoListener() {
+  console.log("chamado")
+  const inputs = [
+    "res-logradouro",
+    "res-numero",
+    "res-bairro",
+    "res-municipio",
+    "res-uf",
+    "res-pais"
+  ].map(id => document.getElementById(id)).filter(Boolean);
+
+  // Função principal (executada com debounce)
+  const processarEndereco = debounce(async () => {
+    const endereco = montarEndereco();
+    console.log("🏠 Endereço montado:", endereco);
+
+    const coords = await buscarCoordenadasNominatim(endereco);
+    if (coords) {
+      document.getElementById("res-geo1").value = coords.lat.toFixed(6);
+      document.getElementById("res-geo2").value = coords.lon.toFixed(6);
+      console.debug(`✅ Coordenadas salvas: (${coords.lat}, ${coords.lon})`);
+    }
+  }, 1000); // 1 segundo de debounce
+
+  // Escuta mudanças em todos os campos relevantes
+  inputs.forEach(input => input.addEventListener("input", processarEndereco));
+}
+
+// Chame essa função após o DOM estar carregado
+document.addEventListener("DOMContentLoaded", initEnderecoListener);

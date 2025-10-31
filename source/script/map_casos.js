@@ -207,6 +207,8 @@ class ToggleLayerControl {
     this.button.appendChild(this.icon);
     this.container.appendChild(this.button);
 
+    const legenda = document.getElementById("map-legend")
+
     map.setLayoutProperty(this.layers.markers, "visibility", "visible");
     map.setLayoutProperty(this.layers.heat, "visibility", "none");
 
@@ -216,14 +218,16 @@ class ToggleLayerControl {
         // Desativa pontos, ativa heatmap
         map.setLayoutProperty(this.layers.markers, "visibility", "none");
         map.setLayoutProperty(this.layers.heat, "visibility", "visible");
-
+                
+        legenda.classList.add("hidden");
         this.icon.src = this.icons.heat;
         this.current = "heat";
       } else {
         // Desativa heatmap, ativa pontos
         map.setLayoutProperty(this.layers.heat, "visibility", "none");
         map.setLayoutProperty(this.layers.markers, "visibility", "visible");
-
+        
+        legenda.classList.remove("hidden");
         this.icon.src = this.icons.markers;
         this.current = "markers";
       }

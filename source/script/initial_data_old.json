@@ -26,10 +26,10 @@
         "cid10": "A90",
         "data_notificacao": "2025-04-21",
         "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "municipio_notificacao": "São Paulo",
+        "unidade_saude": "UBS Central",
         "codigo_unidade": "123456",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3550308",
         "data_primeiros_sintomas": "2025-04-18"
       },
       "notificacao_individual": {
@@ -46,9 +46,9 @@
       "residencia": {
         "telefone": "11 99999-1234",
         "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
+        "municipio": "São Paulo",
+        "codigo_ibge": "3550308",
+        "distrito": "Sé",
         "bairro": "Centro",
         "logradouro": "Rua das Flores",
         "codigo_logradouro": "67890",
@@ -68,18 +68,11 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre",
-            "Cefaleia",
-            "Náuseas"
-          ]
+          "lista": ["Febre", "Cefaleia", "Náuseas"]
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Diabetes",
-            "Hipertensão arterial"
-          ]
+          "lista": ["Diabetes", "Hipertensão arterial"]
         }
       },
       "exames_laboratoriais": {
@@ -117,9 +110,9 @@
         "ocorreu": "1",
         "data_internacao": "2025-04-20",
         "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "municipio": "São Paulo",
+        "codigo_ibge": "3550308",
+        "nome_hospital": "Hospital Municipal Central",
         "codigo_hospital": "HMC-001",
         "telefone": "11 3222-4455"
       },
@@ -128,9 +121,9 @@
         "localProvavel": {
           "uf": "SP",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
+          "municipio": "São Paulo",
+          "codigo_ibge": "3550308",
+          "distrito": "Sé",
           "bairro": "Centro"
         },
         "classificacao": "10",
@@ -142,10 +135,7 @@
       },
       "dengue_com_sinais_de_alarme": {
         "apresentou": "1",
-        "sintomas": [
-          "Vômitos persistentes",
-          "Letargia ou irritabilidade"
-        ],
+        "sintomas": ["Vômitos persistentes", "Letargia ou irritabilidade"],
         "data_inicio": "2025-04-19"
       },
       "dengue_grave": {
@@ -154,12 +144,8 @@
           "Pulso débil ou PA convergente",
           "Acúmulo de líquidos com insuficiência respiratória"
         ],
-        "sangramento_grave": [
-          "Hematêmese"
-        ],
-        "comprometimento_orgao": [
-          "AST/ALT > 1.000"
-        ],
+        "sangramento_grave": ["Hematêmese"],
+        "comprometimento_orgao": ["AST/ALT > 1.000"],
         "outros": "Insuficiência hepática leve",
         "data_inicio": "2025-04-20"
       },
@@ -200,11 +186,11 @@
         "agravo_doenca": "2 - Chikungunya",
         "cid10": "A92.0",
         "data_notificacao": "2025-05-10",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "RJ",
+        "municipio_notificacao": "Rio de Janeiro",
+        "unidade_saude": "UBS Copacabana",
         "codigo_unidade": "789123",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3304557",
         "data_primeiros_sintomas": "2025-05-07"
       },
       "notificacao_individual": {
@@ -220,11 +206,11 @@
       },
       "residencia": {
         "telefone": "21 98888-5678",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "uf": "RJ",
+        "municipio": "Rio de Janeiro",
+        "codigo_ibge": "3304557",
+        "distrito": "Copacabana",
+        "bairro": "Posto 5",
         "logradouro": "Avenida Atlântica",
         "codigo_logradouro": "112233",
         "numero": "3000",
@@ -243,12 +229,7 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre",
-            "Dor retroorbital",
-            "Mialgia",
-            "Exantema"
-          ]
+          "lista": ["Febre", "Dor retroorbital", "Mialgia", "Exantema"]
         },
         "doencas_pre_existentes": {
           "possui": false,
@@ -289,22 +270,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": "",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": "",
+        "municipio": "",
+        "codigo_ibge": "",
+        "nome_hospital": "",
         "codigo_hospital": "",
         "telefone": ""
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "RJ",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
-          "bairro": "Centro"
+          "municipio": "Rio de Janeiro",
+          "codigo_ibge": "3304557",
+          "distrito": "Copacabana",
+          "bairro": "Posto 5"
         },
         "classificacao": "13",
         "criterio_confirmacao": "1",
@@ -363,11 +344,11 @@
         "agravo_doenca": "2 - Chikungunya",
         "cid10": "A92.0",
         "data_notificacao": "2025-04-13 00:00:00",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "BA",
+        "municipio_notificacao": "Salvador",
+        "unidade_saude": "UBS Salvador",
         "codigo_unidade": "100003",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3300003",
         "data_primeiros_sintomas": "2025-04-11 00:00:00"
       },
       "notificacao_individual": {
@@ -383,11 +364,11 @@
       },
       "residencia": {
         "telefone": "63 99247-4488",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
+        "uf": "BA",
+        "municipio": "Salvador",
+        "codigo_ibge": "3300003",
         "distrito": "Centro",
-        "bairro": "Centro",
+        "bairro": "Bairro A",
         "logradouro": "Rua X",
         "codigo_logradouro": "20003",
         "numero": "103",
@@ -416,11 +397,7 @@
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Doenças hematológicas",
-            "Hepatopatias",
-            "Neoplasias"
-          ]
+          "lista": ["Doenças hematológicas", "Hepatopatias", "Neoplasias"]
         }
       },
       "exames_laboratoriais": {
@@ -457,22 +434,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": "",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": "",
+        "municipio": "",
+        "codigo_ibge": "",
+        "nome_hospital": "",
         "codigo_hospital": "",
         "telefone": ""
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "BA",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
+          "municipio": "Salvador",
+          "codigo_ibge": "3300003",
           "distrito": "Centro",
-          "bairro": "Centro"
+          "bairro": "Bairro A"
         },
         "classificacao": "10",
         "criterio_confirmacao": "2",
@@ -531,11 +508,11 @@
         "agravo_doenca": "1 - Dengue",
         "cid10": "A90",
         "data_notificacao": "2025-04-14 00:00:00",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "RJ",
+        "municipio_notificacao": "Rio de Janeiro",
+        "unidade_saude": "UBS Rio de Janeiro",
         "codigo_unidade": "100004",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3300004",
         "data_primeiros_sintomas": "2025-04-12 00:00:00"
       },
       "notificacao_individual": {
@@ -551,11 +528,11 @@
       },
       "residencia": {
         "telefone": "69 96074-1960",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
+        "uf": "RJ",
+        "municipio": "Rio de Janeiro",
+        "codigo_ibge": "3300004",
         "distrito": "Centro",
-        "bairro": "Centro",
+        "bairro": "Bairro A",
         "logradouro": "Rua X",
         "codigo_logradouro": "20004",
         "numero": "104",
@@ -574,17 +551,11 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Náuseas",
-            "Vômito"
-          ]
+          "lista": ["Náuseas", "Vômito"]
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Hepatopatias",
-            "Hipertensão arterial"
-          ]
+          "lista": ["Hepatopatias", "Hipertensão arterial"]
         }
       },
       "exames_laboratoriais": {
@@ -621,22 +592,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": "",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": "",
+        "municipio": "",
+        "codigo_ibge": "",
+        "nome_hospital": "",
         "codigo_hospital": "",
         "telefone": ""
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "RJ",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
+          "municipio": "Rio de Janeiro",
+          "codigo_ibge": "3300004",
           "distrito": "Centro",
-          "bairro": "Centro"
+          "bairro": "Bairro A"
         },
         "classificacao": "10",
         "criterio_confirmacao": "2",
@@ -695,11 +666,11 @@
         "agravo_doenca": "2 - Chikungunya",
         "cid10": "A92.0",
         "data_notificacao": "2025-04-15 00:00:00",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "MG",
+        "municipio_notificacao": "Belo Horizonte",
+        "unidade_saude": "UBS Belo Horizonte",
         "codigo_unidade": "100005",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3300005",
         "data_primeiros_sintomas": "2025-04-13 00:00:00"
       },
       "notificacao_individual": {
@@ -715,11 +686,11 @@
       },
       "residencia": {
         "telefone": "15 98763-9491",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
+        "uf": "MG",
+        "municipio": "Belo Horizonte",
+        "codigo_ibge": "3300005",
         "distrito": "Centro",
-        "bairro": "Centro",
+        "bairro": "Bairro A",
         "logradouro": "Rua X",
         "codigo_logradouro": "20005",
         "numero": "105",
@@ -738,21 +709,11 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Artrite",
-            "Cefaleia",
-            "Náuseas",
-            "Febre",
-            "Petéquias"
-          ]
+          "lista": ["Artrite", "Cefaleia", "Náuseas", "Febre", "Petéquias"]
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Neoplasias",
-            "Doença acidopéptica",
-            "Hipertensão arterial"
-          ]
+          "lista": ["Neoplasias", "Doença acidopéptica", "Hipertensão arterial"]
         }
       },
       "exames_laboratoriais": {
@@ -789,22 +750,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": "",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": "",
+        "municipio": "",
+        "codigo_ibge": "",
+        "nome_hospital": "",
         "codigo_hospital": "",
         "telefone": ""
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "MG",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
+          "municipio": "Belo Horizonte",
+          "codigo_ibge": "3300005",
           "distrito": "Centro",
-          "bairro": "Centro"
+          "bairro": "Bairro A"
         },
         "classificacao": "10",
         "criterio_confirmacao": "2",
@@ -863,11 +824,11 @@
         "agravo_doenca": "1 - Dengue",
         "cid10": "A90",
         "data_notificacao": "2025-04-16 00:00:00",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "RJ",
+        "municipio_notificacao": "Rio de Janeiro",
+        "unidade_saude": "UBS Rio de Janeiro",
         "codigo_unidade": "100006",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3300006",
         "data_primeiros_sintomas": "2025-04-14 00:00:00"
       },
       "notificacao_individual": {
@@ -883,11 +844,11 @@
       },
       "residencia": {
         "telefone": "84 91213-9092",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
+        "uf": "RJ",
+        "municipio": "Rio de Janeiro",
+        "codigo_ibge": "3300006",
         "distrito": "Centro",
-        "bairro": "Centro",
+        "bairro": "Bairro A",
         "logradouro": "Rua X",
         "codigo_logradouro": "20006",
         "numero": "106",
@@ -915,11 +876,7 @@
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Hepatopatias",
-            "Doença acidopéptica",
-            "Doenças autoimunes"
-          ]
+          "lista": ["Hepatopatias", "Doença acidopéptica", "Doenças autoimunes"]
         }
       },
       "exames_laboratoriais": {
@@ -956,22 +913,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": "",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": "",
+        "municipio": "",
+        "codigo_ibge": "",
+        "nome_hospital": "",
         "codigo_hospital": "",
         "telefone": ""
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "RJ",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
+          "municipio": "Rio de Janeiro",
+          "codigo_ibge": "3300006",
           "distrito": "Centro",
-          "bairro": "Centro"
+          "bairro": "Bairro A"
         },
         "classificacao": "10",
         "criterio_confirmacao": "2",
@@ -1030,11 +987,11 @@
         "agravo_doenca": "2 - Chikungunya",
         "cid10": "A92.0",
         "data_notificacao": "2025-04-17 00:00:00",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "BA",
+        "municipio_notificacao": "Salvador",
+        "unidade_saude": "UBS Salvador",
         "codigo_unidade": "100007",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3300007",
         "data_primeiros_sintomas": "2025-04-15 00:00:00"
       },
       "notificacao_individual": {
@@ -1050,11 +1007,11 @@
       },
       "residencia": {
         "telefone": "90 91280-7180",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
+        "uf": "BA",
+        "municipio": "Salvador",
+        "codigo_ibge": "3300007",
         "distrito": "Centro",
-        "bairro": "Centro",
+        "bairro": "Bairro A",
         "logradouro": "Rua X",
         "codigo_logradouro": "20007",
         "numero": "107",
@@ -1073,18 +1030,11 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Prova do laço positiva",
-            "Náuseas",
-            "Cefaleia",
-            "Exantema"
-          ]
+          "lista": ["Prova do laço positiva", "Náuseas", "Cefaleia", "Exantema"]
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Doença renal crônica"
-          ]
+          "lista": ["Doença renal crônica"]
         }
       },
       "exames_laboratoriais": {
@@ -1121,22 +1071,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": "",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": "",
+        "municipio": "",
+        "codigo_ibge": "",
+        "nome_hospital": "",
         "codigo_hospital": "",
         "telefone": ""
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "BA",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
+          "municipio": "Salvador",
+          "codigo_ibge": "3300007",
           "distrito": "Centro",
-          "bairro": "Centro"
+          "bairro": "Bairro A"
         },
         "classificacao": "10",
         "criterio_confirmacao": "2",
@@ -1195,11 +1145,11 @@
         "agravo_doenca": "1 - Dengue",
         "cid10": "A90",
         "data_notificacao": "2025-04-18 00:00:00",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "RS",
+        "municipio_notificacao": "Porto Alegre",
+        "unidade_saude": "UBS Porto Alegre",
         "codigo_unidade": "100008",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3300008",
         "data_primeiros_sintomas": "2025-04-16 00:00:00"
       },
       "notificacao_individual": {
@@ -1215,11 +1165,11 @@
       },
       "residencia": {
         "telefone": "82 93703-8044",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
+        "uf": "RS",
+        "municipio": "Porto Alegre",
+        "codigo_ibge": "3300008",
         "distrito": "Centro",
-        "bairro": "Centro",
+        "bairro": "Bairro A",
         "logradouro": "Rua X",
         "codigo_logradouro": "20008",
         "numero": "108",
@@ -1238,19 +1188,11 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Náuseas",
-            "Prova do laço positiva",
-            "Dor retroorbital"
-          ]
+          "lista": ["Náuseas", "Prova do laço positiva", "Dor retroorbital"]
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Neoplasias",
-            "Doença renal crônica",
-            "Hepatopatias"
-          ]
+          "lista": ["Neoplasias", "Doença renal crônica", "Hepatopatias"]
         }
       },
       "exames_laboratoriais": {
@@ -1287,22 +1229,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": "",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": "",
+        "municipio": "",
+        "codigo_ibge": "",
+        "nome_hospital": "",
         "codigo_hospital": "",
         "telefone": ""
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "RS",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
+          "municipio": "Porto Alegre",
+          "codigo_ibge": "3300008",
           "distrito": "Centro",
-          "bairro": "Centro"
+          "bairro": "Bairro A"
         },
         "classificacao": "10",
         "criterio_confirmacao": "2",
@@ -1361,11 +1303,11 @@
         "agravo_doenca": "2 - Chikungunya",
         "cid10": "A92.0",
         "data_notificacao": "2025-04-19 00:00:00",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "MG",
+        "municipio_notificacao": "Belo Horizonte",
+        "unidade_saude": "UBS Belo Horizonte",
         "codigo_unidade": "100009",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3300009",
         "data_primeiros_sintomas": "2025-04-17 00:00:00"
       },
       "notificacao_individual": {
@@ -1381,11 +1323,11 @@
       },
       "residencia": {
         "telefone": "61 98598-3698",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
+        "uf": "MG",
+        "municipio": "Belo Horizonte",
+        "codigo_ibge": "3300009",
         "distrito": "Centro",
-        "bairro": "Centro",
+        "bairro": "Bairro A",
         "logradouro": "Rua X",
         "codigo_logradouro": "20009",
         "numero": "109",
@@ -1404,18 +1346,11 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Exantema",
-            "Dor nas costas"
-          ]
+          "lista": ["Exantema", "Dor nas costas"]
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Hipertensão arterial",
-            "Doença acidopéptica",
-            "Neoplasias"
-          ]
+          "lista": ["Hipertensão arterial", "Doença acidopéptica", "Neoplasias"]
         }
       },
       "exames_laboratoriais": {
@@ -1452,22 +1387,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": "",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": "",
+        "municipio": "",
+        "codigo_ibge": "",
+        "nome_hospital": "",
         "codigo_hospital": "",
         "telefone": ""
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "MG",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
+          "municipio": "Belo Horizonte",
+          "codigo_ibge": "3300009",
           "distrito": "Centro",
-          "bairro": "Centro"
+          "bairro": "Bairro A"
         },
         "classificacao": "10",
         "criterio_confirmacao": "2",
@@ -1526,11 +1461,11 @@
         "agravo_doenca": "1 - Dengue",
         "cid10": "A90",
         "data_notificacao": "2025-04-20 00:00:00",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "RJ",
+        "municipio_notificacao": "Rio de Janeiro",
+        "unidade_saude": "UBS Rio de Janeiro",
         "codigo_unidade": "100010",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3300010",
         "data_primeiros_sintomas": "2025-04-18 00:00:00"
       },
       "notificacao_individual": {
@@ -1546,11 +1481,11 @@
       },
       "residencia": {
         "telefone": "33 99613-7660",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
+        "uf": "RJ",
+        "municipio": "Rio de Janeiro",
+        "codigo_ibge": "3300010",
         "distrito": "Centro",
-        "bairro": "Centro",
+        "bairro": "Bairro A",
         "logradouro": "Rua X",
         "codigo_logradouro": "20010",
         "numero": "110",
@@ -1569,16 +1504,11 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Artrite",
-            "Prova do laço positiva"
-          ]
+          "lista": ["Artrite", "Prova do laço positiva"]
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Doenças autoimunes"
-          ]
+          "lista": ["Doenças autoimunes"]
         }
       },
       "exames_laboratoriais": {
@@ -1615,22 +1545,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": "",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": "",
+        "municipio": "",
+        "codigo_ibge": "",
+        "nome_hospital": "",
         "codigo_hospital": "",
         "telefone": ""
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "RJ",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
+          "municipio": "Rio de Janeiro",
+          "codigo_ibge": "3300010",
           "distrito": "Centro",
-          "bairro": "Centro"
+          "bairro": "Bairro A"
         },
         "classificacao": "10",
         "criterio_confirmacao": "2",
@@ -1689,11 +1619,11 @@
         "agravo_doenca": "2 - Chikungunya",
         "cid10": "A92.0",
         "data_notificacao": "2025-05-10",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "RJ",
+        "municipio_notificacao": "Rio de Janeiro",
+        "unidade_saude": "Clínica da Família X",
         "codigo_unidade": "789012",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3304557",
         "data_primeiros_sintomas": "2025-05-07"
       },
       "notificacao_individual": {
@@ -1709,11 +1639,11 @@
       },
       "residencia": {
         "telefone": "21 98888-5678",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "uf": "RJ",
+        "municipio": "Rio de Janeiro",
+        "codigo_ibge": "3304557",
+        "distrito": "Copacabana",
+        "bairro": "Copacabana",
         "logradouro": "Avenida Atlântica",
         "codigo_logradouro": "11223",
         "numero": "3000",
@@ -1732,11 +1662,7 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre",
-            "Artralgia intensa",
-            "Erupção cutânea"
-          ]
+          "lista": ["Febre", "Artralgia intensa", "Erupção cutânea"]
         },
         "doencas_pre_existentes": {
           "possui": false,
@@ -1777,22 +1703,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": null,
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": null,
+        "municipio": null,
+        "codigo_ibge": null,
+        "nome_hospital": null,
         "codigo_hospital": null,
         "telefone": null
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "RJ",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
-          "bairro": "Centro"
+          "municipio": "Rio de Janeiro",
+          "codigo_ibge": "3304557",
+          "distrito": "Copacabana",
+          "bairro": "Copacabana"
         },
         "classificacao": "41",
         "criterio_confirmacao": "1",
@@ -1846,11 +1772,11 @@
         "agravo_doenca": "1 - Dengue",
         "cid10": "A90",
         "data_notificacao": "2025-03-01",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "MG",
+        "municipio_notificacao": "Belo Horizonte",
+        "unidade_saude": "UPA Pampulha",
         "codigo_unidade": "005432",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3106200",
         "data_primeiros_sintomas": "2025-02-27"
       },
       "notificacao_individual": {
@@ -1866,11 +1792,11 @@
       },
       "residencia": {
         "telefone": "31 97777-1122",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "uf": "MG",
+        "municipio": "Belo Horizonte",
+        "codigo_ibge": "3106200",
+        "distrito": "Venda Nova",
+        "bairro": "Rio Branco",
         "logradouro": "Rua das Acácias",
         "codigo_logradouro": "98765",
         "numero": "50",
@@ -1889,11 +1815,7 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre",
-            "Mialgia",
-            "Dor retro-orbitária"
-          ]
+          "lista": ["Febre", "Mialgia", "Dor retro-orbitária"]
         },
         "doencas_pre_existentes": {
           "possui": false,
@@ -1934,22 +1856,22 @@
       "hospitalizacao": {
         "ocorreu": "1",
         "data_internacao": "2025-03-02",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": "MG",
+        "municipio": "Belo Horizonte",
+        "codigo_ibge": "3106200",
+        "nome_hospital": "Hospital Infantil",
         "codigo_hospital": "HI-002",
         "telefone": "31 3333-2211"
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "MG",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
-          "bairro": "Centro"
+          "municipio": "Belo Horizonte",
+          "codigo_ibge": "3106200",
+          "distrito": "Venda Nova",
+          "bairro": "Rio Branco"
         },
         "classificacao": "11",
         "criterio_confirmacao": "1",
@@ -1960,10 +1882,7 @@
       },
       "dengue_com_sinais_de_alarme": {
         "apresentou": "1",
-        "sintomas": [
-          "Dor abdominal intensa e contínua",
-          "Hipotermia"
-        ],
+        "sintomas": ["Dor abdominal intensa e contínua", "Hipotermia"],
         "data_inicio": "2025-03-01"
       },
       "dengue_grave": {
@@ -2011,11 +1930,11 @@
         "agravo_doenca": "1 - Dengue",
         "cid10": "A92.8",
         "data_notificacao": "2025-06-15",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "BA",
+        "municipio_notificacao": "Salvador",
+        "unidade_saude": "Hospital Geral Y",
         "codigo_unidade": "443322",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "2927408",
         "data_primeiros_sintomas": "2025-06-12"
       },
       "notificacao_individual": {
@@ -2031,11 +1950,11 @@
       },
       "residencia": {
         "telefone": "71 99191-3344",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "uf": "BA",
+        "municipio": "Salvador",
+        "codigo_ibge": "2927408",
+        "distrito": "Itapuã",
+        "bairro": "Itapuã",
         "logradouro": "Rua da Paz",
         "codigo_logradouro": "54321",
         "numero": "75",
@@ -2054,11 +1973,7 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre baixa",
-            "Exantema",
-            "Conjuntivite"
-          ]
+          "lista": ["Febre baixa", "Exantema", "Conjuntivite"]
         },
         "doencas_pre_existentes": {
           "possui": false,
@@ -2099,22 +2014,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": null,
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": null,
+        "municipio": null,
+        "codigo_ibge": null,
+        "nome_hospital": null,
         "codigo_hospital": null,
         "telefone": null
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "BA",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
-          "bairro": "Centro"
+          "municipio": "Salvador",
+          "codigo_ibge": "2927408",
+          "distrito": "Itapuã",
+          "bairro": "Itapuã"
         },
         "classificacao": "70",
         "criterio_confirmacao": "1",
@@ -2164,10 +2079,10 @@
         "cid10": "A90",
         "data_notificacao": "2025-04-05",
         "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "municipio_notificacao": "Campinas",
+        "unidade_saude": "CS Valinhos",
         "codigo_unidade": "998877",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3509502",
         "data_primeiros_sintomas": "2025-04-01"
       },
       "notificacao_individual": {
@@ -2184,10 +2099,10 @@
       "residencia": {
         "telefone": "19 98765-4321",
         "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "municipio": "Valinhos",
+        "codigo_ibge": "3556206",
+        "distrito": "Recreio dos Cafezais",
+        "bairro": "Recreio",
         "logradouro": "Rua 15 de Novembro",
         "codigo_logradouro": "33445",
         "numero": "200",
@@ -2206,18 +2121,11 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre",
-            "Dor retro-orbitária",
-            "Hemorragia de mucosa"
-          ]
+          "lista": ["Febre", "Dor retro-orbitária", "Hemorragia de mucosa"]
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Doença cardíaca crônica",
-            "Doença renal crônica"
-          ]
+          "lista": ["Doença cardíaca crônica", "Doença renal crônica"]
         }
       },
       "exames_laboratoriais": {
@@ -2255,9 +2163,9 @@
         "ocorreu": "1",
         "data_internacao": "2025-04-05",
         "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "municipio": "Campinas",
+        "codigo_ibge": "3509502",
+        "nome_hospital": "Hospital Municipal de Campinas",
         "codigo_hospital": "HMC-003",
         "telefone": "19 3333-1111"
       },
@@ -2266,10 +2174,10 @@
         "localProvavel": {
           "uf": "SP",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
-          "bairro": "Centro"
+          "municipio": "Valinhos",
+          "codigo_ibge": "3556206",
+          "distrito": "Recreio dos Cafezais",
+          "bairro": "Recreio"
         },
         "classificacao": "12",
         "criterio_confirmacao": "1",
@@ -2291,9 +2199,7 @@
         "extravasamento_grave_de_plasma": [
           "Choque ou dificuldade respiratória"
         ],
-        "sangramento_grave": [
-          "Melena"
-        ],
+        "sangramento_grave": ["Melena"],
         "comprometimento_orgao": [],
         "outros": "Insuficiência renal",
         "data_inicio": "2025-04-05"
@@ -2335,11 +2241,11 @@
         "agravo_doenca": "1 - Dengue",
         "cid10": "A90",
         "data_notificacao": "2025-05-20",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "DF",
+        "municipio_notificacao": "Brasília",
+        "unidade_saude": "Centro de Saúde Lago Norte",
         "codigo_unidade": "101010",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "5300108",
         "data_primeiros_sintomas": "2025-05-18"
       },
       "notificacao_individual": {
@@ -2355,11 +2261,11 @@
       },
       "residencia": {
         "telefone": "61 98765-0000",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "uf": "DF",
+        "municipio": "Brasília",
+        "codigo_ibge": "5300108",
+        "distrito": "Lago Norte",
+        "bairro": "SHIN QL 10",
         "logradouro": "SHIN QL 10",
         "codigo_logradouro": "10101",
         "numero": "Conjunto 05",
@@ -2378,12 +2284,7 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre",
-            "Mialgia",
-            "Náuseas",
-            "Vômitos"
-          ]
+          "lista": ["Febre", "Mialgia", "Náuseas", "Vômitos"]
         },
         "doencas_pre_existentes": {
           "possui": false,
@@ -2424,22 +2325,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": null,
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": null,
+        "municipio": null,
+        "codigo_ibge": null,
+        "nome_hospital": null,
         "codigo_hospital": null,
         "telefone": null
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "DF",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
-          "bairro": "Centro"
+          "municipio": "Brasília",
+          "codigo_ibge": "5300108",
+          "distrito": "Lago Norte",
+          "bairro": "SHIN QL 10"
         },
         "classificacao": "10",
         "criterio_confirmacao": "1",
@@ -2493,11 +2394,11 @@
         "agravo_doenca": "2 - Chikungunya",
         "cid10": "A92.0",
         "data_notificacao": "2025-03-25",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "PE",
+        "municipio_notificacao": "Recife",
+        "unidade_saude": "Policlínica Central",
         "codigo_unidade": "202020",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "2611606",
         "data_primeiros_sintomas": "2025-03-22"
       },
       "notificacao_individual": {
@@ -2513,11 +2414,11 @@
       },
       "residencia": {
         "telefone": "81 99999-0000",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "uf": "PE",
+        "municipio": "Recife",
+        "codigo_ibge": "2611606",
+        "distrito": "Boa Viagem",
+        "bairro": "Boa Viagem",
         "logradouro": "Avenida Boa Viagem",
         "codigo_logradouro": "22334",
         "numero": "4000",
@@ -2536,17 +2437,11 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre",
-            "Artralgia intensa",
-            "Tenossinovite"
-          ]
+          "lista": ["Febre", "Artralgia intensa", "Tenossinovite"]
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Artrite reumatoide"
-          ]
+          "lista": ["Artrite reumatoide"]
         }
       },
       "exames_laboratoriais": {
@@ -2583,22 +2478,22 @@
       "hospitalizacao": {
         "ocorreu": "1",
         "data_internacao": "2025-03-25",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": "PE",
+        "municipio": "Recife",
+        "codigo_ibge": "2611606",
+        "nome_hospital": "Hospital da Restauração",
         "codigo_hospital": "HR-001",
         "telefone": "81 3111-5555"
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "PE",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
-          "bairro": "Centro"
+          "municipio": "Recife",
+          "codigo_ibge": "2611606",
+          "distrito": "Boa Viagem",
+          "bairro": "Boa Viagem"
         },
         "classificacao": "42",
         "criterio_confirmacao": "1",
@@ -2652,11 +2547,11 @@
         "agravo_doenca": "2 - Chikungunya",
         "cid10": "A92.8",
         "data_notificacao": "2025-07-01",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "CE",
+        "municipio_notificacao": "Fortaleza",
+        "unidade_saude": "Posto de Saúde Messejana",
         "codigo_unidade": "303030",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "2304400",
         "data_primeiros_sintomas": "2025-06-29"
       },
       "notificacao_individual": {
@@ -2672,11 +2567,11 @@
       },
       "residencia": {
         "telefone": "85 98888-7777",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "uf": "CE",
+        "municipio": "Fortaleza",
+        "codigo_ibge": "2304400",
+        "distrito": "Messejana",
+        "bairro": "Messejana",
         "logradouro": "Rua das Palmeiras",
         "codigo_logradouro": "44556",
         "numero": "10",
@@ -2695,11 +2590,7 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre baixa",
-            "Exantema",
-            "Prurido"
-          ]
+          "lista": ["Febre baixa", "Exantema", "Prurido"]
         },
         "doencas_pre_existentes": {
           "possui": false,
@@ -2740,22 +2631,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": null,
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": null,
+        "municipio": null,
+        "codigo_ibge": null,
+        "nome_hospital": null,
         "codigo_hospital": null,
         "telefone": null
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "CE",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
-          "bairro": "Centro"
+          "municipio": "Fortaleza",
+          "codigo_ibge": "2304400",
+          "distrito": "Messejana",
+          "bairro": "Messejana"
         },
         "classificacao": "70",
         "criterio_confirmacao": "1",
@@ -2805,10 +2696,10 @@
         "cid10": "A90",
         "data_notificacao": "2025-02-14",
         "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "municipio_notificacao": "Ribeirão Preto",
+        "unidade_saude": "AME Ribeirão",
         "codigo_unidade": "556677",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3543402",
         "data_primeiros_sintomas": "2025-02-10"
       },
       "notificacao_individual": {
@@ -2825,8 +2716,8 @@
       "residencia": {
         "telefone": "16 99999-0001",
         "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
+        "municipio": "Ribeirão Preto",
+        "codigo_ibge": "3543402",
         "distrito": "Centro",
         "bairro": "Centro",
         "logradouro": "Rua São Sebastião",
@@ -2847,17 +2738,11 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre",
-            "Cefaleia",
-            "Petéquias"
-          ]
+          "lista": ["Febre", "Cefaleia", "Petéquias"]
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Asma"
-          ]
+          "lista": ["Asma"]
         }
       },
       "exames_laboratoriais": {
@@ -2895,9 +2780,9 @@
         "ocorreu": "1",
         "data_internacao": "2025-02-14",
         "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "municipio": "Ribeirão Preto",
+        "codigo_ibge": "3543402",
+        "nome_hospital": "Hospital das Clínicas",
         "codigo_hospital": "HC-001",
         "telefone": "16 3333-4444"
       },
@@ -2906,8 +2791,8 @@
         "localProvavel": {
           "uf": "SP",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
+          "municipio": "Ribeirão Preto",
+          "codigo_ibge": "3543402",
           "distrito": "Centro",
           "bairro": "Centro"
         },
@@ -2920,10 +2805,7 @@
       },
       "dengue_com_sinais_de_alarme": {
         "apresentou": "1",
-        "sintomas": [
-          "Hipotensão postural",
-          "Dor abdominal intensa e contínua"
-        ],
+        "sintomas": ["Hipotensão postural", "Dor abdominal intensa e contínua"],
         "data_inicio": "2025-02-13"
       },
       "dengue_grave": {
@@ -2971,11 +2853,11 @@
         "agravo_doenca": "2 - Chikungunya",
         "cid10": "A92.0",
         "data_notificacao": "2025-04-12",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "AM",
+        "municipio_notificacao": "Manaus",
+        "unidade_saude": "UPA Zona Oeste",
         "codigo_unidade": "667788",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "1302603",
         "data_primeiros_sintomas": "2025-04-10"
       },
       "notificacao_individual": {
@@ -2991,11 +2873,11 @@
       },
       "residencia": {
         "telefone": "92 99999-5555",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "uf": "AM",
+        "municipio": "Manaus",
+        "codigo_ibge": "1302603",
+        "distrito": "Tarumã",
+        "bairro": "Tarumã",
         "logradouro": "Rua dos Seringueiros",
         "codigo_logradouro": "66778",
         "numero": "100",
@@ -3014,11 +2896,7 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre",
-            "Artralgia intensa",
-            "Dor de cabeça"
-          ]
+          "lista": ["Febre", "Artralgia intensa", "Dor de cabeça"]
         },
         "doencas_pre_existentes": {
           "possui": false,
@@ -3059,22 +2937,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": null,
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": null,
+        "municipio": null,
+        "codigo_ibge": null,
+        "nome_hospital": null,
         "codigo_hospital": null,
         "telefone": null
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "AM",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
-          "bairro": "Centro"
+          "municipio": "Manaus",
+          "codigo_ibge": "1302603",
+          "distrito": "Tarumã",
+          "bairro": "Tarumã"
         },
         "classificacao": "40",
         "criterio_confirmacao": "1",
@@ -3129,10 +3007,10 @@
         "cid10": "A90",
         "data_notificacao": "2025-01-20",
         "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "municipio_notificacao": "Guarulhos",
+        "unidade_saude": "Hospital Municipal Pimentas",
         "codigo_unidade": "778899",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3518800",
         "data_primeiros_sintomas": "2025-01-17"
       },
       "notificacao_individual": {
@@ -3149,10 +3027,10 @@
       "residencia": {
         "telefone": "11 97777-3333",
         "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "municipio": "Guarulhos",
+        "codigo_ibge": "3518800",
+        "distrito": "Pimentas",
+        "bairro": "Pimentas",
         "logradouro": "Avenida Juscelino Kubitschek de Oliveira",
         "codigo_logradouro": "77889",
         "numero": "2000",
@@ -3171,18 +3049,11 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre",
-            "Mialgia",
-            "Hemorragia de mucosa",
-            "Hipotensão"
-          ]
+          "lista": ["Febre", "Mialgia", "Hemorragia de mucosa", "Hipotensão"]
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Hipertensão arterial"
-          ]
+          "lista": ["Hipertensão arterial"]
         }
       },
       "exames_laboratoriais": {
@@ -3220,9 +3091,9 @@
         "ocorreu": "1",
         "data_internacao": "2025-01-20",
         "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "municipio": "Guarulhos",
+        "codigo_ibge": "3518800",
+        "nome_hospital": "Hospital Municipal Pimentas",
         "codigo_hospital": "HMP-001",
         "telefone": "11 2222-3333"
       },
@@ -3231,10 +3102,10 @@
         "localProvavel": {
           "uf": "SP",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
-          "bairro": "Centro"
+          "municipio": "Guarulhos",
+          "codigo_ibge": "3518800",
+          "distrito": "Pimentas",
+          "bairro": "Pimentas"
         },
         "classificacao": "12",
         "criterio_confirmacao": "1",
@@ -3296,11 +3167,11 @@
         "agravo_doenca": "1 - Dengue",
         "cid10": "A90",
         "data_notificacao": "2025-03-08",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "MT",
+        "municipio_notificacao": "Cuiabá",
+        "unidade_saude": "Policlínica Coxipó",
         "codigo_unidade": "889900",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "5103403",
         "data_primeiros_sintomas": "2025-03-05"
       },
       "notificacao_individual": {
@@ -3316,11 +3187,11 @@
       },
       "residencia": {
         "telefone": "65 99999-6666",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "uf": "MT",
+        "municipio": "Cuiabá",
+        "codigo_ibge": "5103403",
+        "distrito": "Coxipó",
+        "bairro": "Coxipó",
         "logradouro": "Avenida Fernando Corrêa da Costa",
         "codigo_logradouro": "88990",
         "numero": "1500",
@@ -3339,12 +3210,7 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre",
-            "Cefaleia",
-            "Náuseas",
-            "Dor retro-orbitária"
-          ]
+          "lista": ["Febre", "Cefaleia", "Náuseas", "Dor retro-orbitária"]
         },
         "doencas_pre_existentes": {
           "possui": false,
@@ -3385,22 +3251,22 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": null,
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": null,
+        "municipio": null,
+        "codigo_ibge": null,
+        "nome_hospital": null,
         "codigo_hospital": null,
         "telefone": null
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "MT",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
-          "bairro": "Centro"
+          "municipio": "Cuiabá",
+          "codigo_ibge": "5103403",
+          "distrito": "Coxipó",
+          "bairro": "Coxipó"
         },
         "classificacao": "10",
         "criterio_confirmacao": "1",
@@ -3455,10 +3321,10 @@
         "cid10": "A90",
         "data_notificacao": "2025-04-28",
         "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "municipio_notificacao": "São Paulo",
+        "unidade_saude": "AME Itaim Paulista",
         "codigo_unidade": "112233",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3550308",
         "data_primeiros_sintomas": "2025-04-25"
       },
       "notificacao_individual": {
@@ -3475,10 +3341,10 @@
       "residencia": {
         "telefone": "11 98888-4444",
         "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "municipio": "São Paulo",
+        "codigo_ibge": "3550308",
+        "distrito": "Itaim Paulista",
+        "bairro": "Itaim Paulista",
         "logradouro": "Rua Tibúrcio de Sousa",
         "codigo_logradouro": "11223",
         "numero": "800",
@@ -3497,12 +3363,7 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre",
-            "Mialgia",
-            "Náuseas",
-            "Dor abdominal"
-          ]
+          "lista": ["Febre", "Mialgia", "Náuseas", "Dor abdominal"]
         },
         "doencas_pre_existentes": {
           "possui": false,
@@ -3543,10 +3404,10 @@
       "hospitalizacao": {
         "ocorreu": "2",
         "data_internacao": null,
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": null,
+        "municipio": null,
+        "codigo_ibge": null,
+        "nome_hospital": null,
         "codigo_hospital": null,
         "telefone": null
       },
@@ -3555,10 +3416,10 @@
         "localProvavel": {
           "uf": "SP",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
-          "bairro": "Centro"
+          "municipio": "São Paulo",
+          "codigo_ibge": "3550308",
+          "distrito": "Itaim Paulista",
+          "bairro": "Itaim Paulista"
         },
         "classificacao": "10",
         "criterio_confirmacao": "1",
@@ -3612,11 +3473,11 @@
         "agravo_doenca": "1 - Dengue",
         "cid10": "A90",
         "data_notificacao": "2025-02-05",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "PR",
+        "municipio_notificacao": "Curitiba",
+        "unidade_saude": "UPA Sítio Cercado",
         "codigo_unidade": "445566",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "4106902",
         "data_primeiros_sintomas": "2025-02-02"
       },
       "notificacao_individual": {
@@ -3632,11 +3493,11 @@
       },
       "residencia": {
         "telefone": "41 99888-1122",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "uf": "PR",
+        "municipio": "Curitiba",
+        "codigo_ibge": "4106902",
+        "distrito": "Sítio Cercado",
+        "bairro": "Sítio Cercado",
         "logradouro": "Rua Nossa Senhora da Glória",
         "codigo_logradouro": "44556",
         "numero": "300",
@@ -3655,11 +3516,7 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre",
-            "Vômitos persistentes",
-            "Dor abdominal"
-          ]
+          "lista": ["Febre", "Vômitos persistentes", "Dor abdominal"]
         },
         "doencas_pre_existentes": {
           "possui": false,
@@ -3700,10 +3557,10 @@
       "hospitalizacao": {
         "ocorreu": "1",
         "data_internacao": "2025-02-05",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": "PR",
+        "municipio": "Curitiba",
+        "codigo_ibge": "4106902",
+        "nome_hospital": "Hospital Pequeno Príncipe",
         "codigo_hospital": "HPP-001",
         "telefone": "41 3222-1111"
       },
@@ -3712,9 +3569,9 @@
         "localProvavel": {
           "uf": "SP",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
+          "municipio": "São Paulo",
+          "codigo_ibge": "3550308",
+          "distrito": "Sé",
           "bairro": "Centro"
         },
         "classificacao": "11",
@@ -3778,10 +3635,10 @@
         "cid10": "A90",
         "data_notificacao": "2025-05-03",
         "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "municipio_notificacao": "São Paulo",
+        "unidade_saude": "UBS Jardim Ângela",
         "codigo_unidade": "556677",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "3550308",
         "data_primeiros_sintomas": "2025-04-30"
       },
       "notificacao_individual": {
@@ -3798,10 +3655,10 @@
       "residencia": {
         "telefone": "11 99999-5555",
         "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "municipio": "São Paulo",
+        "codigo_ibge": "3550308",
+        "distrito": "M'Boi Mirim",
+        "bairro": "Jardim Ângela",
         "logradouro": "Estrada do M'Boi Mirim",
         "codigo_logradouro": "67890",
         "numero": "5000",
@@ -3820,17 +3677,11 @@
       "dados_clinicos": {
         "sinais_clinicos": {
           "possui": true,
-          "lista": [
-            "Febre",
-            "Cefaleia",
-            "Vômitos persistentes"
-          ]
+          "lista": ["Febre", "Cefaleia", "Vômitos persistentes"]
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Diabetes"
-          ]
+          "lista": ["Diabetes"]
         }
       },
       "exames_laboratoriais": {
@@ -3868,9 +3719,9 @@
         "ocorreu": "1",
         "data_internacao": "2025-05-03",
         "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "municipio": "São Paulo",
+        "codigo_ibge": "3550308",
+        "nome_hospital": "Hospital Campo Limpo",
         "codigo_hospital": "HCL-001",
         "telefone": "11 3111-2222"
       },
@@ -3879,10 +3730,10 @@
         "localProvavel": {
           "uf": "SP",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
-          "bairro": "Centro"
+          "municipio": "São Paulo",
+          "codigo_ibge": "3550308",
+          "distrito": "M'Boi Mirim",
+          "bairro": "Jardim Ângela"
         },
         "classificacao": "11",
         "criterio_confirmacao": "1",
@@ -3893,10 +3744,7 @@
       },
       "dengue_com_sinais_de_alarme": {
         "apresentou": "1",
-        "sintomas": [
-          "Vômitos persistentes",
-          "Hepatomegalia (fígado > 2cm)"
-        ],
+        "sintomas": ["Vômitos persistentes", "Hepatomegalia (fígado > 2cm)"],
         "data_inicio": "2025-05-02"
       },
       "dengue_grave": {
@@ -3944,11 +3792,11 @@
         "agravo_doenca": "1 - Dengue",
         "cid10": "A90",
         "data_notificacao": "2025-06-01",
-        "uf": "SP",
-        "municipio_notificacao": "Fernandópolis",
-        "unidade_saude": "UBS Central Fernandópolis",
+        "uf": "RS",
+        "municipio_notificacao": "Porto Alegre",
+        "unidade_saude": "Hospital de Clínicas",
         "codigo_unidade": "808080",
-        "codigo_ibge": "3515603",
+        "codigo_ibge": "4314902",
         "data_primeiros_sintomas": "2025-05-28"
       },
       "notificacao_individual": {
@@ -3964,11 +3812,11 @@
       },
       "residencia": {
         "telefone": "51 98765-4321",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "distrito": "Centro",
-        "bairro": "Centro",
+        "uf": "RS",
+        "municipio": "Porto Alegre",
+        "codigo_ibge": "4314902",
+        "distrito": "Centro Histórico",
+        "bairro": "Centro Histórico",
         "logradouro": "Rua da Praia",
         "codigo_logradouro": "80808",
         "numero": "90",
@@ -3996,10 +3844,7 @@
         },
         "doencas_pre_existentes": {
           "possui": true,
-          "lista": [
-            "Doença de Parkinson",
-            "Hipertensão arterial"
-          ]
+          "lista": ["Doença de Parkinson", "Hipertensão arterial"]
         }
       },
       "exames_laboratoriais": {
@@ -4036,22 +3881,22 @@
       "hospitalizacao": {
         "ocorreu": "1",
         "data_internacao": "2025-06-01",
-        "uf": "SP",
-        "municipio": "Fernandópolis",
-        "codigo_ibge": "3515603",
-        "nome_hospital": "Hospital Municipal de Fernandópolis",
+        "uf": "RS",
+        "municipio": "Porto Alegre",
+        "codigo_ibge": "4314902",
+        "nome_hospital": "Hospital de Clínicas de Porto Alegre",
         "codigo_hospital": "HCPA-001",
         "telefone": "51 3333-5555"
       },
       "conclusao": {
         "autoctone": "1",
         "localProvavel": {
-          "uf": "SP",
+          "uf": "RS",
           "pais": "Brasil",
-          "municipio": "Fernandópolis",
-          "codigo_ibge": "3515603",
-          "distrito": "Centro",
-          "bairro": "Centro"
+          "municipio": "Porto Alegre",
+          "codigo_ibge": "4314902",
+          "distrito": "Centro Histórico",
+          "bairro": "Centro Histórico"
         },
         "classificacao": "12",
         "criterio_confirmacao": "1",
@@ -4074,12 +3919,8 @@
         "extravasamento_grave_de_plasma": [
           "Choque ou dificuldade respiratória"
         ],
-        "sangramento_grave": [
-          "Sangramento de sistema nervoso central"
-        ],
-        "comprometimento_orgao": [
-          "Comprometimento do miocárdio"
-        ],
+        "sangramento_grave": ["Sangramento de sistema nervoso central"],
+        "comprometimento_orgao": ["Comprometimento do miocárdio"],
         "outros": "Sinais de choque",
         "data_inicio": "2025-06-01"
       },
