@@ -22,7 +22,11 @@
       class="w-full max-w-md bg-white p-8 rounded-lg shadow-xl border border-blue-200"
     >
       <div class="flex flex-col items-center mb-6">
-        <h1 class="text-2xl font-bold text-blue-800">SisDenWeb</h1>
+        <img
+          src="../assets/SisDenWeb-2.0.jpeg"
+          alt="Logo SisDenWeb"
+          class="object-contain"
+        />
         <p class="text-sm text-gray-500">Sistema de Notificação de Casos</p>
       </div>
 
@@ -142,34 +146,37 @@
 
   // Escuta o evento disparado pelo navegador
   window.addEventListener("beforeinstallprompt", (e) => {
-    console.log("event: beforeinstallprompt")
+    console.log("event: beforeinstallprompt");
     e.preventDefault(); // Impede o prompt automático
     deferredPrompt = e; // Guarda o evento
   });
 
   // Quando o usuário clicar no botão
   btnInstall.addEventListener("click", async () => {
-    console.log("event: click on install button")
+    console.log("event: click on install button");
     if (deferredPrompt) {
-      console.log("deferredPrompt = true")
-      console.log("deferredPrompt = " + deferredPrompt)
+      console.log("deferredPrompt = true");
+      console.log("deferredPrompt = " + deferredPrompt);
       deferredPrompt.prompt(); // Mostra o prompt de instalação
       const { outcome } = await deferredPrompt.userChoice;
       console.log(`Usuário escolheu: ${outcome}`);
       deferredPrompt = null;
       btnInstall.style.display = "none"; // Esconde o botão
-    }else if(deferredPrompt == undefined){
-      console.log("deferredPrompt não definido!")
-    }else{
-      console.log(deferredPrompt)
+    } else if (deferredPrompt == undefined) {
+      console.log("deferredPrompt não definido!");
+    } else {
+      console.log(deferredPrompt);
     }
   });
 
   function isPWAInstalled() {
-  return (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true);
-}
+    return (
+      window.matchMedia("(display-mode: standalone)").matches ||
+      window.navigator.standalone === true
+    );
+  }
 
-if (isPWAInstalled){
-  btnInstall.style.display = "none";
-} 
+  if (isPWAInstalled) {
+    btnInstall.style.display = "none";
+  }
 </script>

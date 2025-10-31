@@ -267,8 +267,8 @@ map.on("load", () => {
         markers: layer_names.markers,
       },
       {
-        heat: "../../icon/heat-map.png",
-        markers: "../../icon/map-marker.png",
+        heat: "../../assets/heat-map.png",
+        markers: "../../assets/map-marker.png",
       }
     ),
     "top-right"
