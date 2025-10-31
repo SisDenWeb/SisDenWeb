@@ -12,77 +12,6 @@
     </style>
   </head>
   <body class="h-screen flex flex-col md:flex-row bg-slate-100 text-slate-900">
-    <!-- Sidebar (Desktop) -->
-    <aside class="hidden md:flex flex-col w-1/5 bg-slate-700 p-6 text-white">
-      <h1 class="text-xl font-bold mb-10">SisDenWeb</h1>
-      <button
-        class="bg-blue-600 hover:bg-blue-700 w-full py-2 mb-3 rounded-lg font-medium transition"
-        onclick='window.location.href = "admin-management.html"'
-      >
-        Gestão de funcionários
-      </button>
-      <button
-        class="bg-blue-600 hover:bg-blue-700 w-full py-2 mb-3 rounded-lg font-medium transition"
-        onclick='window.location.href = "admin-cases.html"'
-      >
-        Casos notificados
-      </button>
-      <button
-        type="button"
-        class="mt-auto bg-red-500 hover:bg-red-600 w-full py-2 rounded-lg font-medium transition"
-        onclick='window.location.href = "../index.html"'
-      >
-        Sair
-      </button>
-    </aside>
-
-    <!-- Topbar (Mobile) -->
-    <header
-      class="md:hidden flex justify-between items-center px-4 py-3 bg-slate-700 text-white"
-    >
-      <h1 class="text-lg font-semibold">SisDenWeb</h1>
-      <button id="menu-toggle">
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      </button>
-    </header>
-
-    <!-- Menu Dropdown (Mobile) -->
-    <nav
-      id="mobile-menu"
-      class="md:hidden overflow-hidden max-h-0 opacity-0 dropdown-transition bg-slate-600 text-white"
-    >
-      <button
-        class="w-full text-left px-6 py-3 hover:bg-blue-700 transition"
-        onclick='window.location.href = "admin-management.html"'
-      >
-        Gestão de funcionários
-      </button>
-      <button
-        class="w-full text-left px-6 py-3 hover:bg-blue-700 transition"
-        onclick='window.location.href = "admin-cases.html"'
-      >
-        Casos notificados
-      </button>
-      <button
-        class="w-full text-left px-6 py-3 bg-red-500 hover:bg-red-600 transition"
-        onclick='window.location.href = "../index.html"'
-      >
-        Sair
-      </button>
-    </nav>
-
     <!-- Conteúdo principal -->
     <main class="flex-1 p-6 flex flex-col justify-between">
       <div>
@@ -181,3 +110,4 @@
 <script src="../../script/data_handler.js"></script>
 <script src="../../script/admin-management.js"></script>
 <script src="../../script/admin_mobile.js"></script>
+<script src="../../script/menu-admin.js"></script>

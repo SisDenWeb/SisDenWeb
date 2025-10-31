@@ -63,15 +63,19 @@ function recuperarDados(type) {
   }
 }
 
-async function starter_database() {
+async function starter_database(callback = null) {
   const dadosIniciais = await get_initial_data();
   dadosIniciais.infos.last_case_id = dadosIniciais.cases.length;
 
-  console.log("i'm restarting database :)");
+  alert("i'm restarting database :)");
   salvarDados(dadosIniciais.admin, "admin");
   salvarDados(dadosIniciais.employers, "employer");
   salvarDados(dadosIniciais.cases, "case");
   salvarDados(dadosIniciais.infos, "info");
+
+  if(callback){
+    callback();
+  }
 }
 
 // did this to restart database if empty andddd now i can just call starter_database() :)
@@ -207,8 +211,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   window.rst = starter_database;
 });
 
-
-
 const SESSION_TIMEOUT = 10 * 60 * 1000; // 10 minutos em milissegundos
 const SESSION_KEY = "sessionTimestamp";
 
@@ -224,8 +226,7 @@ function checkSessionTimeout() {
   const lastSession = localStorage.getItem(SESSION_KEY);
 
   if (!lastSession) {
-    // Primeira execução → cria timestamp
-    localStorage.setItem(SESSION_KEY, Date.now().toString());
+    resetLocalStorage();
   } else {
     const elapsed = Date.now() - parseInt(lastSession, 10);
 
@@ -253,5 +254,4 @@ function refreshSessionOnActivity() {
 document.addEventListener("DOMContentLoaded", () => {
   checkSessionTimeout();
   refreshSessionOnActivity();
-
 });

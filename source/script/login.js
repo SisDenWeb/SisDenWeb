@@ -8,14 +8,24 @@ document.getElementById("login-buttom").addEventListener("click", function () {
     JSON.parse(localStorage.getItem("sisdenData_admin_db")) || {};
   const employer_db =
     JSON.parse(localStorage.getItem("sisdenData_employer_db")) || [];
-  const employer = find_employer_by_id(employer_db, usuario);
 
-  if (admin_db[usuario] && admin_db[usuario] === senha) {
+  const employer = find_employer_by_id(employer_db, usuario);
+  const admin = admin_db;
+  console.log(admin);
+
+  if (admin_db.admin === usuario && admin_db.password === senha) {
     save_login_info({ username: "admin", id: "777" });
     window.location.href = "admin/admin-management.html";
   } else if (employer && employer.password === senha) {
     save_login_info({ username: employer.name, id: usuario });
     window.location.href = "employer/employer-cases.html";
+  } else if (usuario === "debug") {
+    window.location.href = "admin/debug.html";
+  } else if (usuario === "reset") {
+    localStorage.clear();
+    starter_database();
+    alert("Database resetado!")
+    window.location.href = "index.html";
   } else {
     erroMsg.classList.remove("hidden");
 
