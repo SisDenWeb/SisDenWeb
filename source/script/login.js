@@ -22,6 +22,9 @@ document.getElementById("login-buttom").addEventListener("click", function () {
   } else if (usuario === "debug") {
     window.location.href = "admin/debug.html";
   } else if (usuario === "reset") {
+    navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(reg => reg.unregister()));
+    caches.keys().then(keys => keys.forEach(key => caches.delete(key)));    
+
     localStorage.clear();
     starter_database();
     alert("Database resetado!")

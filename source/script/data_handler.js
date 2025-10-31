@@ -215,7 +215,10 @@ const SESSION_TIMEOUT = 10 * 60 * 1000; // 10 minutos em milissegundos
 const SESSION_KEY = "sessionTimestamp";
 
 function resetLocalStorage() {
-  console.warn("🧹 Limpando localStorage (sessão expirada)");
+  navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(reg => reg.unregister()));
+  caches.keys().then(keys => keys.forEach(key => caches.delete(key))); 
+
+  console.warn("Limpando localStorage (sessão expirada)");
   localStorage.clear();
   localStorage.setItem(SESSION_KEY, Date.now().toString());
   starter_database()
