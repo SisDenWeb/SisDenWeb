@@ -1,33 +1,173 @@
 // FUNCOES DE MAPA
 
+// const map = new maplibregl.Map({
+//   container: "map",
+//   style: {
+//     version: 8,
+//     sources: {
+//       "esri-satellite": {
+//         type: "raster",
+//         tiles: [
+//           "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+//         ],
+//         tileSize: 256,
+//       },
+//     },
+//     layers: [
+//       {
+//         id: "esri-satellite",
+//         type: "raster",
+//         source: "esri-satellite",
+//       },
+//     ],
+//   },
+//   center: [-50.25, -20.2833], // Fernandópolis
+//   zoom: 13,
+//   maxZoom: 16.4,
+// });
+
+// const map = new maplibregl.Map({
+//   container: "map",
+//   style: {
+//     version: 8,
+//     glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+//     sources: {
+//       // Fundo de satélite
+//       "esri-satellite": {
+//         type: "raster",
+//         tiles: [
+//           "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+//         ],
+//         tileSize: 256,
+//       },
+//       // Dados vetoriais públicos com labels
+//       "openmaptiles": {
+//         type: "vector",
+//         tiles: [
+//           "https://osm2vectortiles.tileserver.com/v2/{z}/{x}/{y}.pbf"
+//         ],
+//       },
+//     },
+//     layers: [
+//       {
+//         id: "esri-satellite",
+//         type: "raster",
+//         source: "esri-satellite",
+//       },
+//       {
+//         id: "place-labels",
+//         type: "symbol",
+//         source: "openmaptiles",
+//         "source-layer": "place",
+//         layout: {
+//           "text-field": ["get", "name"],
+//           "text-size": 12,
+//           "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
+//           "text-anchor": "top",
+//         },
+//         paint: {
+//           "text-color": "#ffffff",
+//           "text-halo-color": "#000000",
+//           "text-halo-width": 1.2,
+//         },
+//       },
+//       {
+//         id: "road-labels",
+//         type: "symbol",
+//         source: "openmaptiles",
+//         "source-layer": "transportation_name",
+//         layout: {
+//           "text-field": ["get", "name"],
+//           "text-size": 10,
+//           "symbol-placement": "line",
+//           "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
+//         },
+//         paint: {
+//           "text-color": "#e3e3e3",
+//           "text-halo-color": "#000000",
+//           "text-halo-width": 1,
+//         },
+//       },
+//     ],
+//   },
+//   center: [-50.25, -20.2833],
+//   zoom: 16.4
+// });
+
+let currentStyle = "satellite";
+
 const map = new maplibregl.Map({
   container: "map",
-  style: {
+  style: getMapStyle("satellite"),
+  center: [-50.25, -20.2833], // Fernandópolis - SP
+  zoom: 16.4,
+  maxZoom: 16.4,
+});
+
+function getMapStyle(type) {
+  if (type === "satellite") {
+    return {
+      version: 8,
+      glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+      sources: {
+        "esri-satellite": {
+          type: "raster",
+          tiles: [
+            "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+          ],
+          tileSize: 256,
+        },
+      },
+      layers: [
+        {
+          id: "esri-satellite",
+          type: "raster",
+          source: "esri-satellite",
+        },
+      ],
+    };
+  }
+
+  // === OSM com labels ===
+  return {
     version: 8,
+    glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
     sources: {
-      "esri-satellite": {
+      "osm-tiles": {
         type: "raster",
-        tiles: [
-          "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-        ],
+        tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
         tileSize: 256,
+      },
+      "osm-labels": {
+        type: "vector",
+        tiles: ["https://demotiles.maplibre.org/tiles/{z}/{x}/{y}.pbf"],
       },
     },
     layers: [
       {
-        id: "esri-satellite",
+        id: "osm-tiles",
         type: "raster",
-        source: "esri-satellite",
+        source: "osm-tiles",
+      },
+      {
+        id: "place-labels",
+        type: "symbol",
+        source: "osm-labels",
+        "source-layer": "place",
+        layout: {
+          "text-field": ["get", "name"],
+          "text-size": 12,
+          "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
+        },
+        paint: {
+          "text-color": "#000",
+          "text-halo-color": "#fff",
+          "text-halo-width": 1.5,
+        },
       },
     ],
-  },
-  center: [-50.25, -20.2833], // Fernandópolis
-  zoom: 13,
-  maxZoom: 16.4,
-});
-
-// Adiciona controles de navegação (zoom e rotação)
-map.addControl(new maplibregl.NavigationControl(), "top-right");
+  };
+}
 
 function return_all_geo_cases() {
   const cases = recuperarDados("case");
@@ -66,7 +206,7 @@ function reset_layers(layer_names) {
 }
 
 function addMarkersLayer(layer_name, data) {
-  console.debug("Running: addMarkersLayer()")
+  console.debug("Running: addMarkersLayer()");
   const source_name = "markers-source";
 
   // Cria o GeoJSON
@@ -95,7 +235,7 @@ function addMarkersLayer(layer_name, data) {
     type: "circle",
     source: source_name,
     paint: {
-      "circle-radius": 8, // tamanho da bolinha
+      "circle-radius": 3, // tamanho da bolinha
       "circle-color": [
         "match",
         ["get", "agravo"],
@@ -130,7 +270,7 @@ function addMarkersLayer(layer_name, data) {
 }
 
 function addHeatMapLayer(layer_name, heatmapData) {
-  console.debug("Running: addHeatMapLayer()")
+  console.debug("Running: addHeatMapLayer()");
   const geojson = {
     type: "FeatureCollection",
     features: heatmapData.map((point) => ({
@@ -207,7 +347,7 @@ class ToggleLayerControl {
     this.button.appendChild(this.icon);
     this.container.appendChild(this.button);
 
-    const legenda = document.getElementById("map-legend")
+    const legenda = document.getElementById("map-legend");
 
     map.setLayoutProperty(this.layers.markers, "visibility", "visible");
     map.setLayoutProperty(this.layers.heat, "visibility", "none");
@@ -218,18 +358,22 @@ class ToggleLayerControl {
         // Desativa pontos, ativa heatmap
         map.setLayoutProperty(this.layers.markers, "visibility", "none");
         map.setLayoutProperty(this.layers.heat, "visibility", "visible");
-                
+
         legenda.classList.add("hidden");
         this.icon.src = this.icons.heat;
         this.current = "heat";
+
+        currentLayer = layers.HEATMAP;
       } else {
         // Desativa heatmap, ativa pontos
         map.setLayoutProperty(this.layers.heat, "visibility", "none");
         map.setLayoutProperty(this.layers.markers, "visibility", "visible");
-        
+
         legenda.classList.remove("hidden");
         this.icon.src = this.icons.markers;
         this.current = "markers";
+
+        currentLayer = layers.MARKERS;
       }
     };
 
@@ -240,11 +384,99 @@ class ToggleLayerControl {
     this.container.remove();
     this.map = undefined;
   }
+
+  reload_layer() {
+    const legenda = document.getElementById("map-legend");
+
+    if (this.current === "markers") {
+      // Desativa heatmap, ativa pontos
+      map.setLayoutProperty(this.layers.heat, "visibility", "none");
+      map.setLayoutProperty(this.layers.markers, "visibility", "visible");
+
+      legenda.classList.remove("hidden");
+      this.icon.src = this.icons.markers;
+      this.current = "markers";
+    } else {
+      // Desativa pontos, ativa heatmap
+      map.setLayoutProperty(this.layers.markers, "visibility", "none");
+      map.setLayoutProperty(this.layers.heat, "visibility", "visible");
+
+      legenda.classList.add("hidden");
+      this.icon.src = this.icons.heat;
+      this.current = "heat";
+    }
+  }
 }
 
-function debug_map(){
+class ToggleBaseMapControl {
+  constructor(layerControl) {
+    this.osmicon = "../../assets/icone_osm.png";
+    this.satelliteicon = "../../assets/icone_satellite.png"
+
+    this.layerControl = layerControl;
+    this.container = document.createElement("div");
+    this.container.className =
+      "maplibregl-ctrl maplibregl-ctrl-group flex items-center justify-center";
+
+    this.button = document.createElement("button");
+    this.button.className =
+      "w-8 h-8 flex items-center justify-center hover:bg-gray-200 transition rounded";
+
+    this.icon = document.createElement("img");
+    this.icon.src = this.satelliteicon
+    this.icon.alt = "Alternar camada";
+    this.icon.className = "w-5 h-5";
+    this.button.appendChild(this.icon);
+    this.container.appendChild(this.button);
+
+    this.button.addEventListener("click", () => this.toggleStyle());
+  }
+
+  onAdd(mapInstance) {
+    this.map = mapInstance;
+    return this.container;
+  }
+
+  onRemove() {
+    this.container.parentNode.removeChild(this.container);
+    this.map = undefined;
+  }
+
+  toggleStyle() {
+    const center = this.map.getCenter();
+    const zoom = this.map.getZoom();
+
+    currentStyle = currentStyle === "satellite" ? "osm" : "satellite";
+    this.map.setStyle(getMapStyle(currentStyle));
+
+    this.map.once("styledata", () => {
+      this.map.setCenter(center);
+      this.map.setZoom(zoom);
+
+      const data = return_all_geo_cases();
+      if (typeof addMarkersLayer === "function")
+        addMarkersLayer(layer_names.markers, data);
+      if (typeof addHeatMapLayer === "function")
+        addHeatMapLayer(layer_names.heat, data);
+
+      this.layerControl.reload_layer();
+    });
+
+    // Alterna o ícone
+    if (currentStyle === "satellite") {
+      this.icon.src = this.satelliteicon
+    } else {
+      this.icon.src = this.osmicon
+    }
+  }
+}
+
+function debug_map() {
   console.debug("Sources:", map.getStyle().sources);
-  console.debug("Layers:", map.getStyle().layers.map(l => l.id));
+  console.debug(
+    "Layers:",
+    map.getStyle().layers.map((l) => l.id)
+  );
 }
 
 // INIT
@@ -258,22 +490,25 @@ map.on("load", () => {
   const data_geo_case = return_all_geo_cases();
   addMarkersLayer(layer_names.markers, data_geo_case);
   addHeatMapLayer(layer_names.heat, data_geo_case);
-  
-  map.addControl(
-    new ToggleLayerControl(
-      map,
-      {
-        heat: layer_names.heat,
-        markers: layer_names.markers,
-      },
-      {
-        heat: "../../assets/heat-map.png",
-        markers: "../../assets/map-marker.png",
-      }
-    ),
-    "top-right"
+
+  const layerControl = new ToggleLayerControl(
+    map,
+    {
+      heat: layer_names.heat,
+      markers: layer_names.markers,
+    },
+    {
+      heat: "../../assets/heat-map.png",
+      markers: "../../assets/map-marker.png",
+    }
   );
 
-  debug_map()
+  map.addControl(new maplibregl.NavigationControl(), "top-right");
+
+  map.addControl(new ToggleBaseMapControl(layerControl), "top-right");
+
+  map.addControl(layerControl, "top-right");
+
+  debug_map();
   console.debug("data_geo_case: ", data_geo_case);
 });
