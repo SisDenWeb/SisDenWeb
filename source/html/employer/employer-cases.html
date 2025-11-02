@@ -94,6 +94,7 @@
     <script>
       let mapModal;
       let markerModal;
+      let currentStyle = "satellite";
 
       const interval = setInterval(() => {
         const el = document.getElementById("btn-localizacao");
@@ -102,6 +103,127 @@
           clearInterval(interval);
         }
       }, 100);
+
+      function getMapStyle(type) {
+        if (type === "satellite") {
+          return {
+            version: 8,
+            glyphs:
+              "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+            sources: {
+              "esri-satellite": {
+                type: "raster",
+                tiles: [
+                  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                ],
+                tileSize: 256,
+              },
+            },
+            layers: [
+              {
+                id: "esri-satellite",
+                type: "raster",
+                source: "esri-satellite",
+              },
+            ],
+          };
+        }
+
+        // === OSM com labels ===
+        return {
+          version: 8,
+          glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+          sources: {
+            "osm-tiles": {
+              type: "raster",
+              tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+              tileSize: 256,
+            },
+            "osm-labels": {
+              type: "vector",
+              tiles: ["https://demotiles.maplibre.org/tiles/{z}/{x}/{y}.pbf"],
+            },
+          },
+          layers: [
+            {
+              id: "osm-tiles",
+              type: "raster",
+              source: "osm-tiles",
+            },
+            {
+              id: "place-labels",
+              type: "symbol",
+              source: "osm-labels",
+              "source-layer": "place",
+              layout: {
+                "text-field": ["get", "name"],
+                "text-size": 12,
+                "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
+              },
+              paint: {
+                "text-color": "#000",
+                "text-halo-color": "#fff",
+                "text-halo-width": 1.5,
+              },
+            },
+          ],
+        };
+      }
+
+      class ToggleBaseMapControl {
+        constructor() {
+          this.osmicon = "../../assets/icone_osm.png";
+          this.satelliteicon = "../../assets/icone_satellite.png";
+
+          this.container = document.createElement("div");
+          this.container.className =
+            "maplibregl-ctrl maplibregl-ctrl-group flex items-center justify-center";
+
+          this.button = document.createElement("button");
+          this.button.type = "button";
+          this.button.className =
+            "w-8 h-8 flex items-center justify-center hover:bg-gray-200 transition rounded";
+
+          this.icon = document.createElement("img");
+          this.icon.src = this.satelliteicon;
+          this.icon.alt = "Alternar camada";
+          this.icon.className = "w-5 h-5";
+          this.button.appendChild(this.icon);
+          this.container.appendChild(this.button);
+
+          this.button.addEventListener("click", () => this.toggleStyle());
+        }
+
+        onAdd(mapInstance) {
+          this.map = mapInstance;
+          return this.container;
+        }
+
+        onRemove() {
+          this.container.parentNode.removeChild(this.container);
+          this.map = undefined;
+        }
+
+        toggleStyle() {
+          const center = this.map.getCenter();
+          const zoom = this.map.getZoom();
+
+          currentStyle = currentStyle === "satellite" ? "osm" : "satellite";
+          this.map.setStyle(getMapStyle(currentStyle));
+
+          this.map.once("styledata", () => {
+            this.map.setCenter(center);
+            this.map.setZoom(zoom);
+          });
+
+          // Alterna o ícone
+          if (currentStyle === "satellite") {
+            this.icon.src = this.satelliteicon;
+          } else {
+            this.icon.src = this.osmicon;
+          }
+        }
+      }
 
       function init_localizar_model() {
         const btnLocalizacao = document.getElementById("btn-localizacao");
@@ -114,29 +236,23 @@
 
           // Inicializa o mapa apenas uma vez
           if (!mapModal) {
+            console.log("Criando novo mapa");
+
+            lat = document.getElementById("res-geo1").value;
+            lng = document.getElementById("res-geo2").value;
+
+            if (lat == null || lat == "") {
+              lat = -20.2833;
+            }
+            if (lng == null || lng == "") {
+              lng = -50.25;
+            }
+
             mapModal = new maplibregl.Map({
               container: "map-modal",
-              style: {
-                version: 8,
-                sources: {
-                  "esri-satellite": {
-                    type: "raster",
-                    tiles: [
-                      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-                    ],
-                    tileSize: 256,
-                  },
-                },
-                layers: [
-                  {
-                    id: "esri-satellite",
-                    type: "raster",
-                    source: "esri-satellite",
-                  },
-                ],
-              },
-              center: [-50.25, -20.2833],
-              zoom: 13,
+              style: getMapStyle("satellite"),
+              center: [lng, lat], // Fernandópolis - SP
+              zoom: 16.4,
               maxZoom: 16.4,
             });
 
@@ -145,8 +261,7 @@
               "top-right"
             );
 
-            lat = document.getElementById("res-geo1").value;
-            lng = document.getElementById("res-geo2").value;
+            mapModal.addControl(new ToggleBaseMapControl(), "top-right");
 
             if (lat != null && lng != null) {
               markerModal = new maplibregl.Marker({ color: "red" })
