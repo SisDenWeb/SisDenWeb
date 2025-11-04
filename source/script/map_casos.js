@@ -411,7 +411,7 @@ class ToggleLayerControl {
 class ToggleBaseMapControl {
   constructor(layerControl) {
     this.osmicon = "../../assets/icone_osm.png";
-    this.satelliteicon = "../../assets/icone_satellite.png"
+    this.satelliteicon = "../../assets/icone_satellite.png";
 
     this.layerControl = layerControl;
     this.container = document.createElement("div");
@@ -423,7 +423,7 @@ class ToggleBaseMapControl {
       "w-8 h-8 flex items-center justify-center hover:bg-gray-200 transition rounded";
 
     this.icon = document.createElement("img");
-    this.icon.src = this.satelliteicon
+    this.icon.src = this.satelliteicon;
     this.icon.alt = "Alternar camada";
     this.icon.className = "w-5 h-5";
     this.button.appendChild(this.icon);
@@ -464,10 +464,74 @@ class ToggleBaseMapControl {
 
     // Alterna o ícone
     if (currentStyle === "satellite") {
-      this.icon.src = this.satelliteicon
+      this.icon.src = this.satelliteicon;
     } else {
-      this.icon.src = this.osmicon
+      this.icon.src = this.osmicon;
     }
+  }
+}
+
+class MarkerSizeControl {
+  constructor(mapInstance, layer_name) {
+    this.layer_name = layer_name;
+    this.map = mapInstance;
+    this.sizes = [3, 5, 8]; // tamanhos da layer
+    this.sizeNames = ["Pequeno", "Médio", "Grande"];
+    this.iconSizes = ["w-3 h-3", "w-4 h-4", "w-5 h-5"]; // tamanhos visuais do span
+    this.currentIndex = 1; // começa no médio
+
+    // === CONTAINER DO CONTROLE ===
+    this.container = document.createElement("div");
+    this.container.className =
+      "maplibregl-ctrl maplibregl-ctrl-group flex items-center justify-center";
+
+    // === BOTÃO ===
+    this.button = document.createElement("button");
+    this.button.className =
+      "w-8 h-8 flex items-center justify-center hover:bg-gray-200 transition rounded p-0 m-0 relative";
+
+    // === ÍCONE COMO SPAN ===
+    this.icon = document.createElement("span");
+    this.icon.className = `inline-block rounded-full bg-red-500 transition-all duration-300 ${
+      this.iconSizes[this.currentIndex]
+    }`;
+    this.button.appendChild(this.icon);
+    this.container.appendChild(this.button);
+
+    // Clique alterna o tamanho
+    this.button.addEventListener("click", () => this.toggleSize());
+  }
+
+  onAdd(map) {
+    this.map = map;
+    return this.container;
+  }
+
+  onRemove() {
+    this.container.parentNode.removeChild(this.container);
+    this.map = undefined;
+  }
+
+  toggleSize() {
+    this.currentIndex = (this.currentIndex + 1) % this.sizes.length;
+    const newSize = this.sizes[this.currentIndex];
+    const sizeName = this.sizeNames[this.currentIndex];
+
+    // Atualiza o tamanho dos pontos no mapa
+    if (this.map.getLayer(this.layer_name)) {
+      this.map.setPaintProperty(this.layer_name, "circle-radius", newSize);
+      console.log(`🔵 Tamanho dos marcadores: ${sizeName} (${newSize}px)`);
+    } else {
+      console.warn("⚠️ Layer " + this.layer_name + " não encontrada.");
+    }
+
+    // Atualiza o tamanho visual do ícone
+    this.icon.className = `inline-block rounded-full bg-red-500 transition-all duration-300 ${
+      this.iconSizes[this.currentIndex]
+    }`;
+
+    // Atualiza tooltip
+    this.button.title = `Tamanho: ${sizeName}`;
   }
 }
 
@@ -506,6 +570,8 @@ map.on("load", () => {
   map.addControl(new maplibregl.NavigationControl(), "top-right");
 
   map.addControl(new ToggleBaseMapControl(layerControl), "top-right");
+
+  map.addControl(new MarkerSizeControl(map, layer_names.markers), "top-right");
 
   map.addControl(layerControl, "top-right");
 
