@@ -5,6 +5,14 @@
   <div class="max-w-4xl mx-auto space-y-6">
     <!-- Botão Fechar -->
     <div class="flex justify-end">
+      <!-- Botão Salvar -->
+      <button
+        type="button"
+        onclick="saveCase()"
+        class="botao-salvar-case text-black font-semibold px-4 py-2 mr-3 bg-gray-200 rounded hover:bg-gray-300"
+      >
+        Salvar
+      </button>
       <button
         onclick="closeCaseModal()"
         class="text-black font-semibold px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
@@ -321,7 +329,7 @@
             >
               Selecionar no mapa
             </button>
-          
+
             <!-- Campos escondidos -->
             <input
               type="text"
@@ -334,7 +342,7 @@
               class="hidden w-full p-2 border rounded"
             />
           </div>
-          
+
           <div>
             <label class="block text-sm font-medium"
               >Ponto de Referência:</label
@@ -384,7 +392,10 @@
           </h2>
 
           <!-- Container do mapa -->
-          <div id="map-modal" class="flex-1 rounded-md mb-4 w-full min-h-[400px]"></div>
+          <div
+            id="map-modal"
+            class="flex-1 rounded-md mb-4 w-full min-h-[400px]"
+          ></div>
 
           <!-- Botões -->
           <div class="flex justify-end space-x-2 mt-2">
@@ -1678,7 +1689,7 @@
         <button
           type="button"
           onclick="saveCase()"
-          class="text-black font-semibold px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+          class="botao-salvar-case text-black font-semibold px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
         >
           Salvar
         </button>

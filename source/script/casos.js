@@ -71,6 +71,7 @@ function refreshCasos() {
   if (typeof recuperarDados !== "function") return
   const casos = recuperarDados("case"); // Recupera os casos do localStorage ou backend
   const lista = document.getElementById("casos-list");
+  if (lista == null) return null
   lista.innerHTML = "";
 
   casos.forEach((caso) => {

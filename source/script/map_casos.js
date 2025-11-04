@@ -250,6 +250,16 @@ function addHeatMapLayer(layer_name, heatmapData) {
   });
 }
 
+function listener_on_load_dom_element(selector, callback, timeout = 100) {
+  let interval = setInterval(() => {
+    const element = document.querySelector(selector);
+    if (element != null) {
+      callback(element);
+      clearInterval(interval);
+    }
+  }, timeout);
+}
+
 class ToggleLayerControl {
   constructor(map, layers, icons) {
     this.map = map;
@@ -502,6 +512,21 @@ map.on("load", () => {
   map.addControl(new MarkerSizeControl(map, layer_names.markers), "top-right");
 
   map.addControl(layerControl, "top-right");
+
+  listener_on_load_dom_element(".botao-salvar-case", (btn) => {
+    btn.addEventListener("click", async () => {
+      const data = return_all_geo_cases();
+      
+      if (map.getLayer(layer_names.markers)){
+        await map.removeLayer(layer_names.markers);
+        await map.removeSource("markers-source");
+      }
+
+      addMarkersLayer(layer_names.markers, data);
+
+      layerControl.reload_layer();
+    });
+  });
 
   debug_map();
   console.debug("data_geo_case: ", data_geo_case);
