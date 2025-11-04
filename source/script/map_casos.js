@@ -1,99 +1,3 @@
-// FUNCOES DE MAPA
-
-// const map = new maplibregl.Map({
-//   container: "map",
-//   style: {
-//     version: 8,
-//     sources: {
-//       "esri-satellite": {
-//         type: "raster",
-//         tiles: [
-//           "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-//         ],
-//         tileSize: 256,
-//       },
-//     },
-//     layers: [
-//       {
-//         id: "esri-satellite",
-//         type: "raster",
-//         source: "esri-satellite",
-//       },
-//     ],
-//   },
-//   center: [-50.25, -20.2833], // Fernandópolis
-//   zoom: 13,
-//   maxZoom: 16.4,
-// });
-
-// const map = new maplibregl.Map({
-//   container: "map",
-//   style: {
-//     version: 8,
-//     glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
-//     sources: {
-//       // Fundo de satélite
-//       "esri-satellite": {
-//         type: "raster",
-//         tiles: [
-//           "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-//         ],
-//         tileSize: 256,
-//       },
-//       // Dados vetoriais públicos com labels
-//       "openmaptiles": {
-//         type: "vector",
-//         tiles: [
-//           "https://osm2vectortiles.tileserver.com/v2/{z}/{x}/{y}.pbf"
-//         ],
-//       },
-//     },
-//     layers: [
-//       {
-//         id: "esri-satellite",
-//         type: "raster",
-//         source: "esri-satellite",
-//       },
-//       {
-//         id: "place-labels",
-//         type: "symbol",
-//         source: "openmaptiles",
-//         "source-layer": "place",
-//         layout: {
-//           "text-field": ["get", "name"],
-//           "text-size": 12,
-//           "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
-//           "text-anchor": "top",
-//         },
-//         paint: {
-//           "text-color": "#ffffff",
-//           "text-halo-color": "#000000",
-//           "text-halo-width": 1.2,
-//         },
-//       },
-//       {
-//         id: "road-labels",
-//         type: "symbol",
-//         source: "openmaptiles",
-//         "source-layer": "transportation_name",
-//         layout: {
-//           "text-field": ["get", "name"],
-//           "text-size": 10,
-//           "symbol-placement": "line",
-//           "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
-//         },
-//         paint: {
-//           "text-color": "#e3e3e3",
-//           "text-halo-color": "#000000",
-//           "text-halo-width": 1,
-//         },
-//       },
-//     ],
-//   },
-//   center: [-50.25, -20.2833],
-//   zoom: 16.4
-// });
-
 let currentStyle = "satellite";
 
 const map = new maplibregl.Map({
@@ -176,6 +80,7 @@ function return_all_geo_cases() {
     lat: parseFloat(item.residencia.geo1),
     lon: parseFloat(item.residencia.geo2),
     display_name: item.notificacao_individual.nome_paciente,
+    id: item.id,
     agravo: item.dados_gerais.agravo_doenca,
   }));
 }
@@ -220,6 +125,7 @@ function addMarkersLayer(layer_name, data) {
       },
       properties: {
         agravo: item.agravo,
+        id: item.id,
         display_name: item.display_name,
       },
     })),
@@ -235,7 +141,7 @@ function addMarkersLayer(layer_name, data) {
     type: "circle",
     source: source_name,
     paint: {
-      "circle-radius": 3, // tamanho da bolinha
+      "circle-radius": 8, // tamanho da bolinha
       "circle-color": [
         "match",
         ["get", "agravo"],
@@ -253,11 +159,33 @@ function addMarkersLayer(layer_name, data) {
 
   map.on("click", layer_name, (e) => {
     const coordinates = e.features[0].geometry.coordinates.slice();
-    const { display_name } = e.features[0].properties;
+    const { display_name, id } = e.features[0].properties;
 
+    // coloca um listener no container do mapa (uma vez)
+    map.getContainer().addEventListener("click", (ev) => {
+      const btn = ev.target.closest(".popup-action");
+      if (!btn) return;
+
+      // recupera dados do botão (ex.: id do feature armazenado em data-*)
+      const featureId = btn.getAttribute("data-feature-id");
+      if (featureId && typeof openModalEditarCaso === "function") {
+        openModalEditarCaso(featureId);
+      }
+    });
+
+    // ao criar o popup, inclua o botão com classe e atributo data-*
     new maplibregl.Popup()
       .setLngLat(coordinates)
-      .setHTML(`<b>${display_name}</b>`)
+      .setHTML(
+        `
+  <div class="text-sm">
+    <b>${display_name}</b><br>
+    <button class="popup-action mt-2 bg-blue-600 text-white px-2 py-1 rounded" data-feature-id="${id}">
+      Editar
+    </button>
+  </div>
+`
+      )
       .addTo(map);
   });
 
@@ -478,7 +406,7 @@ class MarkerSizeControl {
     this.sizes = [3, 5, 8]; // tamanhos da layer
     this.sizeNames = ["Pequeno", "Médio", "Grande"];
     this.iconSizes = ["w-3 h-3", "w-4 h-4", "w-5 h-5"]; // tamanhos visuais do span
-    this.currentIndex = 1; // começa no médio
+    this.currentIndex = 2;
 
     // === CONTAINER DO CONTROLE ===
     this.container = document.createElement("div");

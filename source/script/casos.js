@@ -68,6 +68,7 @@ function toggleDengueGrave(ativo) {
 // cases data handler
 
 function refreshCasos() {
+  if (typeof recuperarDados !== "function") return
   const casos = recuperarDados("case"); // Recupera os casos do localStorage ou backend
   const lista = document.getElementById("casos-list");
   lista.innerHTML = "";
