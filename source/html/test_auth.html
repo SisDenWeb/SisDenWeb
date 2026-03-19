@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica MVP</title>
+  <style>
+    body { font-family: Arial; max-width: 400px; margin: 40px auto; padding: 20px; }
+    input, button { display: block; width: 100%; margin: 10px 0; padding: 10px; }
+    button { background: #4285F4; color: white; border: none; cursor: pointer; }
+    button:hover { background: #357ae8; }
+    #message { color: red; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <h2>Login / Cadastro</h2>
+
+  <div id="login-form">
+    <h3>Entrar</h3>
+    <input type="email"    id="login-email"     placeholder="Email" required>
+    <input type="password" id="login-password"  placeholder="Senha" required>
+    <button onclick="fazerLogin()">Entrar</button>
+  </div>
+
+  <div id="signup-form" class="hidden">
+    <h3>Criar conta (Paciente)</h3>
+    <input type="text"     id="signup-nome"     placeholder="Nome completo" required>
+    <input type="email"    id="signup-email"    placeholder="Email" required>
+    <input type="password" id="signup-password" placeholder="Senha (mín. 6)" required>
+    <button onclick="fazerCadastro()">Cadastrar</button>
+  </div>
+
+  <button onclick="toggleForms()">Já tem conta? / Criar nova conta</button>
+
+  <p id="message"></p>
+
+  <div id="user-info" class="hidden">
+    <h3>Bem-vindo, <span id="user-nome"></span>!</h3>
+    <p>Role: <strong id="user-role"></strong></p>
+    <button onclick="fazerLogout()">Sair</button>
+  </div>
+
+  <!-- Scripts em ordem: config primeiro, depois lógica -->
+  <script type="module">
+    import '../script/config-firebase.js'
+    import '../script/auth.js'
+  </script>
+
+</body>
+</html>

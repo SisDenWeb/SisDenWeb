@@ -1,3 +1,5 @@
+import * as casoService from "./casos-firebase.js";
+
 (function () {
   fetch("../component/caso.html")
     .then((res) => res.text())
@@ -5,15 +7,6 @@
       document.getElementById("caso-container").innerHTML += html;
     });
 })();
-
-function openCaseModal() {
-  resetarFichaCompleta();
-  document.getElementById("case-modal").classList.remove("hidden");
-}
-
-function closeCaseModal() {
-  document.getElementById("case-modal").classList.add("hidden");
-}
 
 function toggleSinais() {
   const value = document.querySelector('input[name="sinais"]:checked')?.value;
@@ -29,7 +22,7 @@ function toggleDoencas() {
 
 function toggleHospitalizacao() {
   const value = document.querySelector(
-    'input[name="hospitalizacao"]:checked'
+    'input[name="hospitalizacao"]:checked',
   )?.value;
   const inputs = document.querySelectorAll("#dadosHospitalizacao input");
 
@@ -67,54 +60,46 @@ function toggleDengueGrave(ativo) {
 
 // cases data handler
 
-function refreshCasos() {
-  if (typeof recuperarDados !== "function") return
-  const casos = recuperarDados("case"); // Recupera os casos do localStorage ou backend
+async function listarCasosNaUI() {
+  const listaDeCasos = await casoService.getAllCasos();
   const lista = document.getElementById("casos-list");
-  if (lista == null) return null
-  lista.innerHTML = "";
+    
+    if( listaDeCasos === -1){
+      document.getElementById("lista-de-casos").innerHTML =
+      `<li>Erro ao carregar os dados, entre em contato com o suporte</li>`;
+    }
 
-  casos.forEach((caso) => {
-    const html = `
+    if (listaDeCasos == null || listaDeCasos.length == 0) {
+      console.log("Nenhum caso encontrado.");
+      lista.innerHTML = "<li>Nenhum caso cadastrado.</li>";
+      return;
+    }
+
+    // Limpa a lista existente antes de adicionar novos itens (se houver)
+    lista.innerHTML = "";
+
+    listaDeCasos.forEach((caso) => {
+      const html = `
       <div class="flex items-start justify-between border-b pb-2">
         <div>
           <p class="font-medium">${caso.notificacao_individual.nome_paciente}</p>
-          <p class="text-sm text-gray-700">Caso N.${caso.id}   Cartão SUS ${caso.notificacao_individual.cartao_sus}</p>
+          <p class="text-sm text-gray-700">Cartão SUS ${caso.notificacao_individual.cartao_sus}</p>
         </div>
         <div class="flex flex-col space-y-2">
           <button data-id="${caso.id}" onclick="deleteCase(${caso.id})" class="deletar-caso bg-gray-400 text-black px-4 py-1 rounded">
             Deletar
           </button>
-          <button data-id="${caso.id}" onclick="openModalEditarCaso(${caso.id})" class="editar-caso bg-gray-400 text-black px-4 py-1 rounded">
+          <button data-id="${caso.id}" onclick="openCaseModalAsEditor('${caso.id}')" class="editar-caso bg-gray-400 text-black px-4 py-1 rounded">
             Editar
           </button>
         </div>
       </div>
     `;
-    lista.insertAdjacentHTML("beforeend", html);
-  });
+      lista.insertAdjacentHTML("beforeend", html);
+    });
 }
 
-function openModalEditarCaso(id) {
-  let caso = find_caso_by_id(id);
-  preencherFichaCompleta(caso);
-  document.getElementById("case-modal").classList.remove("hidden");
-}
-
-function saveCase() {
-  const caso = getFichaCompleta();
-  caso.id = parseInt(caso.id);
-  saveCaseInMemory(caso);
-  refreshCasos();
-  closeCaseModal();
-}
-
-function deleteCase(id) {
-  deleteCaseInMemory(id);
-  refreshCasos();
-}
-
-refreshCasos();
+listarCasosNaUI();
 
 function resetarFichaCompleta() {
   // Helper para desmarcar radio
@@ -381,11 +366,11 @@ function preencherFichaCompleta(json) {
   setCheckboxes("sinais", json.dados_clinicos.sinais_clinicos?.lista || []);
   setRadio(
     "doencas",
-    json.dados_clinicos.doencas_pre_existentes?.possui ? "1" : "2"
+    json.dados_clinicos.doencas_pre_existentes?.possui ? "1" : "2",
   );
   setCheckboxes(
     "doencas",
-    json.dados_clinicos.doencas_pre_existentes?.lista || []
+    json.dados_clinicos.doencas_pre_existentes?.lista || [],
   );
 
   // Exames Laboratoriais
@@ -472,7 +457,7 @@ function preencherFichaCompleta(json) {
   setRadio("sinaisAlarme", json.dengue_com_sinais_de_alarme.apresentou || "");
   setCheckboxes(
     "sintoma-alarme",
-    json.dengue_com_sinais_de_alarme.sintomas || []
+    json.dengue_com_sinais_de_alarme.sintomas || [],
   );
   document.getElementById("data-alarme-inicio").value =
     json.dengue_com_sinais_de_alarme.data_inicio || "";
@@ -481,7 +466,7 @@ function preencherFichaCompleta(json) {
   setRadio("dengueGrave", json.dengue_grave.apresentou || "");
   setCheckboxes(
     "dg-extravasamento",
-    json.dengue_grave.extravasamento_grave_de_plasma || []
+    json.dengue_grave.extravasamento_grave_de_plasma || [],
   );
   setCheckboxes("dg-sangramento", json.dengue_grave.sangramento_grave || []);
   setCheckboxes("dg-orgao", json.dengue_grave.comprometimento_orgao || []);
@@ -546,7 +531,7 @@ function getFichaCompleta() {
       codigo_unidade: document.getElementById("codigo-unidade").value,
       codigo_ibge: document.getElementById("codigo-ibge").value,
       data_primeiros_sintomas: document.getElementById(
-        "data-primeiros-sintomas"
+        "data-primeiros-sintomas",
       ).value,
     },
     notificacao_individual: {
@@ -616,8 +601,7 @@ function getFichaCompleta() {
     },
     hospitalizacao: getDadosHospitalizacao(),
     conclusao: {
-      autoctone: document.querySelector('input[name="autoctone"]:checked')
-        .value,
+      autoctone: document.querySelector('input[name="autoctone"]:checked')?.value || null,
       localProvavel: {
         uf: document.getElementById("conclusao-uf").value,
         pais: document.getElementById("conclusao-pais").value,
@@ -651,10 +635,10 @@ function getFichaCompleta() {
 
 function getDadosClinicos() {
   const sinaisSelecionado = document.querySelector(
-    'input[name="sinais"]:checked'
+    'input[name="sinais"]:checked',
   );
   const doencasSelecionado = document.querySelector(
-    'input[name="doencas"]:checked'
+    'input[name="doencas"]:checked',
   );
 
   const sinaisClinicos = [];
@@ -829,8 +813,8 @@ async function buscarCoordenadasNominatim(endereco) {
     const response = await fetch(url, {
       headers: {
         "Accept-Language": "pt-BR",
-        "User-Agent": "SisDenWeb/1.0 (contato: email@seudominio.gov.br)"
-      }
+        "User-Agent": "SisDenWeb/1.0 (contato: email@seudominio.gov.br)",
+      },
     });
 
     if (!response.ok) throw new Error(`Erro HTTP ${response.status}`);
@@ -844,7 +828,6 @@ async function buscarCoordenadasNominatim(endereco) {
     const { lat, lon, display_name } = data[0];
     console.debug("📍 Coordenadas:", { lat, lon, display_name });
     return { lat: parseFloat(lat), lon: parseFloat(lon), display_name };
-
   } catch (err) {
     console.error("❌ Erro ao consultar Nominatim:", err);
     return null;
@@ -853,15 +836,17 @@ async function buscarCoordenadasNominatim(endereco) {
 
 // Inicializa o listener com debounce
 function initEnderecoListener() {
-  console.log("chamado")
+  console.log("chamado");
   const inputs = [
     "res-logradouro",
     "res-numero",
     "res-bairro",
     "res-municipio",
     "res-uf",
-    "res-pais"
-  ].map(id => document.getElementById(id)).filter(Boolean);
+    "res-pais",
+  ]
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
 
   // Função principal (executada com debounce)
   const processarEndereco = debounce(async () => {
@@ -877,8 +862,41 @@ function initEnderecoListener() {
   }, 1000); // 1 segundo de debounce
 
   // Escuta mudanças em todos os campos relevantes
-  inputs.forEach(input => input.addEventListener("input", processarEndereco));
+  inputs.forEach((input) => input.addEventListener("input", processarEndereco));
 }
 
 // Chame essa função após o DOM estar carregado
 document.addEventListener("DOMContentLoaded", initEnderecoListener);
+
+
+// usei o window.nomeDaFunção para separar melhor as funcoes
+// que são chamadas por eventos (onclick, onload, etc)
+// das demais funções auxiliares internas
+
+window.saveCase = () => {
+  const caso = getFichaCompleta();
+  console.log("Salvando caso:", caso);
+  casoService.saveCaseInFirebase(caso);
+  listarCasosNaUI();
+  closeCaseModal();
+}
+
+window.deleteCase = (id) => {
+  casoService.deleteCase(id);
+  listarCasosNaUI();
+}
+
+window.openCaseModalAsEditor = async (id) => {
+  let caso = await casoService.findCasoById(id);
+  preencherFichaCompleta(caso);
+  document.getElementById("case-modal").classList.remove("hidden");
+}
+
+window.openCaseModalAsNewCase = () => {
+  resetarFichaCompleta();
+  document.getElementById("case-modal").classList.remove("hidden");
+}
+
+window.closeCaseModal = () => {
+  document.getElementById("case-modal").classList.add("hidden");
+}

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       .dropdown-transition {
-        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        transition:
+          max-height 0.3s ease-in-out,
+          opacity 0.3s ease-in-out;
       }
     </style>
 
@@ -29,7 +31,7 @@
 
       <!-- Botão flutuante -->
       <button
-        onclick="openCaseModal()"
+        onclick="openCaseModalAsNewCase()"
         class="fixed bottom-6 right-6 bg-blue-700 hover:bg-blue-800 text-white px-5 py-3 rounded-xl shadow-md transition-all z-50"
       >
         Novo Caso
@@ -39,9 +41,12 @@
       <div id="caso-container"></div>
     </main>
 
+    <script type="module">
+      import "../../script/auth-guard.js";
+      import "../../script/casos-handler.js";
+    </script>
+
     <!-- Scripts -->
-    <script src="../../script/data_handler.js"></script>
-    <script src="../../script/casos.js"></script>
     <script src="../../script/admin_mobile.js"></script>
     <script src="../../script/menu-admin.js"></script>
     ">
@@ -213,7 +218,7 @@
 
             mapModal.addControl(
               new maplibregl.NavigationControl(),
-              "top-right"
+              "top-right",
             );
 
             mapModal.addControl(new ToggleBaseMapControl(), "top-right");
