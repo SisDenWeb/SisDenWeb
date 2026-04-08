@@ -1,105 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SisDenWeb</title>
+    <title>SisDenWeb - SisDenWeb</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      .dropdown-transition {
-        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-      }
-    </style>
   </head>
-  <body class="h-screen flex flex-col md:flex-row bg-slate-100 text-slate-900">
-    <!-- Conteúdo principal -->
-    <main class="flex-1 p-6 flex flex-col justify-between">
-      <div>
-        <!-- Modal -->
-        <div
-          id="cadastro-modal"
-          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50"
+  <body class="bg-slate-100 h-screen overflow-hidden">
+    <div class="flex h-full">
+      <aside
+        id="sidebar"
+        data-component="menu_admin"
+        class="fixed inset-y-0 left-0 z-50 w-72 bg-white border-r border-slate-200 transform -translate-x-full transition-transform duration-300 ease-in-out md:relative md:translate-x-0"
+      ></aside>
+
+      <!-- Overlay para mobile -->
+      <div
+        id="overlay"
+        class="btn-toggle-sidebar fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 hidden transition-opacity duration-300"
+      ></div>
+
+      <!-- CONTEÚDO PRINCIPAL -->
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Topbar Mobile -->
+        <header
+          class="bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between md:hidden"
         >
-          <div class="bg-gray-300 p-6 rounded shadow-lg w-96">
-            <h2 class="text-center text-xl font-semibold mb-4">
-              Cadastro de funcionário
-            </h2>
+          <button class="btn-toggle-sidebar p-2 text-3xl">☰</button>
+          <h1 class="font-bold text-xl">SisDenWeb</h1>
+          <div></div>
+        </header>
 
-            <label class="block mb-2">
-              <span class="text-sm">Nome</span>
-              <input type="text" id="nome" class="w-full border rounded p-2" />
-            </label>
+        <!-- Conteúdo Real -->
+        <main class="flex-1 p-6 flex flex-col justify-between">
+          <div>
+            <!-- Modal -->
+            <div
+              id="cadastro-modal"
+              class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50"
+            >
+              <div class="bg-gray-300 p-6 rounded shadow-lg w-96">
+                <h2 class="text-center text-xl font-semibold mb-4">
+                  Cadastro de funcionário
+                </h2>
 
-            <label class="block mb-4">
-              <span class="text-sm">Email</span>
-              <input type="text" id="email" class="w-full border rounded p-2" />
-            </label>
+                <label class="block mb-2">
+                  <span class="text-sm">Nome</span>
+                  <input
+                    type="text"
+                    id="nome"
+                    class="w-full border rounded p-2"
+                  />
+                </label>
 
-            <div class="flex justify-between">
-              <button
-                id="close-cadastro-modal"
-                class="bg-gray-500 text-white px-4 py-2 rounded"
-              >
-                Fechar
-              </button>
-              <button
-                id="submit-cadastro"
-                class="bg-blue-600 text-white px-4 py-2 rounded"
-              >
-                Cadastrar
-              </button>
+                <label class="block mb-4">
+                  <span class="text-sm">Email</span>
+                  <input
+                    type="text"
+                    id="email"
+                    class="w-full border rounded p-2"
+                  />
+                </label>
+
+                <div class="flex justify-between">
+                  <button
+                    id="close-cadastro-modal"
+                    class="bg-gray-500 text-white px-4 py-2 rounded"
+                  >
+                    Fechar
+                  </button>
+                  <button
+                    id="submit-cadastro"
+                    class="bg-blue-600 text-white px-4 py-2 rounded"
+                  >
+                    Cadastrar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal de Erro -->
+            <div
+              id="error-modal"
+              class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50"
+            >
+              <div class="bg-red-300 p-6 rounded shadow-lg text-center w-96">
+                <h2 class="text-xl font-bold mb-4">Erro</h2>
+                <p id="error-message">Algo deu errado ao cadastrar.</p>
+                <button
+                  id="close-error"
+                  class="mt-4 bg-red-600 text-white px-4 py-2 rounded"
+                >
+                  Fechar
+                </button>
+              </div>
+            </div>
+
+            <!-- Lista de funcionários -->
+            <div class="space-y-6" id="container-funcionarios-list">
+              <!-- lista dinamica -->
             </div>
           </div>
-        </div>
 
-        <!-- Modal de Erro -->
-        <div
-          id="error-modal"
-          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50"
-        >
-          <div class="bg-red-300 p-6 rounded shadow-lg text-center w-96">
-            <h2 class="text-xl font-bold mb-4">Erro</h2>
-            <p id="error-message">Algo deu errado ao cadastrar.</p>
+          <!-- Botão Cadastrar -->
+          <div class="flex justify-end mt-6">
             <button
-              id="close-error"
-              class="mt-4 bg-red-600 text-white px-4 py-2 rounded"
+              id="cadastrar-button"
+              class="bg-blue-800 text-white font-medium px-6 py-2 rounded hover:bg-blue-900"
             >
-              Fechar
+              Cadastrar
             </button>
           </div>
-        </div>
-
-        <!-- Lista de funcionários -->
-        <div class="space-y-6" id="funcionarios-list">
-          <!-- lista dinamica -->
-        </div>
+        </main>
       </div>
+    </div>
 
-      <!-- Botão Cadastrar -->
-      <div class="flex justify-end mt-6">
-        <button
-          id="cadastrar-button"
-          class="bg-blue-800 text-white font-medium px-6 py-2 rounded hover:bg-blue-900"
-        >
-          Cadastrar
-        </button>
-      </div>
-    </main>
+    <script type="module">
+      import "../../script/pages/admin_page.js";
+    </script>
   </body>
 </html>
-
-<!-- Scripts em ordem: config primeiro, depois lógica -->
-<script type="module">
-  import "../../script/config-firebase.js";
-  import "../../script/funcionarios-firebase.js";
-  import "../../script/admin-management.js";
-  import "../../script/auth-guard.js";
-</script>
-
-<script src="../../script/menu-admin.js"></script>
-
-<!-- legacy scripts 
-<script src="../../script/data_handler.js"></script>
-<script src="../../script/admin-management.js"></script>
-<script src="../../script/admin_mobile.js"></script>
--->

@@ -114,9 +114,7 @@
 
           <button
             type="button"
-            id="login-buttom"
-            class="w-full bg-blue-600 text-white py-2 px-4 mt-2 rounded-lg font-semibold hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
-            onclick="fazerLogin()"
+            class="btn-login w-full bg-blue-600 text-white py-2 px-4 mt-2 rounded-lg font-semibold hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Entrar
           </button>
@@ -124,9 +122,7 @@
 
           <button
             type="button"
-            id="login-buttom"
-            class="w-full bg-blue-600 text-white py-2 px-4 my-1 rounded-lg font-semibold hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
-            onclick="toggleForms()"
+            class="btn-toggle-forms w-full bg-blue-600 text-white py-2 px-4 my-1 rounded-lg font-semibold hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Cadastrar como paciente
           </button>
@@ -135,10 +131,7 @@
             Dificuldades com a senha?
             <a
               href="#"
-              onclick="
-                toggleResetForms();
-                return false;
-              "
+              class="btn-toggle-reset"
               style="color: #4285f4; font-weight: 500"
             >
               Redefina
@@ -240,9 +233,7 @@
 
           <button
             type="button"
-            id="signup-buttom"
-            class="w-full bg-blue-600 text-white py-2 px-4 my-2 rounded-lg font-semibold hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
-            onclick="fazerCadastro()"
+            class="btn-cadastro w-full bg-blue-600 text-white py-2 px-4 my-2 rounded-lg font-semibold hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Cadastrar como paciente
           </button>
@@ -251,10 +242,7 @@
             Já tem conta?
             <a
               href="#"
-              onclick="
-                toggleForms();
-                return false;
-              "
+              class="btn-toggle-forms"
               style="color: #4285f4"
               >Entrar</a
             >
@@ -282,9 +270,7 @@
 
           <button
             type="button"
-            id="signup-buttom"
-            class="w-full bg-blue-600 text-white py-2 px-4 my-2 rounded-lg font-semibold hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
-            onclick="resetPassword()"
+            class="btn-reset w-full bg-blue-600 text-white py-2 px-4 my-2 rounded-lg font-semibold hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Enviar Link de Redefinição
           </button>
@@ -293,10 +279,7 @@
             Deseja voltar para o login?
             <a
               href="#"
-              onclick="
-                toggleResetForms();
-                return false;
-              "
+              class="btn-toggle-reset"
               style="color: #4285f4"
               >Voltar</a
             >
@@ -321,10 +304,8 @@
   </body>
 </html>
 
-<!-- Scripts em ordem: config primeiro, depois lógica -->
 <script type="module">
-  import "../script/config-firebase.js";
-  import "../script/auth.js";
+  import "../script/pages/login_page.js";
 </script>
 
 <script>
