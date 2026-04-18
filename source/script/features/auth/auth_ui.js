@@ -100,6 +100,8 @@ function handleLoginClick() {
   const email = document.getElementById("login-email")?.value.trim();
   const senha = document.getElementById("login-senha")?.value;
 
+  console.log("Tentando login com email:", email);
+  
   if (!email || !senha) {
     showMessage("Email e senha são obrigatórios.", "error");
     return;

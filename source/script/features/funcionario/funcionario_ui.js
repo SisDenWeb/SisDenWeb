@@ -12,7 +12,9 @@ export function renderFuncionariosList(funcionarios) {
   const listElement = document.getElementById("container-funcionarios-list");
 
   if (!listElement) {
-    throw new Error(`Elemento #${"container-funcionarios-list"} não encontrado no DOM.`);
+    throw new Error(
+      `Elemento #${"container-funcionarios-list"} não encontrado no DOM.`,
+    );
   }
 
   // Limpa a lista
@@ -67,14 +69,14 @@ function setupDesativarButtonEvents() {
       if (!id) return;
 
       const confirmou = confirm(
-        `Tem certeza que deseja desativar o funcionário "${nome}"?`
+        `Tem certeza que deseja desativar o funcionário "${nome}"?`,
       );
 
       if (confirmou) {
         document.dispatchEvent(
           new CustomEvent("desativarFuncionario", {
-            detail: { funcionarioId: id }
-          })
+            detail: { funcionarioId: id },
+          }),
         );
       }
     }

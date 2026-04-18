@@ -20,12 +20,12 @@ class AuthStore {
   subscribe(listener) {
     this.listeners.push(listener);
     return () => {
-      this.listeners = this.listeners.filter(l => l !== listener);
+      this.listeners = this.listeners.filter((l) => l !== listener);
     };
   }
 
   notify() {
-    this.listeners.forEach(listener => listener(this.state));
+    this.listeners.forEach((listener) => listener(this.state));
   }
 
   // ==================== ACTIONS ====================
@@ -41,7 +41,7 @@ class AuthStore {
       this.state.currentUser = {
         uid: result.user.uid,
         email: result.user.email,
-        ...result.user  // inclui nome, role, etc.
+        ...result.user, // inclui nome, role, etc.
       };
       this.state.isAuthenticated = true;
       this.state.isPrimeiroLogin = result.isPrimeiroLogin;
@@ -107,18 +107,18 @@ class AuthStore {
   }
 
   async logout() {
-    console.log("logout")
+    console.log("logout");
     this.state.loading = true;
     this.notify();
 
     try {
       await authRepository.logout();
-      
+
       // Limpa estado local
       this.state.currentUser = null;
       this.state.isAuthenticated = false;
       this.state.isPrimeiroLogin = false;
-      
+
       this.notify();
     } catch (error) {
       console.error("Erro ao fazer logout:", error);
@@ -160,6 +160,14 @@ class AuthStore {
     return this.state.isPrimeiroLogin;
   }
 
+  isFuncionario() {
+    return this.state.currentUser.role === "funcionario";
+  }
+
+  isPaciente() {
+    return this.state.currentUser.role === "paciente";
+  }
+
   hasError() {
     return !!this.state.error;
   }
@@ -171,7 +179,6 @@ class AuthStore {
   initAuthListener() {
     authRepository.initAuthListener();
   }
-
 }
 
 // Exporta instância única (singleton)

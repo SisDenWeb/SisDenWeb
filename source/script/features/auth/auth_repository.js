@@ -171,7 +171,7 @@ export const authRepository = {
         const dashboards = {
           admin: "/source/html/admin/admin-management.html",
           funcionario: "/source/html/funcionario/funcionario-cases.html",
-          paciente: "/source/html/paciente/dashboard.html",
+          paciente: "/source/html/paciente/paciente-alerta.html",
         };
         window.location.replace(dashboards[role]);
       }
