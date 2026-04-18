@@ -98,7 +98,7 @@ export const denunciaRepository = {
         motivo: motivo.trim() || "Status atualizado",
         data: new Date().toISOString(),
         usuario: user.uid || "sistema",
-        usuarioRole: user.role || "desconhecido"
+        usuarioRole: user.nome || "desconhecido"
       };
 
       await updateDoc(denunciaRef, {

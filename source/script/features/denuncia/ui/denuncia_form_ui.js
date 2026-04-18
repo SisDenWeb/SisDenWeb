@@ -103,6 +103,7 @@ export function openDetalhesDenuncia(denuncia) {
     denuncia.descricao || "Sem descrição";
   document.getElementById("detalhe-tipo-problema").textContent =
     denuncia.tipoProblema || "Tipo de problema não informado";
+    document.getElementById("select-status").value = denuncia.status || "em_analise";
     
 
   const data = denuncia.createdAt?.seconds
@@ -110,11 +111,47 @@ export function openDetalhesDenuncia(denuncia) {
     : "Data não disponível";
   document.getElementById("detalhe-data").textContent = data;
 
+  renderHistorico(denuncia.historicoStatus)
   // Status badge
   const statusEl = document.getElementById("status-badge");
   //statusEl.textContent = getStatusLabel(denuncia.status);
   //  statusEl.className = `px-5 py-2 rounded-2xl text-sm font-medium ${getStatusClass(denuncia.status)}`;
 }
+
+function renderHistorico(historico) {
+  const container = document.getElementById("historico-lista");
+  const vazio = document.getElementById("historico-vazio");
+
+  if (!historico || historico.length === 0) {
+    container.innerHTML = "";
+    vazio.classList.remove("hidden");
+    return;
+  }
+
+  vazio.classList.add("hidden");
+
+  let html = "";
+
+  historico.forEach(entry => {
+    const data = entry.data ? new Date(entry.data).toLocaleString('pt-BR') : "Data não disponível";
+    
+    html += `
+      <div class="flex gap-4 border-l-4 border-gray-200 pl-6 py-1">
+        <div class="flex-1">
+          <p class="font-medium text-gray-800">${entry.status}</p>
+          <p class="text-sm text-gray-600 mt-1">${entry.motivo}</p>
+        </div>
+        <div class="text-right text-xs text-gray-500">
+          <p>${data}</p>
+          <p class="mt-1">${entry.usuarioRole || ""}</p>
+        </div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+}
+
 
 export function closeModalDetalheDenuncia() {
   document.getElementById("detalhes-da-denuncia").classList.add("hidden");

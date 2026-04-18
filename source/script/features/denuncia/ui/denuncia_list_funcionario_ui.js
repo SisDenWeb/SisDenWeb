@@ -152,6 +152,13 @@ function getStatusInfo(status) {
         text: "text-emerald-700",
         emoji: "✅",
       };
+    case "descartada":
+      return {
+        label: "Descartada",
+        bg: "bg-red-100",
+        text: "text-red-700",
+        emoji: "❌"
+      };
     default:
       return {
         label: "Pendente",

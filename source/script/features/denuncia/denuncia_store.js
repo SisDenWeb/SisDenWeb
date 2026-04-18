@@ -147,13 +147,14 @@ class DenunciaStore {
   }
 
   // newStatus as {status: "status", motivo: "motivo (opcional)"}
-  updateDenunciaStatus(denunciaId, novoStatus, motivo = "", user) {
-    return denunciaRepository.updateStatus(
+  async updateDenunciaStatus(denunciaId, novoStatus, motivo = "", user) {
+    await denunciaRepository.updateStatus(
       denunciaId,
       novoStatus,
       motivo,
       user,
     );
+    await this.loadDenuncias(true);
   }
 
   updateUnviewedForCurrentUser() {

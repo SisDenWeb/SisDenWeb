@@ -77,7 +77,7 @@
           id="detalhes-da-denuncia"
           class="flex-1 overflow-auto bg-gray-50 hidden"
         >
-        <p id="detalhe-denuncia-id" class="hidden" ></p>
+          <p id="detalhe-denuncia-id" class="hidden"></p>
           <!-- Header -->
           <header
             class="bg-white border-b px-8 py-5 flex items-center justify-between sticky top-0 z-10"
@@ -169,7 +169,7 @@
                       <option value="pendente">Pendente</option>
                       <option value="em_analise">Em Análise</option>
                       <option value="concluida">Concluída</option>
-                      <option value="reprovada">Reprovada</option>
+                      <option value="descartada">Descartada</option>
                     </select>
                   </div>
 
@@ -192,6 +192,26 @@
                   >
                     Confirmar Mudança de Status
                   </button>
+                </div>
+              </div>
+
+              <div class="p-2">
+                <h2
+                  class="text-lg font-semibold text-gray-700 mb-6 flex items-center gap-2"
+                >
+                  📜 Histórico de Alterações
+                </h2>
+
+                <div id="historico-lista" class="space-y-5">
+                  <!-- Renderizado via JavaScript -->
+                </div>
+
+                <!-- Mensagem quando não há histórico -->
+                <div
+                  id="historico-vazio"
+                  class="hidden text-center py-12 text-gray-400"
+                >
+                  <p>Nenhum histórico de alteração registrado ainda.</p>
                 </div>
               </div>
             </div>

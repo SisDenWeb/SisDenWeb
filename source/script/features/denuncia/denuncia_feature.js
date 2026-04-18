@@ -95,6 +95,7 @@ function setupUIEventListeners() {
     const { denunciaId, novoStatus, motivo } = event.detail;
     console.log("Evento mudarStatusDenuncia recebido com dados:", { denunciaId, novoStatus, motivo });
     await denunciaStore.updateDenunciaStatus(denunciaId, novoStatus, motivo, authStore.getCurrentUser());
+    denunciaStore.closeModalDetalheDenuncia();
   });
 
 }
