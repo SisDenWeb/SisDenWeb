@@ -1,4 +1,4 @@
-const CACHE_NAME = "SysDenWeb";
+const CACHE_NAME = "SysDenWeb3.0";
 const urlsToCache = [
   "/",
   "/source/html/index.html",
