@@ -161,10 +161,12 @@ class AuthStore {
   }
 
   isFuncionario() {
+    console.log("AuthStore: Usuario é: ", this.state.currentUser.role);
     return this.state.currentUser.role === "funcionario";
   }
 
   isPaciente() {
+    console.log("AuthStore: Usuario é: ", this.state.currentUser.role);
     return this.state.currentUser.role === "paciente";
   }
 

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SisDenWeb - Sem Conexão</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center">
+
+  <div class="max-w-md w-full mx-auto px-6 text-center">
+
+    <!-- Logo -->
+    <div class="flex justify-center mb-8">
+      <div class="flex items-center gap-3">
+        <div class="w-14 h-14 bg-red-600 text-white rounded-2xl flex items-center justify-center text-4xl shadow-inner">
+          🦟
+        </div>
+        <div>
+          <span class="text-3xl font-bold text-slate-800">SisDenWeb</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ícone principal -->
+    <div class="mx-auto w-28 h-28 bg-slate-200 text-slate-400 rounded-3xl flex items-center justify-center text-7xl mb-8">
+      📴
+    </div>
+
+    <h1 class="text-4xl font-bold text-slate-800 mb-3">Sem conexão</h1>
+    
+    <p class="text-slate-600 text-lg mb-8">
+      Você está offline no momento.<br>
+      Algumas funcionalidades podem estar limitadas.
+    </p>
+
+    <!-- O que ainda funciona -->
+    <div class="bg-white rounded-3xl shadow p-6 mb-10 text-left">
+      <p class="text-sm font-medium text-slate-500 mb-4">O que você ainda pode fazer:</p>
+      <ul class="space-y-3 text-slate-600">
+        <li class="flex items-start gap-3">
+          <i class="fas fa-check text-emerald-500 mt-0.5"></i>
+          Ver suas denúncias anteriores
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="fas fa-check text-emerald-500 mt-0.5"></i>
+          Acessar dados já carregados
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="fas fa-check text-emerald-500 mt-0.5"></i>
+          Ver o histórico de alterações
+        </li>
+      </ul>
+    </div>
+
+    <!-- Botões de ação -->
+    <div class="space-y-4">
+      <button onclick="retryConnection()" 
+              class="w-full py-5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg rounded-3xl transition shadow-lg shadow-blue-500/30 flex items-center justify-center gap-3">
+        <i class="fas fa-redo"></i>
+        Tentar novamente
+      </button>
+
+      <button onclick="goToDashboard()" 
+              class="w-full py-5 bg-slate-700 hover:bg-slate-800 text-white font-medium rounded-3xl transition">
+        Voltar para o Início
+      </button>
+    </div>
+
+    <p class="text-xs text-slate-400 mt-12">
+      SisDenWeb v3.0 • Você está offline
+    </p>
+
+  </div>
+
+  <script>
+    function retryConnection() {
+      window.location.reload();
+    }
+
+    function goToDashboard() {
+      window.location.href = "/source/html/index.html";
+    }
+
+    // Feedback visual se o usuário voltar a ficar online
+    window.addEventListener('online', () => {
+      window.location.reload();
+    });
+  </script>
+</body>
+</html>

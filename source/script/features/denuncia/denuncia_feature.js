@@ -10,12 +10,12 @@ import { authStore } from "../auth/auth_store.js";
 export async function init() {
   const currentUser = authStore.getCurrentUser();
 
-  console.log("authStore ", authStore);
   if (!currentUser)
     throw new Error(
       "Usuário não autenticado. DenúnciaFeature requer um usuário logado.",
     );
 
+  console.log("currentUser.role: ", currentUser.role);
   console.log("DenunciaFeature: currentUser", currentUser);
   denunciaStore.setCurrentUser(currentUser);
 
@@ -24,12 +24,14 @@ export async function init() {
   }
   if (authStore.isFuncionario()) {
     await denunciaStore.loadDenuncias();
+    console.log("DenunciaFeature: Denúncias carregadas para funcionário", denunciaStore.state.denuncias);
     denunciaListFuncionario.init(
       denunciaStore.state.denuncias,
       authStore.getCurrentUser().uid,
     );
   }
-
+  console.log("currentUser.role: ", currentUser.role);
+  if (currentUser.role === "funcionario") console.log("funcionario logado"); 
   const isPacienteListPage =
     denunciaListPacienteUI.hasDenunciaPacienteListContainer();
   //const isFuncionarioPage = denunciaAlertUI.hasAlertContainer();
