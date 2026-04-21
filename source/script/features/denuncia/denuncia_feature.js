@@ -3,7 +3,7 @@
 
 import * as denunciaFormUI from "./ui/denuncia_form_ui.js";
 import * as denunciaListPacienteUI from "./ui/denuncia_list_paciente_ui.js";
-import * as denunciaListFuncionario from "./ui/denuncia_list_funcionario_ui.js";
+import * as denunciaListFuncionarioUI from "./ui/denuncia_list_funcionario_ui.js";
 import { denunciaStore } from "./denuncia_store.js";
 import { authStore } from "../auth/auth_store.js";
 
@@ -15,48 +15,29 @@ export async function init() {
       "Usuário não autenticado. DenúnciaFeature requer um usuário logado.",
     );
 
-  console.log("currentUser.role: ", currentUser.role);
-  console.log("DenunciaFeature: currentUser", currentUser);
   denunciaStore.setCurrentUser(currentUser);
 
-  if (authStore.isPaciente()) {
-    await denunciaStore.loadDenuncias();
-  }
-  if (authStore.isFuncionario()) {
-    await denunciaStore.loadDenuncias();
-    console.log("DenunciaFeature: Denúncias carregadas para funcionário", denunciaStore.state.denuncias);
-    denunciaListFuncionario.init(
-      denunciaStore.state.denuncias,
-      authStore.getCurrentUser().uid,
-    );
-  }
-  console.log("currentUser.role: ", currentUser.role);
-  if (currentUser.role === "funcionario") console.log("funcionario logado"); 
-  const isPacienteListPage =
-    denunciaListPacienteUI.hasDenunciaPacienteListContainer();
-  //const isFuncionarioPage = denunciaAlertUI.hasAlertContainer();
+  await denunciaStore.loadDenuncias();
 
-  denunciaFormUI.init();
-
-  if (isPacienteListPage) {
+  if (authStore.isPaciente() && denunciaListPacienteUI.hasContainer()) {
     denunciaListPacienteUI.setupDenunciaPacienteListListeners();
   }
 
-  //const isFuncionarioPage = denunciaListFuncionario.hasDenunciaFuncionarioListContainer();
-  //if (isFuncionarioPage) {
-  //  denunciaListFuncionario.setupDenunciaFuncionarioListListeners();
-  //}
+  if (authStore.isFuncionario() && denunciaListFuncionarioUI.hasContainer()) {
+    denunciaListFuncionarioUI.init(
+      denunciaStore.state.denuncias,
+      authStore.getCurrentUser().uid,
+      denunciaStore.state.denunciasNaoVisualizadasParaMim.length,
+    );
+  }
 
-  // Configura listeners globais de eventos
+  if (denunciaFormUI.hasContainer()) {
+    denunciaFormUI.init();
+  }
+
   setupUIEventListeners();
 
-  // Configura subscription reativa do Store
   setupStoreSubscription();
-
-  // Define o usuário atual (importante para marcar visualizações individuais)
-
-  // Carrega os dados iniciais
-  await denunciaStore.loadDenuncias();
 }
 
 // ==================== EVENTOS DA UI ====================
@@ -95,27 +76,35 @@ function setupUIEventListeners() {
 
   document.addEventListener("mudarStatusDenuncia", async (event) => {
     const { denunciaId, novoStatus, motivo } = event.detail;
-    console.log("Evento mudarStatusDenuncia recebido com dados:", { denunciaId, novoStatus, motivo });
-    await denunciaStore.updateDenunciaStatus(denunciaId, novoStatus, motivo, authStore.getCurrentUser());
+    console.log("Evento mudarStatusDenuncia recebido com dados:", {
+      denunciaId,
+      novoStatus,
+      motivo,
+    });
+    await denunciaStore.updateDenunciaStatus(
+      denunciaId,
+      novoStatus,
+      motivo,
+      authStore.getCurrentUser(),
+    );
     denunciaStore.closeModalDetalheDenuncia();
   });
-
 }
 
 // ==================== SUBSCRIPTION DO STORE ====================
 
 function setupStoreSubscription() {
   denunciaStore.subscribe((state) => {
-    // Atualiza lista do paciente (se estiver na tela de Minhas Denúncias)
-    if (authStore.isPaciente()) {
+    if (authStore.isPaciente() && denunciaListPacienteUI.hasContainer()) {
       denunciaListPacienteUI.renderDenunciasPaciente(state.denuncias);
     }
-    if (authStore.isFuncionario()) {
-      denunciaListFuncionario.renderDenunciasFuncionario(
+
+    if (authStore.isFuncionario() && denunciaListFuncionarioUI.hasContainer()) {
+      denunciaListFuncionarioUI.renderDenunciasFuncionario(
         state.denuncias,
         authStore.getCurrentUser().uid,
       );
-      denunciaListFuncionario.updateUnviewedCount(
+      denunciaListFuncionarioUI.updateUnviewedCount(
         state.denunciasNaoVisualizadasParaMim.length,
       );
 
@@ -131,20 +120,4 @@ function setupStoreSubscription() {
     //   denunciaAlertUI.renderAlerts(state.denunciasNaoVisualizadasParaMim);
     //}
   });
-}
-
-// ==================== FUNÇÕES PÚBLICAS ====================
-
-/**
- * Retorna quantidade de denúncias não visualizadas (útil para badge no menu)
- */
-export function getUnviewedCount() {
-  return denunciaStore.getUnviewedCount();
-}
-
-/**
- * Recarrega manualmente as denúncias
- */
-export async function refreshDenuncias() {
-  await denunciaStore.loadDenuncias(true);
 }

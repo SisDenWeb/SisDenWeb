@@ -3,7 +3,7 @@
 import * as authUI from "./auth_ui.js";
 import { authStore } from "./auth_store.js";
 
-export function init() {
+export async function init() {
   authUI.initAuthUI();
   
   // Listener principal do Firebase Auth (responsável por redirecionamentos)

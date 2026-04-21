@@ -37,9 +37,14 @@ function dispatchEvent(name, detail = {}) {
   document.dispatchEvent(new CustomEvent(name, { detail }));
 }
 
-export function init(denuncias, funcionarioId) {
+export function init(denuncias, funcionarioId, denunciaNaoVisualizadasCount) {
   setupClickDelegation();
   renderDenunciasFuncionario(denuncias, funcionarioId);
+  updateUnviewedCount(denunciaNaoVisualizadasCount);
+}
+
+export function hasContainer() {
+  return !!document.getElementById("denuncias-funcionario-list");
 }
 
 export function updateUnviewedCount(count) {
@@ -157,7 +162,7 @@ function getStatusInfo(status) {
         label: "Descartada",
         bg: "bg-red-100",
         text: "text-red-700",
-        emoji: "❌"
+        emoji: "❌",
       };
     default:
       return {

@@ -15,6 +15,8 @@ const messageStyles = {
   warning: "text-yellow-600 font-medium",
 };
 
+const onlyAnnomiousDenuncia = false;
+
 export function initAuthUI() {
   setupAuthUIEvents();
 }
@@ -33,6 +35,13 @@ export function showCurrentUserInfoInMenu(user) {
     subtree: true
   });
 }
+
+function manageOnlyAnnomiousDenuncia() {
+  if (onlyAnnomiousDenuncia) {
+    document.getElement
+  }
+}
+
 
 function fillUserInfo(user) {
   const elements = {
@@ -162,8 +171,14 @@ function handleLogoutClick() {
 }
 
 function toggleBetweenLoginAndSignup() {
+  let singupForm = "signup-form"
+  if (onlyAnnomiousDenuncia) {
+    singupForm = "anonimous"
+  }
   document.getElementById("login-form")?.classList.toggle("hidden");
-  document.getElementById("signup-form")?.classList.toggle("hidden");
+
+
+  document.getElementById(singupForm)?.classList.toggle("hidden");
 }
 
 function toggleBetweenLoginAndResetPassword() {

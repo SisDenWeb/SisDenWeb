@@ -1,6 +1,6 @@
 const DENUNCIAS_PACIENTE_LIST_ID = "denuncias-paciente-list";
 
-export function hasDenunciaPacienteListContainer() {
+export function hasContainer() {
   return !!document.getElementById(DENUNCIAS_PACIENTE_LIST_ID);
 }
 

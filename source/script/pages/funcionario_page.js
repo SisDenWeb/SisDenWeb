@@ -5,7 +5,7 @@ import * as componentRenderer from "../core/component_render.js";
 import * as denunciaFeature from "../features/denuncia/denuncia_feature.js";
 
 async function init() {
-  authFeature.init();
+  await authFeature.init();
   await componentRenderer.initAutoRender();
   casoFeature.init();
   denunciaFeature.init();
