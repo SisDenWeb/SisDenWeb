@@ -15,7 +15,7 @@ const clickMap = {
       id: el.closest(".card-denuncia").dataset.id,
     });
   },
-  "btn-atualizar-denuncias": () => {
+  ".btn-atualizar-denuncias": () => {
     dispatchEvent("refreshDenuncias");
   },
 };
