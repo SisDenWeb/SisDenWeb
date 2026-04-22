@@ -161,7 +161,7 @@ class AuthStore {
   }
 
   isFuncionario() {
-    return this.state.currentUser.role === "funcionario";
+    return ["funcionario", "admin"].includes(this.state.currentUser.role);
   }
 
   isPaciente() {
