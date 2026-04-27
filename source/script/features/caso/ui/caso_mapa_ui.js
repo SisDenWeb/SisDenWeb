@@ -6,6 +6,11 @@ let mapModal = null; // Mapa dentro do modal
 let markerModal = null;
 let currentLayer = "markers"; // "markers" ou "heat"
 let currentStyle = "satellite";
+let currentGeoCords = { lat: -20.2833, lng: -50.25 };
+
+export function getCurrentGeoCords() {
+  return currentGeoCords;
+}
 
 // IDs constantes
 const layerNames = {
@@ -37,6 +42,8 @@ function setupMapaPrincipal(geoData) {
     console.log("🗺️ Mapa principal carregado");
     updateMapLayers(geoData);
   });
+
+  setupMapaModalEditarLocalizacao();
 }
 
 function setupMapaModalEditarLocalizacao() {
@@ -69,7 +76,39 @@ function setupMapaModalEditarLocalizacao() {
     } else {
       markerModal.setLngLat([coords.lng, coords.lat]);
     }
+
+    currentGeoCords = { lat: coords.lat, lng: coords.lng };
+    console.debug("Marcador criado no modal em:", coords);
   });
+}
+
+export function updateMarkerPosition() {
+  if (!mapModal) {
+    throw new Error("Mapa do modal não inicializado");
+  }
+
+  let lat = parseFloat(document.getElementById("res-geo1")?.value) || currentGeoCords.lat;
+  let lng = parseFloat(document.getElementById("res-geo2")?.value) || currentGeoCords.lng;
+
+
+  // Se já existe marcador, apenas move ele
+  if (markerModal) {
+    markerModal.setLngLat([lng, lat]);
+  } 
+  // Se não existe, cria o marcador
+  else {
+    markerModal = new maplibregl.Marker({ color: "red" })
+      .setLngLat([lng, lat])
+      .addTo(mapModal);
+  }
+  mapModal.flyTo({
+    center: [lng, lat],
+    zoom: 16.4,
+    essential: true,           // animação suave
+    duration: 1200             // 1.2 segundos de animação
+  });
+
+  console.log(`📍 Marcador atualizado para: ${lat}, ${lng}`);
 }
 
 export function hasContainer() {
@@ -82,6 +121,13 @@ export function updateMapLayers(geoData) {
   currentLayer === "markers"
     ? addMarkersLayer(geoData)
     : addHeatMapLayer(geoData);
+}
+
+export function toggleEditarLocalizacaoModal() {
+  const modal = document.getElementById("modal-localizacao");
+  if (!modal) return;
+
+  modal.classList.toggle("hidden");
 }
 
 function resetLayers() {

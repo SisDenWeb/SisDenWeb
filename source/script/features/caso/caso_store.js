@@ -193,6 +193,7 @@ class CasoStore {
       display_name: caso.notificacao_individual?.nome_paciente || "Sem nome",
       agravo: caso.dados_gerais?.agravo_doenca || "Desconhecido",
     }));
+    this.notify();
     return this.state.geoCasos;
   }
 
@@ -203,13 +204,32 @@ class CasoStore {
     try {
       await casoRepository.save(data);
       await this.loadCasos(true);
-      this.closeModal();
     } catch (error) {
       console.error("Erro ao salvar caso:", error);
       throw error;
     } finally {
       this.state.loading = false;
       this.notify();
+    }
+  }
+
+  async updateGeolocalizacao(casoId, geo1, geo2) {
+    try {
+      await casoRepository.updateGeolocalizacao(casoId, geo1, geo2);
+
+      // Atualiza localmente o estado (sem precisar recarregar tudo)
+      const caso = this.state.casos.find((c) => c.id === casoId);
+      if (caso && caso.residencia) {
+        console.log("Atualizando localização do caso no store:", casoId, geo1, geo2);
+        caso.residencia.geo1 = geo1;
+        caso.residencia.geo2 = geo2;
+      }
+      console.log("Localização atualizada no store:", caso);
+
+      this.loadGeoCasos();
+    } catch (error) {
+      console.error("Erro ao atualizar geo:", error);
+      throw error;
     }
   }
 

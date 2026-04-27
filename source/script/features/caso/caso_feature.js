@@ -13,6 +13,9 @@ import * as casoDashboardUI from "./ui/caso_dashboard_ui.js";
  */
 
 export async function init() {
+  // Conecta o Store à UI (reatividade)
+  setupStoreSubscription();
+
   const casos = await casoStore.loadCasos();
   const geoData = await casoStore.loadGeoCasos();
   const dashboardStats = casoStore.getDashboardStats();
@@ -36,9 +39,6 @@ export async function init() {
 
   setupClickDelegation();
   setupEventListeners();
-
-  // Conecta o Store à UI (reatividade)
-  setupStoreSubscription();
 }
 
 // ==================== ESCUTA EVENTOS DA UI ====================
@@ -67,6 +67,7 @@ function setupEventListeners() {
     try {
       const { data } = event.detail;
       await casoStore.salvarCaso(data);
+      casoStore.closeModal();
     } catch (error) {
       console.error("Erro ao salvar caso:", error);
       // Aqui você pode disparar um evento de erro para a UI tratar, se quiser
@@ -84,12 +85,37 @@ function setupEventListeners() {
   document.addEventListener("updateSearchFields", (e) => {
     casoStore.setActiveSearchFields(e.detail.fields);
   });
+
+  document.addEventListener("editarLocalizacao", () => {
+    casoMapaUI.updateMarkerPosition();
+    casoMapaUI.toggleEditarLocalizacaoModal();
+  });
+
+  document.addEventListener("salvarLocalizacao", async (event) => {
+    try {
+      const {id} = event.detail;
+      const {lat, lng} = casoMapaUI.getCurrentGeoCords();
+      console.log("currentGeoCords: ", casoMapaUI.getCurrentGeoCords());
+      console.debug("Salvando localização para caso ID:", id, "Lat:", lat, "Lng:", lng);
+      await casoStore.updateGeolocalizacao(id, lat, lng);
+      casoMapaUI.toggleEditarLocalizacaoModal();
+      console.debug("Localização atualizada com sucesso.");
+    }catch (error) {
+      console.error("Erro ao salvar localização:", error);
+      // Aqui você pode disparar um evento de erro para a UI tratar, se quiser
+    }
+  });
+
+  document.addEventListener("fecharEditarLocalizacao", () => {
+    casoMapaUI.toggleEditarLocalizacaoModal();
+  });
 }
 
 // ==================== REATIVIDADE DO STORE ====================
 
 function setupStoreSubscription() {
   casoStore.subscribe(async (state) => {
+    console.debug("Store atualizado, re-renderizando UI...");
     if (casoListaUI.hasContainer()) {
       casoListaUI.renderCasosList(state.casosFiltrados);
     }

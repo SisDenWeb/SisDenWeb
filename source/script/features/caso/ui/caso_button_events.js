@@ -9,6 +9,13 @@ const clickMap = {
   ".btn-fechar-modal": () => dispatchEvent("fecharModal"),
   ".btn-salvar-caso": () =>
     dispatchEvent("salvarCaso", { data: formMapper.extractFormData() }),
+  ".btn-editar-localizacao": () => dispatchEvent("editarLocalizacao"),
+  ".btn-salvar-localizacao": () =>
+    dispatchEvent("salvarLocalizacao", {
+      id: formMapper.extractId(),
+    }),
+  ".btn-fechar-editar-localizacao": () =>
+    dispatchEvent("fecharEditarLocalizacao"),
 };
 
 export function setupClickDelegation() {

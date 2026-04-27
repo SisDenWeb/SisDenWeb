@@ -161,8 +161,6 @@ export function populateForm(caso) {
     setCheckboxes(selector, values);
   });
 
-  // 4. Campos condicionais (mostrar/esconder)
-  triggerConditionalUI();
 }
 
 /** Extrai todos os dados do formulário e retorna um objeto estruturado */
@@ -228,15 +226,14 @@ export function resetForm() {
   });
 }
 
-/** Dispara as funções de UI condicional (toggle) após preencher o form */
-function triggerConditionalUI() {
-
+export function extractId() {
+  return document.getElementById("id").value;
 }
+
 
 // Exporta tudo que será usado por outros arquivos
 export default {
   populateForm,
   extractFormData,
-  resetForm,
-  triggerConditionalUI
+  resetForm
 };

@@ -6,6 +6,8 @@ import {
   getDoc,
   setDoc,
   addDoc,
+  updateDoc,
+  serverTimestamp,
   doc,
   deleteDoc,
 } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
@@ -85,7 +87,7 @@ export const casoRepository = {
   async save(data) {
     try {
       let id = data.id;
-      
+
       if (id) {
         // Atualização
         const docRef = doc(db, "casos", id);
@@ -103,6 +105,25 @@ export const casoRepository = {
       return id;
     } catch (error) {
       console.error("Erro no repository save:", error);
+      throw error;
+    }
+  },
+
+  // Atualizar apenas geolocalização
+  async updateGeolocalizacao(casoId, geo1, geo2) {
+    try {
+      const casoRef = doc(db, "casos", casoId);
+
+      await updateDoc(casoRef, {
+        "residencia.geo1": geo1,
+        "residencia.geo2": geo2,
+        updatedAt: serverTimestamp(), // boa prática
+      });
+
+      this.clearCache(); // invalida cache se você estiver usando
+      return true;
+    } catch (error) {
+      console.error("Erro ao atualizar geolocalização:", error);
       throw error;
     }
   },
