@@ -84,7 +84,7 @@ function setupMapaModalEditarLocalizacao() {
 
 export function updateMarkerPosition() {
   if (!mapModal) {
-    throw new Error("Mapa do modal não inicializado");
+    setupMapaModalEditarLocalizacao();
   }
 
   let lat = parseFloat(document.getElementById("res-geo1")?.value) || currentGeoCords.lat;

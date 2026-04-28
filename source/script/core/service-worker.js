@@ -1,6 +1,6 @@
 // sw.js - Service Worker Moderno para SisDenWeb 3.0
 
-const VERSION = '3.0.3';
+const VERSION = '3.0.4';
 const CACHE_NAME = `sisdenweb-${VERSION}`;
 const OFFLINE_PAGE = '/source/html/offline.html'; 
 
